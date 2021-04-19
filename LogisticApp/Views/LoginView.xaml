@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:LogisticApp.Views"
         mc:Ignorable="d"
         Title="LoginWindow" Height="400" Width="500"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize" 
+        xmlns:language="clr-namespace:LogisticApp.Resources.Languages">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="5"/>
@@ -31,16 +32,17 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" 
                     VerticalAlignment="Center">
-            <Label Content="Username:" FontSize="20" />
+            <Label Content="{x:Static language:Lang.login_username}"
+                   FontSize="20" />
             <TextBox x:Name="loginTextBox"/>
-            <Label Content="Password:" FontSize="20"/>
+            <Label Content="{x:Static language:Lang.login_password}" FontSize="20"/>
             <PasswordBox x:Name="passwordTextBox"/>
             <Button x:Name="buttonLogin" Content="Login"/>
 
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom"
                     HorizontalAlignment="Right">
-            <Button Content="Contact Administrator" Background="BlanchedAlmond"/>
+            <Button Content="Contact Admin" Background="BlanchedAlmond"/>
         </StackPanel>
 
     </Grid>
