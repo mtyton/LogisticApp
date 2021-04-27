@@ -16,5 +16,7 @@ namespace LogisticApp
         bool insertData(string[] data, string[] fields, string table);
         bool updateData(string[] data, string [] fields, string table);
         bool selectData(string[] fields, string table);
+
+        bool createTable(string tableName);
     }
 }

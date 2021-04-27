@@ -18,5 +18,6 @@ namespace LogisticApp.Models.Tests
             string strUser = user.ToString();
             Assert.AreEqual(strUser, "Test01");
         }
+
     }
 }
