@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace LogisticApp.Views
 {
+    using Models;
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
@@ -22,6 +23,7 @@ namespace LogisticApp.Views
         public LoginWindow()
         {
             InitializeComponent();
+            DatabaseConnection conn = new DatabaseConnection();
         }
     }
 }
