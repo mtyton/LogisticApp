@@ -23,5 +23,16 @@ namespace LogisticApp.Models
             return username;
         }
 
+        public void getData()
+        {
+            // This method should get data from database and set it to user
+        }
+
+        public void login()
+        {
+            // this method should provide login
+            // possibly that this will be mocked currently
+        }
+
     }
 }

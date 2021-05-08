@@ -63,6 +63,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Models\DatabaseConnectionTests.cs" />
+    <Compile Include="Models\EmployeeTests.cs" />
     <Compile Include="Models\UserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

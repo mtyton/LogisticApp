@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace LogisticApp.Models
 {
-    public class DatabaseConnection : DB
+    public class DatabaseConnection
     {
         private MySqlConnection connection;
         
@@ -53,24 +53,8 @@ namespace LogisticApp.Models
             connection.Close();
         }
 
-        public bool insertData(string[] data, string[] fields, string table)
+        public object executeScalar(string queryString)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool selectData(string[] fields, string table)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool updateData(string[] data, string[] fields, string table)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool createTable(string tableName)
-        {
-            string queryString = $"CREATE TABLE {tableName};";
             MySqlCommand command = new MySqlCommand(queryString, connection);
             try
             {
@@ -82,5 +66,66 @@ namespace LogisticApp.Models
                 return false;
             }
         }
+        
+        public MySqlDataReader executeReader(string queryString)
+        {
+            /*This methodn return reader instance*/
+            MySqlCommand command = new MySqlCommand(queryString, connection);
+            try
+            {
+                MySqlDataReader reader = command.ExecuteReader();
+                return reader;
+            }
+            catch (MySqlException)
+            {
+                // if something went wrong return null, because there is no data
+                return null;
+            }
+        }
+
+        public bool executeNonQuery(string queryString)
+        {
+            MySqlCommand command = new MySqlCommand(queryString, connection);
+            try
+            {
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (MySqlException)
+            {
+                return false;
+            }
+        }
+
+        public bool checkIfTableExists(string tableName)
+        {
+            string queryString = $"SELECT * FROM {tableName};";
+            return executeNonQuery(queryString);
+        }
+
+
+        public bool createTableIfNotExists(string tableName, string columns)
+        {
+            string queryString = $"CREATE TABLE {tableName} ({columns});";
+            // check if table exists and than return true if it exists
+            if (checkIfTableExists(tableName))
+            {
+                return true;
+            }
+
+            return executeNonQuery(queryString);
+        }
+
+        public bool dropTableIfExists(string tableName)
+        {
+            string queryString = $"DROP TABLE {tableName}";
+            // check if table do not exist, if it does not, return true
+            if (!checkIfTableExists(tableName))
+            {
+                return true;
+            }
+            return executeNonQuery(queryString);
+        }
+
     }
 }
