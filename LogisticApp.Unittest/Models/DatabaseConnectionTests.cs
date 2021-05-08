@@ -73,6 +73,7 @@ namespace LogisticApp.Unittest.Models
             Assert.AreEqual(deleted, true);
         }
 
+        [TestMethod]
         public void testExecuteReader_Success()
         {
             DatabaseConnection dbConnection = new DatabaseConnection();
@@ -92,7 +93,11 @@ namespace LogisticApp.Unittest.Models
 
             // after there are data in database we can select this data
             queryString = "SELECT * FROM Test1";
-            
+            string name = "";
+            MySqlDataReader reader = dbConnection.executeReader(queryString);
+            reader.Read();
+            name = reader.GetString("TestName");
+            Assert.AreEqual(name, "this is test name");
             // at the end remember to delete
             bool deleted = dbConnection.dropTableIfExists("Test1");
             Assert.AreEqual(deleted, true);
