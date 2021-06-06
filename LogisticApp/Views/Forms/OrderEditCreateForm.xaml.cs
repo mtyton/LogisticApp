@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace LogisticApp.Views
+namespace LogisticApp.Views.Forms
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for OrderEditCreateForm.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class OrderEditCreateForm : Window
     {
-        public LoginWindow()
+        public OrderEditCreateForm()
         {
             InitializeComponent();
         }
