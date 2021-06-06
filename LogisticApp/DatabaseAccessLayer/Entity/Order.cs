@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LogisticApp.DatabaseAccessLayer.Entity.Client;
 
-namespace LogisticApp.Models
+namespace LogisticApp.DatabaseAccessLayer.Entity
 {
     class Order
     {
-        Client client { get; set; }
+        BaseClient client { get; set; }
         City city;
         Ability[] requiredAbilities;
         Employee employee;
