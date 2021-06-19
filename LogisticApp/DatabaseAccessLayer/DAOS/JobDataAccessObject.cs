@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogisticApp.DatabaseAccessLayer.Repos.Client
+namespace LogisticApp.DatabaseAccessLayer.DAOS
 {
-    // DAO - Database Access Object
-    static class BaseClientDAO
+    class JobDataAccessObject
     {
-
-
     }
 }
