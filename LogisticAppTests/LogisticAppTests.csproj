@@ -168,7 +168,9 @@
     <Compile Include="DatabaseAccessLayerTests\Enitity\Client\PersonTest.cs" />
     <Compile Include="DatabaseAccessLayerTests\Enitity\AbilityTest.cs" />
     <Compile Include="DatabaseAccessLayerTests\Enitity\EmployeeTest.cs" />
+    <Compile Include="DatabaseAccessLayerTests\Enitity\JobTest.cs" />
     <Compile Include="DatabaseAccessLayerTests\EntityDataMock.cs" />
+    <Compile Include="DatabaseAccessLayerTests\EntityObjectMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

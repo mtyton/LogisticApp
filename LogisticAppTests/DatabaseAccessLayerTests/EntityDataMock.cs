@@ -71,5 +71,18 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             return moq.Object;
         }
 
+        public static IDataReader mockJobReader()
+        {
+            var moq = new Mock<IDataReader>();
+            moq.Setup(x => x.Read()).Returns(true);
+            moq.Setup(x => x.Read()).Returns(false);
+            moq.SetupGet<object>(x => x["id"]).Returns("22");
+            moq.SetupGet<object>(x => x["title"]).Returns("testTitle");
+            moq.SetupGet<object>(x => x["description"]).Returns("testDesc");
+            moq.SetupGet<object>(x => x["predicted_time"]).Returns("30");
+            moq.SetupGet<object>(x => x["predicted_cost"]).Returns("245");
+            return moq.Object;
+        }
+
     }
 }

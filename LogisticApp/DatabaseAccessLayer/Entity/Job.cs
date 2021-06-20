@@ -9,12 +9,12 @@ using LogisticApp.DatabaseAccessLayer.Entity.Client;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity
 {
-    class Job : BaseEntityInterface
+    public class Job : BaseEntityInterface
     {
         private long id;
         private string title;
-        private Person person;
-        private Company company;
+        private Person clientPerson;
+        private Company clientCompany;
         private string description;
         private Employee assignedEmployee;
         private int predictedTime;
@@ -22,19 +22,100 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
 
         public long ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public Person ClientPerson
+        {
+            get=> clientPerson; 
+            set=> clientPerson = value;
+        }
+        public Company ClientCompany 
+        { 
+            get => clientCompany; 
+            set => clientCompany = value; 
+        }
+        public Employee AssignedEmployee 
+        { 
+            get=> assignedEmployee; 
+            set=> assignedEmployee = value;
+        }
+
         public Job(IDataReader reader)
         {
+            this.id = long.Parse(reader["id"].ToString());
+            this.title = reader["title"].ToString();
+            this.description = reader["description"].ToString();
+            this.predictedTime = int.Parse(reader["predicted_time"].ToString());
+            this.predictedCost = int.Parse(reader["predicted_cost"].ToString());
+        }
 
+        public Job(string title, string description, 
+            int predictedTime, int predictedCost)
+        {
+            this.title = title;
+            this.description = description;
+            this.predictedCost = predictedCost;
+            this.predictedTime = predictedTime;
+        }
+
+        private bool checkIfRecordComplete()
+        {
+            return (
+                (clientPerson != null || clientCompany != null)
+                && assignedEmployee != null
+                );
+        }
+
+        public override string ToString()
+        {
+            return $"{this.title}";
         }
 
         public string ToInsert()
         {
-            throw new NotImplementedException();
+            if (!this.checkIfRecordComplete())
+            {
+                throw new ArgumentNullException(
+                    "Job Record can't be saved it is not complete"
+                    );
+            }
+
+            if (this.clientCompany != null)
+            {
+                return $"(title, company_id, description, " +
+                    $"assigned_employee, predicted_time, predicted_cost) " +
+                    $"VALUES ({this.title}, {this.clientCompany.ID}," +
+                    $" {this.description}, {this.assignedEmployee}," +
+                    $" {this.predictedTime}, {this.predictedCost});";
+            }
+
+            return $"(title, person_id, description, " +
+                    $"assigned_employee, predicted_time, predicted_cost) " +
+                    $"VALUES ({this.title}, {this.clientPerson.ID}," +
+                    $" {this.description}, {this.assignedEmployee}," +
+                    $" {this.predictedTime}, {this.predictedCost});";
         }
 
         public string ToUpdate()
         {
-            throw new NotImplementedException();
+            if (!this.checkIfRecordComplete())
+            {
+                throw new ArgumentNullException("" +
+                    "Job Record can't be updated it is not complete"
+                    );
+            }
+            if (this.clientCompany != null)
+            {
+                return $"title={this.title}, description={this.description}, " +
+                    $"company_id={this.clientCompany.ID}, " +
+                    $"assigned_employee={this.assignedEmployee.ID}, " +
+                    $"predicted_time={this.predictedTime}, " +
+                    $"predicted_cost={this.predictedCost};";
+            }
+
+            return $"title={this.title}, description={this.description}, " +
+                    $"person_id={this.clientPerson.ID}, " +
+                    $"assigned_employee={this.assignedEmployee.ID}, " +
+                    $"predicted_time={this.predictedTime}, " +
+                    $"predicted_cost={this.predictedCost};";
         }
     }
 }

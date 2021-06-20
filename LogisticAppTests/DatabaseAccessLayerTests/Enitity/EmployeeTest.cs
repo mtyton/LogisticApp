@@ -2,6 +2,7 @@
 using System;
 using LogisticApp.DatabaseAccessLayer.Entity;
 using LogisticApp.DatabaseAccessLayer.Entity.Client;
+using System.Collections.Generic;
 
 namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
 {
@@ -16,7 +17,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                 string correctString = $"" +
                     $"{reader["name"]} {reader["surname"]}";
 
-                Employee employee = new Employee(reader);
+                List<Ability> abilities = new List<Ability>();
+                Employee employee = new Employee(reader, abilities);
                 Assert.AreEqual(employee.ToString(), correctString);
             }
 

@@ -12,6 +12,8 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Base
         string ToInsert();
         string ToUpdate();
         string ToString();
+        // TODO next iteration
+        //bool checkIfRecordComplete();
 
     }
 }

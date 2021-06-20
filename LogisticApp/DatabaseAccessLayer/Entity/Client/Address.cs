@@ -57,8 +57,24 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 
         }
 
+
+        public bool checkIfRecordComplete()
+        {
+            return (this.city != null && 
+                this.country != null && 
+                this.street != null && 
+                this.buildingNumber != 0);
+        }
+
         public string ToInsert()
         {
+            if (!this.checkIfRecordComplete())
+            {
+                throw new ArgumentNullException(
+                    "Address Record can't be saved it is not complete"
+                );
+            }
+
             return $"" +
                 $"(city, postal_code, country, street, building_number, apartment_number)" +
                 $" VALUES ({this.city}, {this.postalCode},{this.country},{this.street}," +
@@ -77,8 +93,5 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
             return $"{country}, {city}, {postalCode}, " +
                 $"{street} {buildingNumber}/{apartmentNumber}";
         }
-
-
-
     }
 }
