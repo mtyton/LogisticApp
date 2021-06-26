@@ -8,7 +8,7 @@ using LogisticApp.DatabaseAccessLayer.Entity.Base;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity
 {
-    public class Ability : BaseEntityInterface
+    public class Ability : BaseEntity
     {
 
         string name;
@@ -36,13 +36,20 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             return name;
         }
 
+        public override bool checkIfRecordComplete()
+        {
+            return this.name != null;
+        }
+
         public string ToInsert()
         {
+            base.ToInsert();
             return $"(ability_name) VALUES ({this.name})";
         }
 
         public string ToUpdate()
         {
+            base.ToUpdate();
             return $"ability_name={this.name}";
         }
     }

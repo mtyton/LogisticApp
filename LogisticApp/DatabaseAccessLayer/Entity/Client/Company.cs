@@ -9,7 +9,7 @@ using LogisticApp.DatabaseAccessLayer.Entity.Base;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
-    public class Company:BaseEntityInterface
+    public class Company: BaseEntity
     {
         private long id;
         private string companyName;
@@ -47,8 +47,18 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
             this.address = addr;
         }
 
+        public override bool checkIfRecordComplete()
+        {
+            return (
+                this.companyName != null && 
+                this.taxNumber != null && 
+                this.address != null
+                );
+        }
+
         public string ToInsert()
         {
+            base.ToInsert();
             return $"(id, name, tax_number, address_id) " +
                 $"VALUES (NULL, {this.companyName}, {this.taxNumber}, " +
                 $"{this.address.ID});";
@@ -56,8 +66,9 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 
         public string ToUpdate()
         {
-            return $"name={this.companyName}, tax_number={this.taxNumber}, " +
-                $"tax_number={this.taxNumber}, address_id={this.address.ID}";
+            base.ToUpdate();
+            return $"name={this.companyName}, tax_number={this.taxNumber}," +
+                $" address_id={this.address.ID}";
         }
 
         public override string ToString()

@@ -10,7 +10,7 @@ using LogisticApp.DatabaseAccessLayer.Entity.Base;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
-    public class Address:BaseEntityInterface
+    public class Address: BaseEntity
     {
         private long id;
         private string city;
@@ -58,31 +58,28 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
         }
 
 
-        public bool checkIfRecordComplete()
+        public override bool checkIfRecordComplete()
         {
-            return (this.city != null && 
+            return (
+                this.city != null && 
                 this.country != null && 
                 this.street != null && 
-                this.buildingNumber != 0);
+                this.buildingNumber != 0
+                );
         }
 
         public string ToInsert()
         {
-            if (!this.checkIfRecordComplete())
-            {
-                throw new ArgumentNullException(
-                    "Address Record can't be saved it is not complete"
-                );
-            }
-
+            base.ToInsert();
             return $"" +
                 $"(city, postal_code, country, street, building_number, apartment_number)" +
-                $" VALUES ({this.city}, {this.postalCode},{this.country},{this.street}," +
+                $" VALUES ({this.city}, {this.postalCode}, {this.country}, {this.street}, " +
                 $"{this.buildingNumber}, {this.apartmentNumber});";
         }
 
         public string ToUpdate()
         {
+            base.ToUpdate();
             return $"city={this.city}, postal_code={this.postalCode}, " +
                 $"country={this.country}, street={this.street}, " +
                 $"building_number={this.buildingNumber}, apartment_number={this.apartmentNumber}";

@@ -11,7 +11,7 @@ using LogisticApp.DatabaseAccessLayer.Entity.Base;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
-    public class Person:BaseEntityInterface
+    public class Person: BaseEntity
     {
         private long id;
         private string name, surname;
@@ -48,9 +48,18 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
             this.address = addr;
         }
 
+        public override bool checkIfRecordComplete()
+        {
+            return (
+                this.name != null && this.surname != null &&
+                this.Addr != null
+                );
+        }
+
         public string ToInsert()
         {
-            return $"(id, name, surname) " +
+            base.ToInsert();
+            return $"(id, name, surname, address_id) " +
                 $"VALUES (NULL, {this.name}, {this.surname}, " +
                 $"{this.address.ID});";
         }
@@ -58,7 +67,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 
         public string ToUpdate()
         {
-
+            base.ToUpdate();
             return $"name={this.name}, surname={this.surname}, " +
                 $"address_id={this.address.ID}";
         }

@@ -9,7 +9,7 @@ using LogisticApp.DatabaseAccessLayer.Entity.Client;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity
 {
-    public class Job : BaseEntityInterface
+    public class Job : BaseEntity
     {
         private long id;
         private string title;
@@ -56,7 +56,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             this.predictedTime = predictedTime;
         }
 
-        private bool checkIfRecordComplete()
+        public override bool checkIfRecordComplete()
         {
             return (
                 (clientPerson != null || clientCompany != null)
@@ -71,13 +71,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
 
         public string ToInsert()
         {
-            if (!this.checkIfRecordComplete())
-            {
-                throw new ArgumentNullException(
-                    "Job Record can't be saved it is not complete"
-                    );
-            }
-
+            base.ToInsert();
             if (this.clientCompany != null)
             {
                 return $"(title, company_id, description, " +
@@ -96,12 +90,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
 
         public string ToUpdate()
         {
-            if (!this.checkIfRecordComplete())
-            {
-                throw new ArgumentNullException("" +
-                    "Job Record can't be updated it is not complete"
-                    );
-            }
+            base.ToUpdate();
             if (this.clientCompany != null)
             {
                 return $"title={this.title}, description={this.description}, " +

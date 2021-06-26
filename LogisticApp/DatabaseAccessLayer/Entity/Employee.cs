@@ -9,7 +9,7 @@ using System.Data;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity
 {
-    public class Employee:BaseEntityInterface
+    public class Employee: BaseEntity
     {
         private long id;
         private string name;
@@ -39,8 +39,9 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         }
 
         public Employee(
-            string name, string surname, DateTime birthDate, DateTime dateOfEmployment,
-               int hourlyPayment, List<Ability> abilities
+            string name, string surname, 
+            DateTime birthDate, DateTime dateOfEmployment, 
+            int hourlyPayment, List<Ability> abilities
             )
         {
             this.name = name;
@@ -51,6 +52,14 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             this.abilities = abilities;
         }
 
+        public override bool checkIfRecordComplete()
+        {
+            return (
+                this.name != null && this.surname != null &&
+                this.hourlyPayment != 0 && this.abilities!=null
+                );
+        }
+
         public override string ToString()
         {
             return $"{this.name} {this.surname}";
@@ -58,16 +67,21 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
 
         public string ToInsert()
         {
-            return $"(name, surnmae, birth_date, date_of_employment, hourly_payment)" +
-                $"VALUES({this.name}, {this.surname}, {this.birthDate}, " +
-                $"{this.dateOfEmployment}, {this.hourlyPayment})";
+            base.ToInsert();
+            return $"(name, surname, birth_date, " +
+                $"date_of_employment, hourly_payment)" +
+                $"VALUES({this.name}, {this.surname}, " +
+                $"{this.birthDate}, " +
+                $"{this.dateOfEmployment}, " +
+                $"{this.hourlyPayment});";
         }
 
         public string ToUpdate()
         {
+            base.ToUpdate();
             return $"name={this.name}, surname={this.surname}, " +
                 $"birth_date={this.birthDate}, date_of_employment={this.dateOfEmployment}," +
-                $"hourly_payment={this.hourlyPayment}";
+                $"hourly_payment={this.hourlyPayment};";
         }
     }
 }

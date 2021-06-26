@@ -238,6 +238,7 @@
     <Compile Include="DatabaseAccessLayer\DAOS\JobDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DatabaseConnection.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Ability.cs" />
+    <Compile Include="DatabaseAccessLayer\Entity\Base\BaseEntity.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Base\BaseEntityInterface.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Client\Address.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Client\Company.cs" />
