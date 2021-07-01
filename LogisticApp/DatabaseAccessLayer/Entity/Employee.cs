@@ -80,7 +80,8 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         {
             base.ToUpdate();
             return $"name={this.name}, surname={this.surname}, " +
-                $"birth_date={this.birthDate}, date_of_employment={this.dateOfEmployment}," +
+                $"birth_date={this.birthDate}, " +
+                $"date_of_employment={this.dateOfEmployment}," +
                 $"hourly_payment={this.hourlyPayment};";
         }
     }

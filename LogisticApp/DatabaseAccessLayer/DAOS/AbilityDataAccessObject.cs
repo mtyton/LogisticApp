@@ -11,7 +11,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
 {
     class AbilityDataAccessObject
     {
-        public static List<Ability> getAllAbilities()
+        public static List<Ability> getAll()
         {
             List<Ability> abilities = new List<Ability>();
             using (var connection = DatabaseConnection.Instance.Connection)
@@ -27,6 +27,11 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 }
             }
             return abilities;
+        }
+        
+        public static List<Ability> getPaginated(int start = 0, int number = 0)
+        {
+            return AbilityDataAccessObject.getAll();
         }
 
         public static List<Ability> getEmployeeAbilities(long employeeID)

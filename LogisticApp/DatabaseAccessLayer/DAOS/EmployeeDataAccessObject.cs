@@ -10,7 +10,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
 {
     class EmployeeDataAccessObject
     {
-        public static List<Employee> getAllEmployees()
+        public static List<Employee> getAll()
         {
             List<Employee> employees = new List<Employee>();
             using (var connection = DatabaseConnection.Instance.Connection)
@@ -31,8 +31,13 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             }
             return employees;
         }
-        
-        public static Employee createEmployee(Employee employee)
+
+        public static List<Employee> getPaginated(int start = 0, int number = 0)
+        {
+            return EmployeeDataAccessObject.getAll();
+        }
+
+        public static Employee create(Employee employee)
         {
             using (var connection = DatabaseConnection.Instance.Connection)
             {
