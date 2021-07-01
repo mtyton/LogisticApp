@@ -31,12 +31,16 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             }
             return employees;
         }
+<<<<<<< Updated upstream
 
         public static List<Employee> getPaginated(int start = 0, int number = 0)
         {
             return EmployeeDataAccessObject.getAll();
         }
 
+=======
+        
+>>>>>>> Stashed changes
         public static Employee create(Employee employee)
         {
             using (var connection = DatabaseConnection.Instance.Connection)
