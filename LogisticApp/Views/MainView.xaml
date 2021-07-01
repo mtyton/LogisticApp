@@ -4,30 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LogisticApp.Views"
+        xmlns:viewModel="clr-namespace:LogisticApp.ViewModel"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Height" Value="50px"/>
-            <Setter Property="Background" Value="AliceBlue"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="FontSize" Value="23"/>
-            <Setter Property="BorderThickness" Value="3"/>
-        </Style>
-    </Window.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-            <Button Content="Employees"/>
-            <Button Content="Clients"/>
-            <Button Content="Vehicles"/>
-            <Button Content="Orders"/>
-            <Button Content="Invoices"/>
-        </StackPanel>
+        Title="MainView" Height="450" Width="800" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewModel:MainViewModel  x:Name="MainViewModel"/>
+    </Window.DataContext>
         
+    <Grid>
+        <ContentControl Content="{Binding SelectedViewModel}"/>
     </Grid>
-
 </Window>

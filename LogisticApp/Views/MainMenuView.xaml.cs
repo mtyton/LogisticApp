@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace LogisticApp.Views
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class LoginWindow
+    public partial class MainMenuView
     {
-        public LoginWindow()
+        public MainMenuView()
         {
             InitializeComponent();
         }
