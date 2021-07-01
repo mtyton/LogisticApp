@@ -12,7 +12,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
 {
     static class CompanyDataAccessObject
     {
-        public static List<Company> getPaginatedCompanies(int start = 0, int number=25)
+        public static List<Company> getPaginated(int start = 0, int number=25)
         {
             List<Company> companies = new List<Company>();
             using(var connection = DatabaseConnection.Instance.Connection)
@@ -33,7 +33,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             return companies;
         }
 
-        public static Company createCompany(Company company)
+        public static Company create(Company company)
         {
             Address addr = company.Addr;
 
@@ -62,7 +62,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
         }
 
 
-        public static Company updateCompany(Company company)
+        public static Company update(Company company)
         {
             Address addr = company.Addr;
 
@@ -101,7 +101,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
         }
 
 
-        public static bool deleteCompany(Company company)
+        public static bool delete(Company company)
         {
             using (var connection = DatabaseConnection.Instance.Connection)
             {

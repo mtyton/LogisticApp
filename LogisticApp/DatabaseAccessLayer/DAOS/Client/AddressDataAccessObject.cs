@@ -66,7 +66,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 {
                     command.ExecuteNonQuery();
                 }
-                catch (MySqlException e)
+                catch (MySqlException)
                 {
                     return null;
                 }
@@ -86,7 +86,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 {
                     command.ExecuteNonQuery();
                 }
-                catch (MySqlException e)
+                catch (MySqlException)
                 {
                     return false;
                 }
