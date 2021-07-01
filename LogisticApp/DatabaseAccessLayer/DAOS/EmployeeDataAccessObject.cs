@@ -40,6 +40,9 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
 
 =======
         
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         public static Employee create(Employee employee)
         {
