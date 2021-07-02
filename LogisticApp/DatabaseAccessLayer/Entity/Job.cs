@@ -51,7 +51,14 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             this.predictedCost = int.Parse(reader["predicted_cost"].ToString());
             this.AssignedEmployeeID = long.Parse(reader["person_id"].ToString());
             this.ClientCompanyID = long.Parse(reader["company_id"].ToString());
-            this.ClientPersonID = long.Parse(reader["assigned_employee"].ToString());
+            if (reader["assigned_employee"].ToString() != "")
+            {
+                this.ClientPersonID = long.Parse(reader["assigned_employee"].ToString());
+            }
+            else
+            {
+                this.ClientPersonID = 0;
+            }
         }
 
         public Job(string title, string description, 

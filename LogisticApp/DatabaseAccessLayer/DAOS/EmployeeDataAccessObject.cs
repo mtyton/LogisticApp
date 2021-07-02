@@ -23,7 +23,6 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    sbyte addr_id = sbyte.Parse(reader["address_id"].ToString());
                     Employee emploee = new Employee(reader);
                     employees.Add(emploee);
                 }
@@ -31,7 +30,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             }
             foreach(Employee employee in employees)
             {
-                List<Ability> abilities = AbilityDataAccessObject.getEmployeeAbilities(
+                List<Skillset> abilities = SkillsetDataAccessObject.getEmployeeAbilities(
                         employee.ID
                     );
                 employee.Abilities = abilities;
@@ -44,6 +43,31 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
         {
             return EmployeeDataAccessObject.getAll();
         }
+
+        public static Employee getById(long id)
+        {
+            Employee employee = null;
+            using (var connection = DatabaseConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(
+                    $"SELECT * FROM employee WHERE id={id}",
+                    connection
+                    );
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    employee = new Employee(reader);
+                }
+                reader.Close();
+            }
+            List<Skillset> abilities = SkillsetDataAccessObject.getEmployeeAbilities(
+                employee.ID
+            );
+            employee.Abilities = abilities;
+
+            return employee;
+        }
+
         public static Employee create(Employee employee)
         {
             using (var connection = DatabaseConnection.Instance.Connection)

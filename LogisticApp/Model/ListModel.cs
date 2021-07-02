@@ -44,7 +44,7 @@ namespace LogisticApp.Model
                     this._queryset = EmployeeDataAccessObject.getPaginated(start, number_of_records);
                     break;
                 case "job":
-                    //this._queryset = JobDataAccessObject.getPaginated(start, number_of_records);
+                    this._queryset = JobDataAccessObject.getPaginated(start, number_of_records);
                     break;
                 case "default":
                     throw new TypeLoadException("Entity name not recognized");

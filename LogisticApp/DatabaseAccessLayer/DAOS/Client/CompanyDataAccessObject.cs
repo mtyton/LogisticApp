@@ -47,7 +47,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"SELECT * FROM company WHERE id={id};",
+                    $"SELECT * FROM company WHERE id={id}",
                     connection
                     );
                 var reader = command.ExecuteReader();
@@ -57,6 +57,9 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 }
                 reader.Close();
             }
+
+            Address address = AddressDataAccessObject.getAddressById(company.AddrId);
+            company.Addr = address;
             return company;
         }
 

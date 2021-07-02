@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 
 namespace LogisticApp.DatabaseAccessLayer.DAOS
 {
-    class AbilityDataAccessObject
+    class SkillsetDataAccessObject
     {
         public static ObservableCollection<BaseEntity> getAll()
         {
@@ -24,7 +24,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    Ability ability = new Ability(reader);
+                    Skillset ability = new Skillset(reader);
                     abilities.Add(ability);
                 }
                 reader.Close();
@@ -34,12 +34,12 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
         
         public static ObservableCollection<BaseEntity> getPaginated(int start = 0, int number = 0)
         {
-            return AbilityDataAccessObject.getAll();
+            return SkillsetDataAccessObject.getAll();
         }
 
-        public static List<Ability> getEmployeeAbilities(long employeeID)
+        public static List<Skillset> getEmployeeAbilities(long employeeID)
         {
-            List<Ability> abilities = new List<Ability>();
+            List<Skillset> abilities = new List<Skillset>();
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
@@ -49,7 +49,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    Ability ability = new Ability(reader);
+                    Skillset ability = new Skillset(reader);
                     abilities.Add(ability);
                 }
             }

@@ -40,6 +40,28 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             return people;
         }
 
+        public static Person getById(long id)
+        {
+            Person person = null;
+            using (var connection = DatabaseConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(
+                    $"SELECT * FROM person WHERE id={id}",
+                    connection
+                    );
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    person = new Person(reader);
+                }
+                reader.Close();
+            }
+            Address address = AddressDataAccessObject.getAddressById(person.AddrId);
+            person.Addr = address;
+
+            return person;
+        }
+
         public static Person create(Person person)
         {
             Address addr = person.Addr;

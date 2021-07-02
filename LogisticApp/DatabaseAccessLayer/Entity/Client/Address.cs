@@ -37,9 +37,18 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
             this.buildingNumber = int.Parse(
                 reader["building_number"].ToString()
             );
-            this.apartmentNumber = int.Parse(
-                reader["apartment_number"].ToString()
-            );
+
+            if (reader["apartment_number"].ToString() != "")
+            {
+                this.apartmentNumber = int.Parse(
+                    reader["apartment_number"].ToString()
+                 );
+            }
+            else
+            {
+                this.apartmentNumber = 0;
+            }
+
         }
 
         // constructor to create object in app

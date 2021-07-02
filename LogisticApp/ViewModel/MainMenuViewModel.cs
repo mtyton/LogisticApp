@@ -15,7 +15,7 @@ namespace LogisticApp.ViewModel
     {
         ListModel _listData;
 
-        private ObservableCollection<BaseEntity>  _currentQueryset;
+        private ObservableCollection<BaseEntity> _currentQueryset;
 
         public ObservableCollection<BaseEntity> CurrentQueryset
         {

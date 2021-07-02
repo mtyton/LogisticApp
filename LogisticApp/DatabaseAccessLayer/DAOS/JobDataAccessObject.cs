@@ -1,4 +1,5 @@
-﻿using LogisticApp.DatabaseAccessLayer.Entity;
+﻿using LogisticApp.DatabaseAccessLayer.DAOS.Client;
+using LogisticApp.DatabaseAccessLayer.Entity;
 using LogisticApp.DatabaseAccessLayer.Entity.Base;
 using LogisticApp.DatabaseAccessLayer.Entity.Client;
 using MySql.Data.MySqlClient;
@@ -35,17 +36,16 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 {
                     if (job.ClientCompanyID!=0)
                     {
-                        Company company = CompanyDataAccessObject.getById()
+                        job.ClientCompany = CompanyDataAccessObject.getById(job.ClientCompanyID);
                     }
                     else if (job.ClientPersonID!=0)
                     {
-
+                        job.ClientPerson = PersonDataAccessObject.getById(job.ClientPersonID);
                     }
-                    Address address = AddressDataAccessObject.getAddressById(person.AddrId);
-                    person.Addr = address;
+                    job.AssignedEmployee = EmployeeDataAccessObject.getById(job.AssignedEmployeeID);
                 }
             }
-            return people;
+            return jobs;
         }
 
         public static Job create(Job job)

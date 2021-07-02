@@ -15,7 +15,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
             {
                 string correctString = $"{reader["ability_name"]}";
 
-                Ability ability = new Ability(reader);
+                Skillset ability = new Skillset(reader);
                 Assert.AreEqual(ability.ToString(), correctString);
             }
         }
@@ -29,7 +29,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                 string correctString = $"(ability_name) " +
                     $"VALUES ({reader["ability_name"]})";
 
-                Ability ability = new Ability(reader);
+                Skillset ability = new Skillset(reader);
                 Assert.AreEqual(ability.ToInsert(), correctString);
             }
         }
@@ -37,7 +37,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         [TestMethod]
         public void testToInsertFailure()
         {
-            Ability ability = new Ability((string)null);
+            Skillset ability = new Skillset((string)null);
             try
             {
                 ability.ToInsert();
@@ -58,7 +58,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                 string correctString = $"" +
                     $"ability_name={reader["ability_name"]}";
 
-                Ability ability = new Ability(reader);
+                Skillset ability = new Skillset(reader);
                 Assert.AreEqual(ability.ToUpdate(), correctString);
             }
         }
@@ -66,7 +66,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         [TestMethod]
         public void testToUpdateFailure()
         {
-            Ability ability = new Ability((string)null);
+            Skillset ability = new Skillset((string)null);
             try
             {
                 ability.ToUpdate();
