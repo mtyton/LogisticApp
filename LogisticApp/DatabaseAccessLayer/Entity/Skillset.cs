@@ -12,7 +12,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public Skillset(IDataReader reader)
         {
             this.id = long.Parse(reader["id"].ToString());
-            name = reader["ability_name"].ToString();
+            name = reader["skill_name"].ToString();
         }
 
         public Skillset(string n)

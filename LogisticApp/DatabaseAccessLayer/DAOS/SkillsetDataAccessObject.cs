@@ -19,7 +19,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"SELECT * FROM ability", connection
+                    $"SELECT * FROM employee_skillset", connection
                     );
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -43,7 +43,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"SELECT * FROM employeeability WHERE employee_id={employeeID}",
+                    $"select * from skillset where id IN (select id from employee_skillset Where employee_id={employeeID})",
                     connection
                     );
                 var reader = command.ExecuteReader();

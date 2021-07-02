@@ -25,7 +25,7 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
-            <Button Content="Employees" Command="{Binding LoadData}" CommandParameter="employees"/>
+            <Button Content="Employees" Command="{Binding LoadData}" CommandParameter="employee"/>
             <Button Content="Company Clients" Command="{Binding LoadData}" CommandParameter="company"/>
             <Button Content="Person Clients" Command="{Binding LoadData}" CommandParameter="person"/>
             <Button Content="Jobs" Command="{Binding LoadData}" CommandParameter="job"/>

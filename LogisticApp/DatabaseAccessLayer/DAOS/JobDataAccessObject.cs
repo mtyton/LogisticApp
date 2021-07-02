@@ -34,15 +34,19 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
 
                 foreach (Job job in jobs)
                 {
-                    if (job.ClientCompanyID!=0)
+                    if (job.ClientCompanyID != 0)
                     {
                         job.ClientCompany = CompanyDataAccessObject.getById(job.ClientCompanyID);
                     }
-                    else if (job.ClientPersonID!=0)
+                    else if (job.ClientPersonID != 0)
                     {
                         job.ClientPerson = PersonDataAccessObject.getById(job.ClientPersonID);
                     }
-                    job.AssignedEmployee = EmployeeDataAccessObject.getById(job.AssignedEmployeeID);
+                    if(job.AssignedEmployeeID != 0)
+                    {
+                        job.AssignedEmployee = EmployeeDataAccessObject.getById(job.AssignedEmployeeID);
+                    }
+                    
                 }
             }
             return jobs;

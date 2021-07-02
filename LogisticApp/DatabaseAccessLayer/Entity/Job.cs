@@ -42,6 +42,27 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             set=> assignedEmployee = value;
         }
 
+        private void loadForeignKeys(IDataReader reader)
+        {
+            this.AssignedEmployeeID = 0;
+            this.ClientCompanyID = 0;
+            this.ClientPersonID = 0;
+
+
+            if (reader["person_id"].ToString() != "")
+            {
+                this.AssignedEmployeeID = long.Parse(reader["person_id"].ToString());
+            }
+            if (reader["company_id"].ToString() != "")
+            {
+                this.ClientCompanyID = long.Parse(reader["company_id"].ToString());
+            }
+            if (reader["assigned_employee"].ToString() != "")
+            {
+                this.ClientPersonID = long.Parse(reader["assigned_employee"].ToString());
+            }
+        }
+
         public Job(IDataReader reader)
         {
             this.id = long.Parse(reader["id"].ToString());
@@ -49,16 +70,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             this.description = reader["description"].ToString();
             this.predictedTime = int.Parse(reader["predicted_time"].ToString());
             this.predictedCost = int.Parse(reader["predicted_cost"].ToString());
-            this.AssignedEmployeeID = long.Parse(reader["person_id"].ToString());
-            this.ClientCompanyID = long.Parse(reader["company_id"].ToString());
-            if (reader["assigned_employee"].ToString() != "")
-            {
-                this.ClientPersonID = long.Parse(reader["assigned_employee"].ToString());
-            }
-            else
-            {
-                this.ClientPersonID = 0;
-            }
+            this.loadForeignKeys(reader);
         }
 
         public Job(string title, string description, 

@@ -41,7 +41,29 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
 
         public static ObservableCollection<BaseEntity> getPaginated(int start = 0, int number = 0)
         {
-            return EmployeeDataAccessObject.getAll();
+            ObservableCollection<BaseEntity> employees = new ObservableCollection<BaseEntity>();
+            using (var connection = DatabaseConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(
+                    $"SELECT * FROM employee LIMIT {start},{number};", connection
+                    );
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Employee emploee = new Employee(reader);
+                    employees.Add(emploee);
+                }
+                reader.Close();
+            }
+            foreach (Employee employee in employees)
+            {
+                List<Skillset> abilities = SkillsetDataAccessObject.getEmployeeAbilities(
+                        employee.ID
+                    );
+                employee.Abilities = abilities;
+            }
+
+            return employees;
         }
 
         public static Employee getById(long id)
