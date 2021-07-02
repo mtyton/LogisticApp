@@ -29,9 +29,7 @@
             <Setter Property="FontSize" Value="20"/>
         </Style>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <viewModel:LoginViewModel x:Name="LoginViewModel"/>
-    </UserControl.DataContext>
+
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" 
@@ -39,14 +37,16 @@
             <Label Content="{x:Static language:Lang.login_username}"
                    FontSize="20" />
             <TextBox 
-                x:Name="loginTextBox" Text="{Binding CurrentUsername}"
-                
+                x:Name="loginTextBox" Text="{Binding DataContext.SelectedViewModel.CurrentUsername, 
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                 />
             <Label Content="{x:Static language:Lang.login_password}" FontSize="20"/>
             <PasswordBox x:Name="passwordTextBox"/>
             <Button x:Name="buttonLogin" Content="Login"
                     Command="{Binding DataContext.LoginCommand, 
-                    RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+                    RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                    CommandParameter="{Binding ElementName=passwordTextBox}"/>
 
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom"

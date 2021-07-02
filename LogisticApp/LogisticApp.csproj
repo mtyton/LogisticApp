@@ -236,6 +236,7 @@
     <Compile Include="DatabaseAccessLayer\DAOS\Client\PersonDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DAOS\EmployeeDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DAOS\JobDataAccessObject.cs" />
+    <Compile Include="DatabaseAccessLayer\DAOS\UserDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DatabaseConnection.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Skillset.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Base\BaseEntity.cs" />
@@ -247,7 +248,8 @@
     <Compile Include="DatabaseAccessLayer\Entity\Job.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\User.cs" />
     <Compile Include="Model\ListModel.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\AuthModel.cs" />
+    <Compile Include="Model\Session.cs" />
     <Compile Include="Resources\Languages\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

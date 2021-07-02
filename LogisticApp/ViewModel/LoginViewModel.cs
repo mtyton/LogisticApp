@@ -9,13 +9,13 @@ using LogisticApp.ViewModel.BaseClass;
 using LogisticApp.Model;
 using System.Windows;
 using LogisticApp.Views;
+using System.Security.Authentication;
+using System.Windows.Controls;
 
 namespace LogisticApp.ViewModel
 {
     class LoginViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private string currentUsername;
 
         public string CurrentUsername
@@ -24,19 +24,32 @@ namespace LogisticApp.ViewModel
             set
             {
                 currentUsername = value;
-                PropertyChanged?.Invoke(
-                    this, new PropertyChangedEventArgs(nameof(CurrentUsername))
-                    );
+                onPropertyChanged(nameof(CurrentUsername));
             }
         }
 
         public bool authenticate(object param)
         {
-            User user = User.getUser();
-            if (!user.IsAuthenticated)
+            PasswordBox box = (PasswordBox)param;
+            Session session = null;
+            try
+            {
+                session = Session.getOrCreateSession(this.currentUsername, box.Password.ToString());
+            }
+            catch(AuthenticationException e)
             {
                 MessageBox.Show(
-                    "Your username or password did not match",
+                    e.Message, "AuthError",
+                    MessageBoxButton.OK, MessageBoxImage.Error
+                    );
+                return false;
+            }
+            
+
+            if (!session.IsAuthenticated)
+            {
+                MessageBox.Show(
+                    "Username or password was incorrect",
                     "AuthError", MessageBoxButton.OK, 
                     MessageBoxImage.Error
                     );
