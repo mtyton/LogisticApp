@@ -21,7 +21,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
                     $"{addrReader["building_number"]}/{addrReader["apartment_number"]}";
 
                     Address addr = new Address(addrReader);
-                    Company company = new Company(companyReader, addr);
+                    Company company = new Company(companyReader);
+                    company.Addr = addr;
                     Assert.AreEqual(company.ToString(), correctString);
                 }
             }
@@ -36,7 +37,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
                 {
                     Address addr = new Address(addrReader);
                     addr.ID = 5;
-                    Company company = new Company(companyReader, addr);
+                    Company company = new Company(companyReader);
+                    company.Addr = addr;
                     string correctString = $"(id, name, tax_number, address_id) " +
                     $"VALUES (NULL, {companyReader["name"]}, {companyReader["tax_number"]}, " +
                     $"{addr.ID});";
@@ -72,7 +74,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
                 {
                     Address addr = new Address(addrReader);
                     addr.ID = 5;
-                    Company company = new Company(companyReader, addr);
+                    Company company = new Company(companyReader);
+                    company.Addr = addr;
                     string correctString = $"name={companyReader["name"]}, " +
                         $"tax_number={companyReader["tax_number"]}," + 
                         $" address_id={addr.ID}";

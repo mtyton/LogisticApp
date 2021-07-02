@@ -33,6 +33,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             moq.SetupGet<object>(x => x["id"]).Returns("2");
             moq.SetupGet<object>(x => x["name"]).Returns("testCompany");
             moq.SetupGet<object>(x => x["tax_number"]).Returns("457");
+            moq.SetupGet<object>(x => x["address_id"]).Returns("1");
             return moq.Object;
         }
         
@@ -44,16 +45,17 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             moq.SetupGet<object>(x => x["id"]).Returns("14");
             moq.SetupGet<object>(x => x["name"]).Returns("John");
             moq.SetupGet<object>(x => x["surname"]).Returns("Doe");
+            moq.SetupGet<object>(x => x["address_id"]).Returns("1");
             return moq.Object;
         }
 
-        public static IDataReader mockAbilityReader()
+        public static IDataReader mockSkillReader()
         {
             var moq = new Mock<IDataReader>();
             moq.Setup(x => x.Read()).Returns(true);
             moq.Setup(x => x.Read()).Returns(false);
             moq.SetupGet<object>(x => x["id"]).Returns("2");
-            moq.SetupGet<object>(x => x["ability_name"]).Returns("welding");
+            moq.SetupGet<object>(x => x["skill_name"]).Returns("welding");
             return moq.Object;
         }
 
@@ -80,7 +82,10 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             moq.SetupGet<object>(x => x["title"]).Returns("testTitle");
             moq.SetupGet<object>(x => x["description"]).Returns("testDesc");
             moq.SetupGet<object>(x => x["predicted_time"]).Returns("30");
-            moq.SetupGet<object>(x => x["predicted_cost"]).Returns("245");
+            moq.SetupGet<object>(x => x["predicted_cost"]).Returns("30");
+            moq.SetupGet<object>(x => x["person_id"]).Returns("245");
+            moq.SetupGet<object>(x => x["company_id"]).Returns("23");
+            moq.SetupGet<object>(x => x["assigned_employee"]).Returns("121");
             return moq.Object;
         }
 

@@ -20,7 +20,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                     $"{reader["name"]} {reader["surname"]}";
 
                 List<Skillset> abilities = new List<Skillset>();
-                Employee employee = new Employee(reader, abilities);
+                Employee employee = new Employee(reader);
+                employee.Abilities = abilities;
                 Assert.AreEqual(employee.ToString(), correctString);
             }
 
@@ -39,7 +40,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                     $"{DateTime.Parse(reader["date_of_employment"].ToString())}, " +
                     $"{reader["hourly_payment"]});";
                 List<Skillset> abilities = new List<Skillset>();
-                Employee employee = new Employee(reader, abilities);
+                Employee employee = new Employee(reader);
+                employee.Abilities = abilities;
                 Assert.AreEqual(employee.ToInsert(), correctString);
             }
         }
@@ -73,7 +75,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                     $"date_of_employment={DateTime.Parse(reader["date_of_employment"].ToString())}," +
                     $"hourly_payment={reader["hourly_payment"]};";
                 List<Skillset> abilities = new List<Skillset>();
-                Employee employee = new Employee(reader, abilities);
+                Employee employee = new Employee(reader);
+                employee.Abilities = abilities;
                 Assert.AreEqual(employee.ToUpdate(), correctString);
             }
         }

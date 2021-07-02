@@ -39,13 +39,13 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public string ToInsert()
         {
             base.ToInsert();
-            return $"(ability_name) VALUES ({this.name})";
+            return $"(skill_name) VALUES ({this.name})";
         }
 
         public string ToUpdate()
         {
             base.ToUpdate();
-            return $"ability_name={this.name}";
+            return $"skill_name={this.name}";
         }
     }
 }
