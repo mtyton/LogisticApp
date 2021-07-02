@@ -57,7 +57,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 
         }
 
-
         public override bool checkIfRecordComplete()
         {
             return (

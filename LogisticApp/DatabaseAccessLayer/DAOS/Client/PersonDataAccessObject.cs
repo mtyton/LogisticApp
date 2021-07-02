@@ -7,15 +7,16 @@ using LogisticApp.DatabaseAccessLayer.Entity.Client;
 using LogisticApp.DatabaseAccessLayer;
 using MySql.Data;
 using MySql.Data.MySqlClient;
-
+using System.Collections.ObjectModel;
+using LogisticApp.DatabaseAccessLayer.Entity.Base;
 
 namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
 {
     class PersonDataAccessObject
     {
-        public static List<Person> getPaginated(int start = 0, int number = 25)
+        public static ObservableCollection<BaseEntity> getPaginated(int start = 0, int number = 25)
         {
-            List<Person> people = new List<Person>();
+            ObservableCollection<BaseEntity> people = new ObservableCollection<BaseEntity>();
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
@@ -25,10 +26,15 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    sbyte addr_id = sbyte.Parse(reader["address_id"].ToString());
-                    Address address = AddressDataAccessObject.getAddressById(addr_id);
-                    Person person = new Person(reader, address);
+                    Person person = new Person(reader);
                     people.Add(person);
+                }
+                reader.Close();
+
+                foreach(Person person in people)
+                {
+                    Address address = AddressDataAccessObject.getAddressById(person.AddrId);
+                    person.Addr = address;
                 }
             }
             return people;
@@ -52,7 +58,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                     return null;
                 }
                 person.ID = command.LastInsertedId;
-                addr = AddressDataAccessObject.createAddress(addr);
+                addr = AddressDataAccessObject.create(addr);
                 if (addr == null)
                 {
                     throw new Exception("Company adding address issue");
@@ -72,7 +78,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 return null;
             }
 
-            addr = AddressDataAccessObject.updateAddress(addr);
+            addr = AddressDataAccessObject.update(addr);
             if (addr == null)
             {
                 throw new Exception("Company updating address issue");
@@ -108,7 +114,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                     connection
                     );
 
-                if (!AddressDataAccessObject.deleteAddresss(person.Addr))
+                if (!AddressDataAccessObject.delete(person.Addr))
                 {
                     return false;
                 }

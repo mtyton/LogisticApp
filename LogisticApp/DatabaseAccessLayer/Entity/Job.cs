@@ -20,6 +20,10 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         private int predictedTime;
         private int predictedCost;
 
+
+        public long ClientPersonID { get; set; }
+        public long ClientCompanyID { get; set; }
+        public long AssignedEmployeeID { get; set; }
         public long ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Person ClientPerson
@@ -45,6 +49,9 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             this.description = reader["description"].ToString();
             this.predictedTime = int.Parse(reader["predicted_time"].ToString());
             this.predictedCost = int.Parse(reader["predicted_cost"].ToString());
+            this.AssignedEmployeeID = long.Parse(reader["person_id"].ToString());
+            this.ClientCompanyID = long.Parse(reader["company_id"].ToString());
+            this.ClientPersonID = long.Parse(reader["assigned_employee"].ToString());
         }
 
         public Job(string title, string description, 

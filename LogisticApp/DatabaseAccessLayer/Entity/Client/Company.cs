@@ -9,14 +9,14 @@ using LogisticApp.DatabaseAccessLayer.Entity.Base;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
-    public class Company: BaseEntity
+    public class Company : BaseEntity
     {
         private long id;
         private string companyName;
         private string taxNumber;
         private Address address;
 
-
+        public long AddrId{ get; set; }
         public long ID
         {
             get => id;
@@ -29,15 +29,12 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
             set => address=value;
         }
 
-        public Company(
-            IDataReader companyReader,
-            Address addr
-            )
+        public Company(IDataReader companyReader)
         {
             this.id = long.Parse(companyReader["id"].ToString());
             this.companyName = companyReader["name"].ToString();
             this.taxNumber = companyReader["tax_number"].ToString();
-            this.address = addr;
+            this.AddrId = long.Parse(companyReader["address_id"].ToString());
         }
 
         public Company(string companyName, string taxNumber, Address addr)

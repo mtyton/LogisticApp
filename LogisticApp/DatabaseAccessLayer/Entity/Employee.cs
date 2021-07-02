@@ -19,13 +19,18 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         private int hourlyPayment;
         List<Ability> abilities = new List<Ability>();
 
+        public List<Ability> Abilities 
+        {
+            get => abilities;
+            set => abilities = value;
+        }
         public long ID 
         {
             get => id;
             set => id = value;
         }
 
-        public Employee(IDataReader reader, List<Ability> abilities)
+        public Employee(IDataReader reader)
         {
             this.id = long.Parse(reader["id"].ToString());
             this.name = reader["name"].ToString();
@@ -35,7 +40,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
                 reader["date_of_employment"].ToString()
                 );
             this.hourlyPayment = int.Parse(reader["hourly_payment"].ToString());
-            this.abilities = abilities;
         }
 
         public Employee(

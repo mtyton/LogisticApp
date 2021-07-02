@@ -33,7 +33,12 @@ namespace LogisticApp.DatabaseAccessLayer
 
         public MySqlConnection Connection
         {
-            get => connection;
+            get
+            {
+                connection.Close();
+                connection.Open();
+                return connection;
+            }
         }
 
         // TODO move this to some kind of settings file
