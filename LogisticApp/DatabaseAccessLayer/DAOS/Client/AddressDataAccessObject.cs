@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,12 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
     // DAO - Database Access Object
     static class AddressDataAccessObject
     {
-        public static Address getAddressById(sbyte id)
+        public static ObservableCollection<Address> getPaginated(int start=0, int number_of_records = 25)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Address getAddressById(long id)
         {
             Address addr = null;
             using (var connection = DatabaseConnection.Instance.Connection)
@@ -24,11 +30,12 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 {
                     addr = new Address(reader);
                 }
+                reader.Close();
             }
             return addr;
         }
 
-        public static Address createAddress(Address addr)
+        public static Address create(Address addr)
         {
             using (var connection = DatabaseConnection.Instance.Connection)
             {
@@ -49,7 +56,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             return addr;
         }
 
-        public static Address updateAddress(Address addr)
+        public static Address update(Address addr)
         {
             // check if has id
             if (addr.ID == null)
@@ -74,7 +81,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             return addr;
         }
 
-        public static bool deleteAddresss(Address addr)
+        public static bool delete(Address addr)
         {
             using (var connection = DatabaseConnection.Instance.Connection)
             {

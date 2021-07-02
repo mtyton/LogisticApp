@@ -28,7 +28,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             Address addr = EntityObjectMock.createAddress();
             using (IDataReader reader = EntityDataMock.mockPersonReader())
             {
-                person = new Person(reader, addr);
+                person = new Person(reader);
+                person.Addr = addr;
             }
             return person;
         }
@@ -39,7 +40,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             Address addr = EntityObjectMock.createAddress();
             using (IDataReader reader = EntityDataMock.mockCompanyReader())
             {
-                company = new Company(reader, addr);
+                company = new Company(reader);
+                company.Addr = addr;
             }
             return company;
         }
@@ -47,10 +49,11 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
         public static Employee createEmployee()
         {
             Employee employee = null;
-            List<Ability> abilities = new List<Ability>();
+            List<Skillset> abilities = new List<Skillset>();
             using (IDataReader reader = EntityDataMock.mockEmployeeReader())
             {
-                employee = new Employee(reader, abilities);
+                employee = new Employee(reader);
+                employee.Abilities = abilities;
             }
             return employee;
         }

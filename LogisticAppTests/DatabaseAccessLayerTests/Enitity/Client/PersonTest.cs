@@ -21,7 +21,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
                     $"{addrReader["building_number"]}/{addrReader["apartment_number"]}";
 
                     Address addr = new Address(addrReader);
-                    Person person = new Person(personReader, addr);
+                    Person person = new Person(personReader);
+                    person.Addr = addr;
                     Assert.AreEqual(person.ToString(), correctString);
                 }
             }
@@ -36,7 +37,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
 
                 Address addr = new Address(null, null, null, null, 0, 0);
                 addr.ID = 67;
-                Person person = new Person(personReader, addr);
+                Person person = new Person(personReader);
+                person.Addr = addr;
 
                 string correctString = $"(id, name, surname, address_id) " +
                     $"VALUES (NULL, {personReader["name"]}, {personReader["surname"]}, " +
@@ -70,7 +72,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
 
                 Address addr = new Address(null, null, null, null, 0, 0);
                 addr.ID = 67;
-                Person person = new Person(personReader, addr);
+                Person person = new Person(personReader);
+                person.Addr = addr;
 
                 string correctString = $"name={personReader["name"]}, " +
                     $"surname={personReader["surname"]}, " + 

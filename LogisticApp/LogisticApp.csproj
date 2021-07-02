@@ -230,14 +230,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DatabaseAccessLayer\DAOS\AbilityDataAccessObject.cs" />
+    <Compile Include="DatabaseAccessLayer\DAOS\SkillsetDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DAOS\Client\AddressDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DAOS\Client\CompanyDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DAOS\Client\PersonDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DAOS\EmployeeDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DAOS\JobDataAccessObject.cs" />
     <Compile Include="DatabaseAccessLayer\DatabaseConnection.cs" />
-    <Compile Include="DatabaseAccessLayer\Entity\Ability.cs" />
+    <Compile Include="DatabaseAccessLayer\Entity\Skillset.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Base\BaseEntity.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Base\BaseEntityInterface.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Client\Address.cs" />

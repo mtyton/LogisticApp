@@ -7,14 +7,16 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using LogisticApp.DatabaseAccessLayer.Entity.Client;
 using LogisticApp.DatabaseAccessLayer;
+using System.Collections.ObjectModel;
+using LogisticApp.DatabaseAccessLayer.Entity.Base;
 
 namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
 {
     static class CompanyDataAccessObject
     {
-        public static List<Company> getPaginated(int start = 0, int number=25)
+        public static ObservableCollection<BaseEntity> getPaginated(int start = 0, int number=25)
         {
-            List<Company> companies = new List<Company>();
+            ObservableCollection<BaseEntity> companies = new ObservableCollection<BaseEntity>();
             using(var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
@@ -24,13 +26,41 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    sbyte addr_id = sbyte.Parse(reader["address_id"].ToString());
-                    Address address = AddressDataAccessObject.getAddressById(addr_id);
-                    Company company = new Company(reader, address);
+                    Company company = new Company(reader);
                     companies.Add(company);
                 }
+                reader.Close();
             }
+            foreach(Company company in companies)
+            {
+                Address address = AddressDataAccessObject.getAddressById(company.AddrId);
+                company.Addr = address;
+            }
+            
+
             return companies;
+        }
+
+        public static Company getById(long id)
+        {
+            Company company = null;
+            using (var connection = DatabaseConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(
+                    $"SELECT * FROM company WHERE id={id}",
+                    connection
+                    );
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    company = new Company(reader);
+                }
+                reader.Close();
+            }
+
+            Address address = AddressDataAccessObject.getAddressById(company.AddrId);
+            company.Addr = address;
+            return company;
         }
 
         public static Company create(Company company)
@@ -51,7 +81,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                     return null;
                 }
                 company.ID = command.LastInsertedId;
-                addr = AddressDataAccessObject.createAddress(addr);
+                addr = AddressDataAccessObject.create(addr);
                 if(addr == null)
                 {
                     throw new Exception("Company adding address issue");
@@ -72,7 +102,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 return null;
             }
 
-            addr = AddressDataAccessObject.updateAddress(addr);
+            addr = AddressDataAccessObject.update(addr);
             if (addr == null)
             {
                 throw new Exception("Company updating address issue");
@@ -110,7 +140,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                     connection
                     );
 
-                if (!AddressDataAccessObject.deleteAddresss(company.Addr))
+                if (!AddressDataAccessObject.delete(company.Addr))
                 {
                     return false;
                 }

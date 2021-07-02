@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LogisticApp.DatabaseAccessLayer.Entity.Base;
 using System.Data;
-using LogisticApp.DatabaseAccessLayer.Entity.Base;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity
 {
-    public class Ability : BaseEntity
+    public class Skillset : BaseEntity
     {
 
         string name;
         private long id;
 
-        public Ability(IDataReader reader)
+        public Skillset(IDataReader reader)
         {
             this.id = long.Parse(reader["id"].ToString());
-            name = reader["ability_name"].ToString();
+            name = reader["skill_name"].ToString();
         }
 
-        public Ability(string n)
+        public Skillset(string n)
         {
             name = n;
         }
@@ -44,13 +39,13 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public string ToInsert()
         {
             base.ToInsert();
-            return $"(ability_name) VALUES ({this.name})";
+            return $"(skill_name) VALUES ({this.name})";
         }
 
         public string ToUpdate()
         {
             base.ToUpdate();
-            return $"ability_name={this.name}";
+            return $"skill_name={this.name}";
         }
     }
 }

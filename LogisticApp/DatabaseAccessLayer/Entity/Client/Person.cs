@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using LogisticApp.DatabaseAccessLayer.Entity.Base;
-
 
 namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
@@ -17,6 +14,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
         private string name, surname;
         private Address address;
 
+        public long AddrId { get; set; }
         public long ID
         {
             get => id;
@@ -31,14 +29,13 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 
 
         public Person(
-            IDataReader personReader, 
-            Address addr
+            IDataReader personReader
             )
         {
-            id = long.Parse(personReader["id"].ToString());
-            name = personReader["name"].ToString();
-            surname = personReader["surname"].ToString();
-            address = addr;
+            this.id = long.Parse(personReader["id"].ToString());
+            this.name = personReader["name"].ToString();
+            this.surname = personReader["surname"].ToString();
+            this.AddrId = long.Parse(personReader["address_id"].ToString());
         }
 
         public Person(string name, string surname, Address addr)

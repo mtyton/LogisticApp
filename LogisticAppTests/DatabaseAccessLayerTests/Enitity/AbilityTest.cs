@@ -11,11 +11,11 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         [TestMethod]
         public void testAbilityReaderCreate()
         {
-            using (var reader = EntityDataMock.mockAbilityReader())
+            using (var reader = EntityDataMock.mockSkillReader())
             {
-                string correctString = $"{reader["ability_name"]}";
+                string correctString = $"{reader["skill_name"]}";
 
-                Ability ability = new Ability(reader);
+                Skillset ability = new Skillset(reader);
                 Assert.AreEqual(ability.ToString(), correctString);
             }
         }
@@ -24,12 +24,12 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         [TestMethod]
         public void testToInsertSuccess()
         {
-            using (var reader = EntityDataMock.mockAbilityReader())
+            using (var reader = EntityDataMock.mockSkillReader())
             {
-                string correctString = $"(ability_name) " +
-                    $"VALUES ({reader["ability_name"]})";
+                string correctString = $"(skill_name) " +
+                    $"VALUES ({reader["skill_name"]})";
 
-                Ability ability = new Ability(reader);
+                Skillset ability = new Skillset(reader);
                 Assert.AreEqual(ability.ToInsert(), correctString);
             }
         }
@@ -37,7 +37,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         [TestMethod]
         public void testToInsertFailure()
         {
-            Ability ability = new Ability((string)null);
+            Skillset ability = new Skillset((string)null);
             try
             {
                 ability.ToInsert();
@@ -53,12 +53,12 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         [TestMethod]
         public void testToUpdateSuccess()
         {
-            using (var reader = EntityDataMock.mockAbilityReader())
+            using (var reader = EntityDataMock.mockSkillReader())
             {
                 string correctString = $"" +
-                    $"ability_name={reader["ability_name"]}";
+                    $"skill_name={reader["skill_name"]}";
 
-                Ability ability = new Ability(reader);
+                Skillset ability = new Skillset(reader);
                 Assert.AreEqual(ability.ToUpdate(), correctString);
             }
         }
@@ -66,7 +66,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         [TestMethod]
         public void testToUpdateFailure()
         {
-            Ability ability = new Ability((string)null);
+            Skillset ability = new Skillset((string)null);
             try
             {
                 ability.ToUpdate();
