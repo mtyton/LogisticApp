@@ -36,7 +36,7 @@ namespace LogisticApp.Model
         }
 
         public void loadQueryset(string entityName, object[] parameters)
-        { 
+        {
             if (parameters == null)
             {
                 this._queryset = DataAccessFacade.getAll(entityName);
