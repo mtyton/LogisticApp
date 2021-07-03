@@ -52,6 +52,25 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             return jobs;
         }
 
+        public static int getTotalCount()
+        {
+            int count = 0;
+            using (var connection = DatabaseConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(
+                    $"SELECT Count(*) as number FROM job;",
+                    connection
+                    );
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    count = int.Parse(reader["number"].ToString());
+                }
+                reader.Close();
+            }
+            return count;
+        }
+
         public static Job create(Job job)
         {
             using (var connection = DatabaseConnection.Instance.Connection)

@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace LogisticApp.ViewModel
@@ -26,6 +27,9 @@ namespace LogisticApp.ViewModel
                 onPropertyChanged(nameof(CurrentQueryset));
             }
         }
+
+        private int _start = 0;
+        private int _offset = 25;
 
         public ListModel ListData
         {
@@ -58,10 +62,50 @@ namespace LogisticApp.ViewModel
         {
             string entityName = param.ToString();
             // TODO add pagination
-            object[] paginationParams = { 0, 25 };
+            object[] paginationParams = { _start, _offset };
 
             this._listData.loadQueryset(entityName, paginationParams);
             CurrentQueryset = this._listData.Queryset;
+        }
+
+        // move step is responsible for paginating in each direction
+        private ICommand _moveStep;
+
+        public ICommand MoveStep => _moveStep ?? (
+            _moveStep = new RelayCommand(load, canMove)
+        );
+
+        private bool canMove(object param)
+        {
+            // obviously we can't paginate empty queryset
+            if (this._listData.Queryset == null)
+            {
+                return false;
+            }
+            string direction = param.ToString();
+            if (direction == "-")
+            {
+                return this._start - this._offset > 0;
+            }
+            else if (direction == "+")
+            {
+                return this._start + this._offset < this._listData.TotalCount;
+            }
+            return false;
+        }
+
+        private void move(object param)
+        {
+            string direction = param.ToString();
+            if (direction == "-")
+            {
+                this._start += this._offset;
+            }
+            else if (direction == "+")
+            {
+                this._start -= this._offset;
+            }
+            this.load(new object());
         }
 
         #endregion
