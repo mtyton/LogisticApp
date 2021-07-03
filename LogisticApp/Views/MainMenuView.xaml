@@ -15,9 +15,7 @@
             <Setter Property="BorderThickness" Value="3"/>
         </Style>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <viewModel:MainMenuViewModel x:Name="MainMenuViewModel"/>
-    </UserControl.DataContext>
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -36,7 +34,7 @@
         </StackPanel>
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
             <ListBox Width="500px" Height="300px"
-                     ItemsSource="{Binding CurrentQueryset}"
+                     ItemsSource="{Binding CurrentQueryset, Mode=OneWay}"
                      />
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
