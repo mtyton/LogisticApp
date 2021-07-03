@@ -158,12 +158,6 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                     $"DELETE FROM company WHERE id={company.id}",
                     connection
                     );
-
-                if (!AddressDataAccessObject.delete(company.address))
-                {
-                    return false;
-                }
-
                 try
                 {
                     command.ExecuteNonQuery();
@@ -174,6 +168,12 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 }
             
             }
+
+            if (!AddressDataAccessObject.delete(company.address))
+            {
+                return false;
+            }
+
             return true;
         }
     }

@@ -35,6 +35,7 @@
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
             <ListBox Width="500px" Height="300px"
                      ItemsSource="{Binding CurrentQueryset, Mode=OneWay}"
+                     x:Name="dataList"
                      />
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -44,10 +45,15 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Previous" Width="100px" Grid.Column="0" Command="{Binding MoveStep}" CommandParameter="-"/>
-            <Button Content="Create" Width="100px" Grid.Column="1" Command="{Binding OpenCreateWindow}"/>
-            <Button Content="Delete" Width="100px" Grid.Column="2" Command="{Binding Delete}"/>
-            <Button  Content="Next"  Width="100px" Grid.Column="3" Command="{Binding MoveStep}" CommandParameter="+"/>
+            <Button Content="Previous" Width="100px" 
+                    Grid.Column="0" Command="{Binding MoveStep}" CommandParameter="-"/>
+            <Button Content="Create" Width="100px" 
+                    Grid.Column="1" Command="{Binding OpenCreateWindow}"/>
+            <Button Content="Delete" Width="100px" 
+                    Grid.Column="2" Command="{Binding DeleteRecord}"
+                    CommandParameter="{Binding ElementName=dataList, Path=SelectedItem}"/>
+            <Button  Content="Next"  Width="100px" 
+                     Grid.Column="3" Command="{Binding MoveStep}" CommandParameter="+"/>
         </Grid>
     </Grid>
 

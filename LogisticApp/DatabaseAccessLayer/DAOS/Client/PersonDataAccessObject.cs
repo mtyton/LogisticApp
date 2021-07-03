@@ -155,11 +155,6 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                     connection
                     );
 
-                if (!AddressDataAccessObject.delete(person.address))
-                {
-                    return false;
-                }
-
                 try
                 {
                     command.ExecuteNonQuery();
@@ -170,6 +165,12 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 }
 
             }
+
+            if (!AddressDataAccessObject.delete(person.address))
+            {
+                return false;
+            }
+
             return true;
         }
 

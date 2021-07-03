@@ -8,7 +8,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Base
 {
     interface BaseEntityInterface
     {
-        long ID { get; set; }
         bool checkIfRecordComplete();
         string ToInsert();
         string ToUpdate();

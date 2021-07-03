@@ -97,8 +97,6 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 {
                     return false;
                 }
-                addr.id = command.LastInsertedId;
-
             }
             return true;
         }

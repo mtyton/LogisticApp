@@ -11,20 +11,20 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
 {
     public class Job : BaseEntity
     {
-        private long id;
-        private string title;
-        private Person clientPerson;
-        private Company clientCompany;
-        private string description;
-        private Employee assignedEmployee;
-        private int predictedTime;
-        private int predictedCost;
+        public long id { get; set; }
+        public string title { get; set; }
+        public Person clientPerson { get; set; }
+        public Company clientCompany { get; set; }
+        public string description { get; set; }
+        public Employee assignedEmployee { get; set; }
+        public int predictedTime { get; set; }
+        public int predictedCost { get; set; }
 
 
         public long ClientPersonID { get; set; }
         public long ClientCompanyID { get; set; }
         public long AssignedEmployeeID { get; set; }
-        public long ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        
 
         public Person ClientPerson
         {

@@ -86,7 +86,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 {
                     return null;
                 }
-                job.ID = command.LastInsertedId;
+                job.id = command.LastInsertedId;
 
             }
             return job;
@@ -95,14 +95,14 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
         public static Job update(Job job)
         {
             // check if has id
-            if (job.ID == null)
+            if (job.id == null)
             {
                 return null;
             }
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"UPDATE address SET {job.ToUpdate()} WHERE id={job.ID}",
+                    $"UPDATE job SET {job.ToUpdate()} WHERE id={job.id}",
                     connection
                     );
                 try
@@ -122,7 +122,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"DELETE FROM address WHERE id={job.ID}",
+                    $"DELETE FROM job WHERE id={job.id}",
                     connection
                     );
                 try
@@ -133,8 +133,6 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 {
                     return false;
                 }
-                job.ID = command.LastInsertedId;
-
             }
             return true;
         }
