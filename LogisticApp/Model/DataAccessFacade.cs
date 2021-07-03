@@ -77,12 +77,29 @@ namespace LogisticApp.Model
                 case "person":
                     return PersonDataAccessObject.update((Person)record);
                 case "employee":
-                    //return EmployeeDataAccessObject.update((Employee)record);
-                    return null;
+                    return EmployeeDataAccessObject.update((Employee)record);
                 case "job":
                     return JobDataAccessObject.update((Job)record);
                 case "address":
                     return AddressDataAccessObject.update((Address)record);
+            }
+            throw new TypeLoadException("Entity name not recognized");
+        }
+
+        public static bool delete(string entityName, BaseEntity record)
+        {
+            switch (entityName)
+            {
+                case "company":
+                    return CompanyDataAccessObject.delete((Company)record);
+                case "person":
+                    return PersonDataAccessObject.delete((Person)record);
+                case "employee":
+                    return EmployeeDataAccessObject.delete((Employee)record);
+                case "job":
+                    return JobDataAccessObject.delete((Job)record);
+                case "address":
+                    return AddressDataAccessObject.delete((Address)record);
             }
             throw new TypeLoadException("Entity name not recognized");
         }

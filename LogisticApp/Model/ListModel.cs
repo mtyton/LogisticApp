@@ -41,7 +41,12 @@ namespace LogisticApp.Model
             int number_of_records = int.Parse(parameters[1].ToString());
             this._queryset = DataAccessFacade.getPaginated(entityName, start, number_of_records);
             this._totalCount = DataAccessFacade.getTotalCount(entityName);
+        }
 
+        public bool deleteRecord(string entityName, object obj)
+        {
+            BaseEntity entity = (BaseEntity)obj;
+            return DataAccessFacade.delete(entityName, entity);
         }
 
     }

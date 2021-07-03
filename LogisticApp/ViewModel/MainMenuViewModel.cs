@@ -52,6 +52,7 @@ namespace LogisticApp.ViewModel
         }
 
         #region{commands}
+        #region{list management}
         private ICommand _loadData;
 
         public ICommand LoadData => _loadData ?? (
@@ -65,6 +66,11 @@ namespace LogisticApp.ViewModel
 
         private void load(object param)
         {
+            // if thos two differs start from begining
+            if (this._entityName != param.ToString())
+            {
+                this._start = 0;
+            }
             this._entityName = param.ToString();
             // _start and _offset are responsible for pagination
             object[] paginationParams = { this._start, this._offset };
@@ -113,6 +119,33 @@ namespace LogisticApp.ViewModel
             this.load(this._entityName);
         }
 
+        private ICommand _deleteRecord;
+        public ICommand DeleteRecord => _deleteRecord ?? (
+            _deleteRecord = new RelayCommand(delete, canDelete)
+        );
+
+        private bool canDelete(object param)
+        {
+            return param != null;
+        }
+
+        private void delete(object param)
+        {
+            if(this._listData.deleteRecord(this._entityName, param))
+            {
+                this.load(this._entityName);
+            }
+            else
+            {
+                MessageBox.Show("This record can't be deleted!", "Integrity Issue",
+                    MessageBoxButton.OK, MessageBoxImage.Error
+                    );
+            }
+
+        }
+
+        #endregion
+        #region{windowManager}
         private ICommand _openCreateWindow;
 
         public ICommand OpenCreateWindow => _openCreateWindow ?? (
@@ -157,7 +190,7 @@ namespace LogisticApp.ViewModel
             this._formWindow = null;
             this.load(this._entityName);
         }
-
+        #endregion
         #endregion
 
     }

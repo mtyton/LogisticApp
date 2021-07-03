@@ -129,5 +129,50 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             return employee;
         }
 
+        public static Employee update(Employee employee)
+        {
+            // check if has id
+            if (employee.id == null)
+            {
+                return null;
+            }
+            using (var connection = DatabaseConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(
+                    $"UPDATE employee SET {employee.ToUpdate()} WHERE id={employee.id}",
+                    connection
+                    );
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (MySqlException)
+                {
+                    return null;
+                }
+            }
+            return employee;
+        }
+
+        public static bool delete(Employee employee)
+        {
+            using (var connection = DatabaseConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(
+                    $"DELETE FROM employee WHERE id={employee.id}",
+                    connection
+                    );
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (MySqlException)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
     }
 }

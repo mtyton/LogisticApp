@@ -8,12 +8,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Base
 {
     public class BaseEntity : BaseEntityInterface
     {
-        public long ID 
-        { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException(); 
-        }
-
         virtual public bool checkIfRecordComplete()
         {
             return true;
