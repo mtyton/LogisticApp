@@ -38,7 +38,7 @@ namespace LogisticApp.Model
         {
             if(_instance == null)
             {
-                return new Session(username, password);
+                _instance = new Session(username, password);
             }
             return _instance;
         }
