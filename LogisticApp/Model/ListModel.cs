@@ -36,11 +36,7 @@ namespace LogisticApp.Model
         }
 
         public void loadQueryset(string entityName, object[] parameters)
-<<<<<<< Updated upstream
         { 
-=======
-        {
->>>>>>> Stashed changes
             if (parameters == null)
             {
                 this._queryset = DataAccessFacade.getAll(entityName);
@@ -52,12 +48,7 @@ namespace LogisticApp.Model
                 this._queryset = DataAccessFacade.getPaginated(entityName, start, number_of_records);
                 this._totalCount = DataAccessFacade.getTotalCount(entityName);
             }
-<<<<<<< Updated upstream
         }
-=======
-
->>>>>>> Stashed changes
-
 
         public bool deleteRecord(string entityName, object obj)
         {
