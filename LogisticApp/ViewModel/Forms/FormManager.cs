@@ -43,11 +43,6 @@ namespace LogisticApp.ViewModel.Forms
             }
         }
 
-        public void setData(string name, string entityContentString)
-        {
-            //TODO load record to Update
-        }
-
         public void addMediator(WindowMediator mediator)
         {
             _mediator = mediator;

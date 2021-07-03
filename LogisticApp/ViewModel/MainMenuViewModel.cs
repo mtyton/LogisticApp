@@ -131,7 +131,10 @@ namespace LogisticApp.ViewModel
             this._formWindow = new MainFormWindow();
             this._formWindow.MainFormViewModel.setViewModel(this._entityName);
             // TODO add checking if param is not null for update
-
+            if (param != null)
+            {
+                //this._formWindow.MainFormViewModel.setData()
+            }
             this._formWindow.MainFormViewModel.addMediator(
                 WindowMediator.getMediator(this)
                 );

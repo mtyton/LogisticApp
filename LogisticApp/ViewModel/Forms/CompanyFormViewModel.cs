@@ -1,4 +1,6 @@
-﻿using LogisticApp.Model;
+﻿using LogisticApp.DatabaseAccessLayer.Entity.Base;
+using LogisticApp.DatabaseAccessLayer.Entity.Client;
+using LogisticApp.Model;
 using LogisticApp.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
@@ -59,11 +61,18 @@ namespace LogisticApp.ViewModel.Forms
             return data;
         }
 
+        public override void loadData(BaseEntity entity)
+        {
+            Company company = (Company)entity;
+            this.AddrViewModel.loadData(company.Addr);
+            this.Creator.Record = company;
+        }
+
         //TODO add validation if there will be enough time
         public override void save()
         {
             AddrViewModel.save();
-            Creator.create("company", this.serializeData());
+            Creator.createOrUpdate("company", this.serializeData());
         }
     }
 }

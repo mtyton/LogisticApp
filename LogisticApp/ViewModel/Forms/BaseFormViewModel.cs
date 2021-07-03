@@ -1,4 +1,5 @@
-﻿using LogisticApp.Model;
+﻿using LogisticApp.DatabaseAccessLayer.Entity.Base;
+using LogisticApp.Model;
 using LogisticApp.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace LogisticApp.ViewModel.Forms
         }
 
         // load data, takes serialized data and write this to form
-        public virtual object[] loadData()
+        public virtual void loadData(BaseEntity entity)
         {
             throw new NotImplementedException("Implement loadData method for each form!!");
         }

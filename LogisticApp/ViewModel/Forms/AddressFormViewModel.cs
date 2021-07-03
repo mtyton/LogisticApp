@@ -1,4 +1,6 @@
-﻿using LogisticApp.Model;
+﻿using LogisticApp.DatabaseAccessLayer.Entity.Base;
+using LogisticApp.DatabaseAccessLayer.Entity.Client;
+using LogisticApp.Model;
 using LogisticApp.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
@@ -89,9 +91,15 @@ namespace LogisticApp.ViewModel.Forms
             return data;
         }
 
+        public override void loadData(BaseEntity entity)
+        {
+            Address address = (Address)entity;
+            this.Creator.Record = address;
+        }
+
         public override void save()
         {
-            Creator.create("address", this.serializeData());
+            Creator.createOrUpdate("address", this.serializeData());
         }
 
     }

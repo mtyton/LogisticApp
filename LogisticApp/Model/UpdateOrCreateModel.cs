@@ -15,17 +15,26 @@ namespace LogisticApp.Model
         public BaseEntity Record
         {
             get => _record;
+            set => _record = value;
         }
 
-        public void create (string entityName, object[] entityValues)
+        public void createOrUpdate (string entityName, object[] entityValues)
         {
-            this._record = _factory.createEntity(entityName, entityValues);
-            this._record = DataAccessFacade.create(entityName, this._record);
+            if(this._record != null)
+            {
+                this.update(entityName);
+            }
+            else
+            {
+                this._record = _factory.createEntity(entityName, entityValues);
+                this._record = DataAccessFacade.create(entityName, this._record);
+            }
+
         }
 
-        public void update()
+        private void update(string entityName)
         {
-
+            this._record = DataAccessFacade.update(entityName, this._record);
         }
 
         ~UpdateOrCreateModel()
