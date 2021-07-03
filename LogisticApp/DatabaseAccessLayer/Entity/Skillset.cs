@@ -6,8 +6,8 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
     public class Skillset : BaseEntity
     {
 
-        string name;
-        private long id;
+        public string name { get; set; }
+        public long id { get; set; }
 
         public Skillset(IDataReader reader)
         {
@@ -18,12 +18,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public Skillset(string n)
         {
             name = n;
-        }
-
-        public long ID
-        {
-            get => id;
-            set => id = value;
         }
 
         public override string ToString()

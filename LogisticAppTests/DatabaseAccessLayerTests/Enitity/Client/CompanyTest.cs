@@ -22,7 +22,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
 
                     Address addr = new Address(addrReader);
                     Company company = new Company(companyReader);
-                    company.Addr = addr;
+                    company.address = addr;
                     Assert.AreEqual(company.ToString(), correctString);
                 }
             }
@@ -36,12 +36,12 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
                 using (var addrReader = EntityDataMock.mockAddressReader())
                 {
                     Address addr = new Address(addrReader);
-                    addr.ID = 5;
+                    addr.id = 5;
                     Company company = new Company(companyReader);
-                    company.Addr = addr;
+                    company.address = addr;
                     string correctString = $"(id, name, tax_number, address_id) " +
                     $"VALUES (NULL, '{companyReader["name"]}', '{companyReader["tax_number"]}', " +
-                    $"{addr.ID});";
+                    $"{addr.id});";
 
                     Assert.AreEqual(company.ToInsert(), correctString);
                 }
@@ -73,12 +73,12 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
                 using (var addrReader = EntityDataMock.mockAddressReader())
                 {
                     Address addr = new Address(addrReader);
-                    addr.ID = 5;
+                    addr.id = 5;
                     Company company = new Company(companyReader);
-                    company.Addr = addr;
+                    company.address = addr;
                     string correctString = $"name='{companyReader["name"]}', " +
                         $"tax_number='{companyReader["tax_number"]}'," + 
-                        $" address_id={addr.ID}";
+                        $" address_id={addr.id}";
 
                     Assert.AreEqual(company.ToUpdate(), correctString);
                 }

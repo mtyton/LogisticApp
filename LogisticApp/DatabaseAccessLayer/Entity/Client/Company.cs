@@ -11,23 +11,12 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
     public class Company : BaseEntity
     {
-        private long id;
-        private string companyName;
-        private string taxNumber;
-        private Address address;
+        public long id{get; set;}
+        public string companyName { get; set; }
+        public string taxNumber { get; set; }
+        public Address address { get; set; }
 
         public long AddrId{ get; set; }
-        public long ID
-        {
-            get => id;
-            set => id = value;
-        }
-
-        public Address Addr
-        {
-            get => address;
-            set => address=value;
-        }
 
         public Company(IDataReader companyReader)
         {
@@ -52,20 +41,19 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
                 this.address != null
                 );
         }
-
         public string ToInsert()
         {
             base.ToInsert();
             return $"(id, name, tax_number, address_id) " +
                 $"VALUES (NULL, '{this.companyName}', '{this.taxNumber}', " +
-                $"{this.address.ID});";
+                $"{this.address.id});";
         }
 
         public string ToUpdate()
         {
             base.ToUpdate();
             return $"name='{this.companyName}', tax_number='{this.taxNumber}'," +
-                $" address_id={this.address.ID}";
+                $" address_id={this.address.id}";
         }
 
         public override string ToString()

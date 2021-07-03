@@ -10,23 +10,12 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
     public class Person: BaseEntity
     {
-        private long id;
-        private string name, surname;
-        private Address address;
+        public long id { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; }
+        public Address address { get; set; }
 
         public long AddrId { get; set; }
-        public long ID
-        {
-            get => id;
-            set => id = value;
-        }
-
-        public Address Addr
-        {
-            get => address;
-            set => address = value;
-        }
-
 
         public Person(
             IDataReader personReader
@@ -49,7 +38,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
         {
             return (
                 this.name != null && this.surname != null &&
-                this.Addr != null
+                this.address != null
                 );
         }
 
@@ -58,7 +47,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
             base.ToInsert();
             return $"(id, name, surname, address_id) " +
                 $"VALUES (NULL, '{this.name}', '{this.surname}', " +
-                $"{this.address.ID});";
+                $"{this.address.id});";
         }
 
 
@@ -66,7 +55,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
         {
             base.ToUpdate();
             return $"name='{this.name}', surname='{this.surname}', " +
-                $"address_id={this.address.ID}";
+                $"address_id={this.address.id}";
         }
 
         public override string ToString()

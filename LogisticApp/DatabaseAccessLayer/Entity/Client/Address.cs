@@ -12,19 +12,15 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
     public class Address: BaseEntity
     {
-        private long id;
-        private string city;
-        private string postalCode;
-        private string country;
-        private string street;
-        private int buildingNumber;
-        private int apartmentNumber;
+        public long id { get; set; }
+        public string city { get; set; }
+        public string postalCode { get; set; }
+        public string country { get; set; }
+        public string street { get; set; }
+        public int buildingNumber { get; set; }
+        public int apartmentNumber { get; set; }
 
-        public long ID
-        {
-            get => id;
-            set => id = value;
-        }
+
 
         // constructor for data loading from db
         public Address(IDataReader reader)

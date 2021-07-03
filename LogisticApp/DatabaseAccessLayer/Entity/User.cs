@@ -10,29 +10,22 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
 {
     public class User : BaseEntity
     {
-        private string _username;
-        private long _id;
-
-        public long ID
-        {
-            get => _id;
-            set => _id = value;
-        }
-        // TODO add privlages
+        public string username { get; set; }
+        public long id { get; set; }
 
         public User(IDataReader reader)
         {
-            _username = reader["username"].ToString();
+            username = reader["username"].ToString();
         }
 
         public User(string name, string mail)
         {
-            _username = name;
+            username = name;
         }
 
         public override string ToString()
         {
-            return _username;
+            return username;
         }
 
     }

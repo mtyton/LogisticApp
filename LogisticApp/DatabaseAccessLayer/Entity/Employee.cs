@@ -11,24 +11,13 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
 {
     public class Employee: BaseEntity
     {
-        private long id;
-        private string name;
-        private string surname;
-        private DateTime birthDate;
-        private DateTime dateOfEmployment;
-        private int hourlyPayment;
-        List<Skillset> abilities = new List<Skillset>();
-
-        public List<Skillset> Abilities 
-        {
-            get => abilities;
-            set => abilities = value;
-        }
-        public long ID 
-        {
-            get => id;
-            set => id = value;
-        }
+        public long id { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; }
+        public DateTime birthDate { get; set; }
+        public DateTime dateOfEmployment { get; set; }
+        public int hourlyPayment { get; set; }
+        public List<Skillset> abilities { get; set; }
 
         public Employee(IDataReader reader)
         {

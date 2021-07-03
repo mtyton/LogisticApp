@@ -50,7 +50,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 {
                     return null;
                 }
-                addr.ID = command.LastInsertedId;
+                addr.id = command.LastInsertedId;
                 
             }
             return addr;
@@ -59,14 +59,14 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
         public static Address update(Address addr)
         {
             // check if has id
-            if (addr.ID == null)
+            if (addr.id == null)
             {
                 return null;
             }
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"UPDATE address SET {addr.ToUpdate()} WHERE id={addr.ID}", 
+                    $"UPDATE address SET {addr.ToUpdate()} WHERE id={addr.id}", 
                     connection
                     );
                 try
@@ -86,7 +86,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"DELETE FROM address WHERE id={addr.ID}",
+                    $"DELETE FROM address WHERE id={addr.id}",
                     connection
                     );
                 try
@@ -97,7 +97,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 {
                     return false;
                 }
-                addr.ID = command.LastInsertedId;
+                addr.id = command.LastInsertedId;
 
             }
             return true;

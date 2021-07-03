@@ -102,14 +102,14 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             {
                 return $"(title, company_id, description, " +
                     $"assigned_employee, predicted_time, predicted_cost) " +
-                    $"VALUES ({this.title}, {this.clientCompany.ID}," +
+                    $"VALUES ({this.title}, {this.clientCompany.id}," +
                     $" {this.description}, {this.assignedEmployee}," +
                     $" {this.predictedTime}, {this.predictedCost});";
             }
 
             return $"(title, person_id, description, " +
                     $"assigned_employee, predicted_time, predicted_cost) " +
-                    $"VALUES ({this.title}, {this.clientPerson.ID}," +
+                    $"VALUES ({this.title}, {this.clientPerson.id}," +
                     $" {this.description}, {this.assignedEmployee}," +
                     $" {this.predictedTime}, {this.predictedCost});";
         }
@@ -120,15 +120,15 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             if (this.clientCompany != null)
             {
                 return $"title={this.title}, description={this.description}, " +
-                    $"company_id={this.clientCompany.ID}, " +
-                    $"assigned_employee={this.assignedEmployee.ID}, " +
+                    $"company_id={this.clientCompany.id}, " +
+                    $"assigned_employee={this.assignedEmployee.id}, " +
                     $"predicted_time={this.predictedTime}, " +
                     $"predicted_cost={this.predictedCost};";
             }
 
             return $"title={this.title}, description={this.description}, " +
-                    $"person_id={this.clientPerson.ID}, " +
-                    $"assigned_employee={this.assignedEmployee.ID}, " +
+                    $"person_id={this.clientPerson.id}, " +
+                    $"assigned_employee={this.assignedEmployee.id}, " +
                     $"predicted_time={this.predictedTime}, " +
                     $"predicted_cost={this.predictedCost};";
         }
