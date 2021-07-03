@@ -126,6 +126,9 @@
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.12.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.EntityFrameworkCore.Relational.3.1.12\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.12.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Caching.Abstractions.3.1.12\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
     </Reference>
@@ -208,6 +211,9 @@
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -249,9 +255,12 @@
     <Compile Include="DatabaseAccessLayer\Entity\Employee.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Job.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\User.cs" />
+    <Compile Include="Model\DataAccessFacade.cs" />
+    <Compile Include="Model\EntityFactory.cs" />
     <Compile Include="Model\ListModel.cs" />
     <Compile Include="Model\AuthModel.cs" />
     <Compile Include="Model\Session.cs" />
+    <Compile Include="Model\UpdateOrCreateModel.cs" />
     <Compile Include="Resources\Languages\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -259,12 +268,14 @@
     </Compile>
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
-    <Compile Include="ViewModel\Forms\AddressViewModel.cs" />
-    <Compile Include="ViewModel\Forms\CompanyForm.cs" />
-    <Compile Include="ViewModel\Forms\MainFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\AddressFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\BaseFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\CompanyFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\FormManager.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Utils\WindowMediator.cs" />
     <Compile Include="Views\Forms\AddressForm.xaml.cs">
       <DependentUpon>AddressForm.xaml</DependentUpon>
     </Compile>

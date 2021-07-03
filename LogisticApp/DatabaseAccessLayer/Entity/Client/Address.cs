@@ -81,15 +81,15 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
             base.ToInsert();
             return $"" +
                 $"(city, postal_code, country, street, building_number, apartment_number)" +
-                $" VALUES ({this.city}, {this.postalCode}, {this.country}, {this.street}, " +
+                $" VALUES ('{this.city}', '{this.postalCode}', '{this.country}', '{this.street}', " +
                 $"{this.buildingNumber}, {this.apartmentNumber});";
         }
 
         public string ToUpdate()
         {
             base.ToUpdate();
-            return $"city={this.city}, postal_code={this.postalCode}, " +
-                $"country={this.country}, street={this.street}, " +
+            return $"city='{this.city}', postal_code='{this.postalCode}', " +
+                $"country='{this.country}', street='{this.street}', " +
                 $"building_number={this.buildingNumber}, apartment_number={this.apartmentNumber}";
         }
 

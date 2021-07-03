@@ -39,28 +39,8 @@ namespace LogisticApp.Model
         {
             int start = int.Parse(parameters[0].ToString());
             int number_of_records = int.Parse(parameters[1].ToString());
-
-            switch (entityName)
-            {
-                case "company":
-                    this._queryset = CompanyDataAccessObject.getPaginated(start, number_of_records);
-                    this._totalCount = CompanyDataAccessObject.getTotalCount();
-                    break;
-                case "person":
-                    this._queryset = PersonDataAccessObject.getPaginated(start, number_of_records);
-                    this._totalCount = PersonDataAccessObject.getTotalCount();
-                    break;
-                case "employee":
-                    this._queryset = EmployeeDataAccessObject.getPaginated(start, number_of_records);
-                    this._totalCount = EmployeeDataAccessObject.getTotalCount();
-                    break;
-                case "job":
-                    this._queryset = JobDataAccessObject.getPaginated(start, number_of_records);
-                    this._totalCount = JobDataAccessObject.getTotalCount();
-                    break;
-                case "default":
-                    throw new TypeLoadException("Entity name not recognized");
-            }
+            this._queryset = DataAccessFacade.getPaginated(entityName, start, number_of_records);
+            this._totalCount = DataAccessFacade.getTotalCount(entityName);
 
         }
 

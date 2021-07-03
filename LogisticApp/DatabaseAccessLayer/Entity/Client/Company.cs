@@ -57,14 +57,14 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
         {
             base.ToInsert();
             return $"(id, name, tax_number, address_id) " +
-                $"VALUES (NULL, {this.companyName}, {this.taxNumber}, " +
+                $"VALUES (NULL, '{this.companyName}', '{this.taxNumber}', " +
                 $"{this.address.ID});";
         }
 
         public string ToUpdate()
         {
             base.ToUpdate();
-            return $"name={this.companyName}, tax_number={this.taxNumber}," +
+            return $"name='{this.companyName}', tax_number='{this.taxNumber}'," +
                 $" address_id={this.address.ID}";
         }
 

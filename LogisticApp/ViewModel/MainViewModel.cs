@@ -49,24 +49,6 @@ namespace LogisticApp.ViewModel
                 SelectedViewModel = new MainMenuViewModel();
             }
         }
-
-        private ICommand _changeView;
-
-        public ICommand ChangeView => _changeView ?? (
-            _changeView = new RelayCommand(login, canChangeView)
-        );
-
-        private bool canChangeView(object param)
-        {
-            return true;
-        }
-
-        private void changeView(object param)
-        {
-            string viewName = param.ToString();
-        }
-
-
         #endregion
     }
 }

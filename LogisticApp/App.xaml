@@ -14,10 +14,10 @@
         <DataTemplate DataType="{x:Type viewModel:MainMenuViewModel}">
             <views:MainMenuView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel_forms:CompanyForm}">
+        <DataTemplate DataType="{x:Type viewModel_forms:CompanyFormViewModel}">
             <views_forms:CompanyForm/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel_forms:AddressViewModel}">
+        <DataTemplate DataType="{x:Type viewModel_forms:AddressFormViewModel}">
             <views_forms:AddressForm/>
         </DataTemplate>
     </Application.Resources>

@@ -33,8 +33,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
                 Address addr = new Address(reader);
                 string correctString = $"" +
                 $"(city, postal_code, country, street, building_number, apartment_number)" +
-                $" VALUES ({reader["city"]}, {reader["postal_code"]}," +
-                $" {reader["country"]}, {reader["street"]}, " +
+                $" VALUES ('{reader["city"]}', '{reader["postal_code"]}'," +
+                $" '{reader["country"]}', '{reader["street"]}', " +
                 $"{reader["building_number"]}, {reader["apartment_number"]});";
 
 
@@ -65,9 +65,9 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
             using (var reader = EntityDataMock.mockAddressReader())
             {
                 Address addr = new Address(reader);
-                string correctString = $"city={reader["city"]}, " +
-                    $"postal_code={reader["postal_code"]}, " + 
-                    $"country={reader["country"]}, street={reader["street"]}, " +
+                string correctString = $"city='{reader["city"]}', " +
+                    $"postal_code='{reader["postal_code"]}', " + 
+                    $"country='{reader["country"]}', street='{reader["street"]}', " +
                     $"building_number={reader["building_number"]}, " +
                     $"apartment_number={reader["apartment_number"]}";
 

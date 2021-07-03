@@ -1,6 +1,7 @@
 ﻿using LogisticApp.DatabaseAccessLayer.Entity.Base;
 using LogisticApp.Model;
 using LogisticApp.ViewModel.BaseClass;
+using LogisticApp.ViewModel.Utils;
 using LogisticApp.Views.Forms;
 using System;
 using System.Collections.Generic;
@@ -129,7 +130,29 @@ namespace LogisticApp.ViewModel
         {
             this._formWindow = new MainFormWindow();
             this._formWindow.MainFormViewModel.setViewModel(this._entityName);
+            // TODO add checking if param is not null for update
+
+            this._formWindow.MainFormViewModel.addMediator(
+                WindowMediator.getMediator(this)
+                );
             this._formWindow.Show();
+        }
+
+        private ICommand _closeCreateWindow;
+
+        public ICommand CloseCreateWindow => _closeCreateWindow ?? (
+            _closeCreateWindow = new RelayCommand(closeWindow, canCloseCreateWindow)
+        );
+        private bool canCloseCreateWindow(object param=null)
+        {
+            // we can close window only if it exists
+            return this._formWindow != null;
+        }
+
+        public void closeWindow(object param = null)
+        {
+            this._formWindow = null;
+            this.load(this._entityName);
         }
 
         #endregion

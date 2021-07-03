@@ -4,12 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LogisticApp.Views.Forms"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="BaseFormWindow" Height="450" Width="800"
         xmlns:viewModel="clr-namespace:LogisticApp.ViewModel.Forms">
     <Window.DataContext>
-        <viewModel:MainFormViewModel  x:Name="MainFormViewModel"/>
+        <viewModel:FormManager  x:Name="MainFormViewModel"/>
     </Window.DataContext>
+
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding WindowClosed }"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
@@ -24,8 +33,14 @@
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Save" Width="100px" Height="50px" Grid.Column="0"/>
-            <Button Content="Cancel" Width="100px" Height="50px"  Grid.Column="1"/>
+            <Button Content="Save" 
+                    Width="100px" Height="50px" 
+                    Grid.Column="0"
+                    Command="{Binding SaveData}"
+                    />
+            <Button Content="Cancel" 
+                    Width="100px" Height="50px"  Grid.Column="1"
+                    Command="{Binding WindowClosed }"/>
         </Grid>
     </Grid>
 </Window>

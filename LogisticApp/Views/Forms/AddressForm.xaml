@@ -36,22 +36,28 @@
             </Style>
         </Grid.Resources>
         <Label Content="City:" Grid.Row="0"/>
-        <TextBox Grid.Row="0"/>
+        <TextBox Grid.Row="0" 
+                 Text="{Binding City, Mode=TwoWay}"/>
 
         <Label Content="Postal Code:" Grid.Row="1"/>
-        <TextBox Grid.Row="1"/>
+        <TextBox Grid.Row="1" 
+                 Text="{Binding PostalCode, Mode=TwoWay}"/>
 
         <Label Content="Country:" Grid.Row="2"/>
-        <TextBox Grid.Row="2"/>
+        <TextBox Grid.Row="2"
+                 Text="{Binding Country, Mode=TwoWay}"/>
 
         <Label Content="Street:" Grid.Row="3"/>
-        <TextBox Grid.Row="3"/>
+        <TextBox Grid.Row="3"
+                 Text="{Binding Street, Mode=TwoWay}"/>
 
         <Label Content="Building Number:" Grid.Row="4"/>
-        <TextBox Grid.Row="4"/>
+        <TextBox Grid.Row="4"
+                 Text="{Binding BuildingNumber, Mode=TwoWay}"/>
 
         <Label Content="Apartment Number:" Grid.Row="5"/>
-        <TextBox Grid.Row="5"/>
+        <TextBox Grid.Row="5"
+                 Text="{Binding ApartmentNumber, Mode=TwoWay}"/>
 
     </Grid>
 </UserControl>
