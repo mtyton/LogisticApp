@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using LogisticApp.ViewModel.BaseClass;
+using LogisticApp.Views.Forms;
 
 namespace LogisticApp.ViewModel
 {

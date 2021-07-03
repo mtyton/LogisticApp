@@ -1,6 +1,7 @@
 ﻿using LogisticApp.DatabaseAccessLayer.Entity.Base;
 using LogisticApp.Model;
 using LogisticApp.ViewModel.BaseClass;
+using LogisticApp.Views.Forms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +21,7 @@ namespace LogisticApp.ViewModel
         private int _offset = 10;
 
         ListModel _listData;
+        MainFormWindow _formWindow = null;
 
         private ObservableCollection<BaseEntity> _currentQueryset;
 
@@ -63,7 +65,7 @@ namespace LogisticApp.ViewModel
         private void load(object param)
         {
             this._entityName = param.ToString();
-            // TODO add pagination
+            // _start and _offset are responsible for pagination
             object[] paginationParams = { this._start, this._offset };
             this._listData.loadQueryset(this._entityName, paginationParams);
             CurrentQueryset = this._listData.Queryset;
@@ -106,7 +108,28 @@ namespace LogisticApp.ViewModel
             {
                 this._start += this._offset;
             }
+            // if we modified our record range, now we simpply need to load the data
             this.load(this._entityName);
+        }
+
+        private ICommand _openCreateWindow;
+
+        public ICommand OpenCreateWindow => _openCreateWindow ?? (
+            _openCreateWindow = new RelayCommand(openWindow, canOpenWindow)
+        );
+
+        private bool canOpenWindow(object param)
+        {
+            // we can have only one subwindow opened at the time
+            return this._formWindow == null;
+        }
+
+
+        private void openWindow(object param)
+        {
+            this._formWindow = new MainFormWindow();
+            this._formWindow.MainFormViewModel.setViewModel(this._entityName);
+            this._formWindow.Show();
         }
 
         #endregion
