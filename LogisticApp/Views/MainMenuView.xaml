@@ -45,8 +45,8 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Button Content="Previous" Width="100px" Grid.Column="0" Command="{Binding MoveStep}" CommandParameter="-"/>
-            <Button Content="Create" Width="100px" Grid.Column="1"/>
-            <Button Content="Delete" Width="100px" Grid.Column="2"/>
+            <Button Content="Create" Width="100px" Grid.Column="1" Command="{Binding OpenCreateWindow}"/>
+            <Button Content="Delete" Width="100px" Grid.Column="2" Command="{Binding Delete}"/>
             <Button  Content="Next"  Width="100px" Grid.Column="3" Command="{Binding MoveStep}" CommandParameter="+"/>
         </Grid>
     </Grid>

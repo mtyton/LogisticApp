@@ -126,6 +126,9 @@
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.12.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.EntityFrameworkCore.Relational.3.1.12\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.12.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Caching.Abstractions.3.1.12\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
     </Reference>
@@ -190,6 +193,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
@@ -206,6 +210,10 @@
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -247,9 +255,12 @@
     <Compile Include="DatabaseAccessLayer\Entity\Employee.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\Job.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\User.cs" />
+    <Compile Include="Model\DataAccessFacade.cs" />
+    <Compile Include="Model\EntityFactory.cs" />
     <Compile Include="Model\ListModel.cs" />
     <Compile Include="Model\AuthModel.cs" />
     <Compile Include="Model\Session.cs" />
+    <Compile Include="Model\UpdateOrCreateModel.cs" />
     <Compile Include="Resources\Languages\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -257,11 +268,22 @@
     </Compile>
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
+    <Compile Include="ViewModel\Forms\AddressFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\BaseFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\CompanyFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\FormManager.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="Views\Forms\OrderEditCreateForm.xaml.cs">
-      <DependentUpon>OrderEditCreateForm.xaml</DependentUpon>
+    <Compile Include="ViewModel\Utils\WindowMediator.cs" />
+    <Compile Include="Views\Forms\AddressForm.xaml.cs">
+      <DependentUpon>AddressForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MainFormWindow.xaml.cs">
+      <DependentUpon>MainFormWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\CompanyForm.xaml.cs">
+      <DependentUpon>CompanyForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -276,7 +298,15 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\Forms\OrderEditCreateForm.xaml">
+    <Page Include="Views\Forms\AddressForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Forms\MainFormWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Forms\CompanyForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,7 +356,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Images\" />
-    <Folder Include="ViewModel\Forms\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace LogisticApp.Views.Forms
 {
     /// <summary>
-    /// Interaction logic for OrderEditCreateForm.xaml
+    /// Interaction logic for AddressForm.xaml
     /// </summary>
-    public partial class OrderEditCreateForm : Window
+    public partial class AddressForm : UserControl
     {
-        public OrderEditCreateForm()
+        public AddressForm()
         {
             InitializeComponent();
         }

@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:LogisticApp"
              xmlns:views="clr-namespace:LogisticApp.Views"
+             xmlns:views_forms="clr-namespace:LogisticApp.Views.Forms"
              xmlns:viewModel="clr-namespace:LogisticApp.ViewModel"
+             xmlns:viewModel_forms="clr-namespace:LogisticApp.ViewModel.Forms"
              StartupUri="Views/MainView.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
@@ -11,6 +13,12 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:MainMenuViewModel}">
             <views:MainMenuView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel_forms:CompanyFormViewModel}">
+            <views_forms:CompanyForm/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel_forms:AddressFormViewModel}">
+            <views_forms:AddressForm/>
         </DataTemplate>
     </Application.Resources>
 </Application>

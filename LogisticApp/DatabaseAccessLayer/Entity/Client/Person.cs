@@ -57,7 +57,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
         {
             base.ToInsert();
             return $"(id, name, surname, address_id) " +
-                $"VALUES (NULL, {this.name}, {this.surname}, " +
+                $"VALUES (NULL, '{this.name}', '{this.surname}', " +
                 $"{this.address.ID});";
         }
 
@@ -65,7 +65,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
         public string ToUpdate()
         {
             base.ToUpdate();
-            return $"name={this.name}, surname={this.surname}, " +
+            return $"name='{this.name}', surname='{this.surname}', " +
                 $"address_id={this.address.ID}";
         }
 

@@ -40,7 +40,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
                     Company company = new Company(companyReader);
                     company.Addr = addr;
                     string correctString = $"(id, name, tax_number, address_id) " +
-                    $"VALUES (NULL, {companyReader["name"]}, {companyReader["tax_number"]}, " +
+                    $"VALUES (NULL, '{companyReader["name"]}', '{companyReader["tax_number"]}', " +
                     $"{addr.ID});";
 
                     Assert.AreEqual(company.ToInsert(), correctString);
@@ -76,8 +76,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
                     addr.ID = 5;
                     Company company = new Company(companyReader);
                     company.Addr = addr;
-                    string correctString = $"name={companyReader["name"]}, " +
-                        $"tax_number={companyReader["tax_number"]}," + 
+                    string correctString = $"name='{companyReader["name"]}', " +
+                        $"tax_number='{companyReader["tax_number"]}'," + 
                         $" address_id={addr.ID}";
 
                     Assert.AreEqual(company.ToUpdate(), correctString);
