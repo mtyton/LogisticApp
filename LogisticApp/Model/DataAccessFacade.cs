@@ -26,12 +26,19 @@ namespace LogisticApp.Model
                     return EmployeeDataAccessObject.getPaginated(start, number_of_records);
                 case "job":
                     return JobDataAccessObject.getPaginated(start, number_of_records);
-                case "default":
-                    throw new TypeLoadException("Entity name not recognized");
             }
             throw new TypeLoadException("Entity name not recognized");
         }
 
+        public static ObservableCollection<BaseEntity> getAll(string entityName)
+        {
+            switch (entityName)
+            {
+                case "skillset":
+                    return SkillsetDataAccessObject.getAll();
+            }
+            throw new TypeLoadException("Entity name not recognized");
+        }
         public static int getTotalCount(string entityName)
         {
             switch (entityName)

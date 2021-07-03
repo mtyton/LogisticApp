@@ -271,6 +271,8 @@
     <Compile Include="ViewModel\Forms\AddressFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\BaseFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\CompanyFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\EmployeeCreateFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\MultipleChoiceControlViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormManager.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
@@ -279,11 +281,17 @@
     <Compile Include="Views\Forms\AddressForm.xaml.cs">
       <DependentUpon>AddressForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Forms\EmployeeCreateForm.xaml.cs">
+      <DependentUpon>EmployeeCreateForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Forms\MainFormWindow.xaml.cs">
       <DependentUpon>MainFormWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Forms\CompanyForm.xaml.cs">
       <DependentUpon>CompanyForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\MultipleChoiceControl.xaml.cs">
+      <DependentUpon>MultipleChoiceControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -302,11 +310,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Forms\EmployeeCreateForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Forms\MainFormWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Forms\CompanyForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Forms\MultipleChoiceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

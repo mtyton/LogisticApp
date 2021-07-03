@@ -36,12 +36,20 @@ namespace LogisticApp.Model
         }
 
         public void loadQueryset(string entityName, object[] parameters)
-        {
-            int start = int.Parse(parameters[0].ToString());
-            int number_of_records = int.Parse(parameters[1].ToString());
-            this._queryset = DataAccessFacade.getPaginated(entityName, start, number_of_records);
-            this._totalCount = DataAccessFacade.getTotalCount(entityName);
+        { 
+            if (parameters == null)
+            {
+                this._queryset = DataAccessFacade.getAll(entityName);
+            }
+            else
+            {
+                int start = int.Parse(parameters[0].ToString());
+                int number_of_records = int.Parse(parameters[1].ToString());
+                this._queryset = DataAccessFacade.getPaginated(entityName, start, number_of_records);
+                this._totalCount = DataAccessFacade.getTotalCount(entityName);
+            }
         }
+
 
         public bool deleteRecord(string entityName, object obj)
         {

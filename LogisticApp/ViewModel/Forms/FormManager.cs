@@ -35,6 +35,7 @@ namespace LogisticApp.ViewModel.Forms
                 case "person":
                     break;
                 case "employee":
+                    SelectedViewModel = new EmployeeCreateFormViewModel();
                     break;
                 case "job":
                     break;
