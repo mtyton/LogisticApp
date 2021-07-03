@@ -31,9 +31,9 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             foreach(Employee employee in employees)
             {
                 List<Skillset> abilities = SkillsetDataAccessObject.getEmployeeAbilities(
-                        employee.ID
+                        employee.id
                     );
-                employee.Abilities = abilities;
+                employee.abilities = abilities;
             }
 
             return employees;
@@ -58,9 +58,9 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             foreach (Employee employee in employees)
             {
                 List<Skillset> abilities = SkillsetDataAccessObject.getEmployeeAbilities(
-                        employee.ID
+                        employee.id
                     );
-                employee.Abilities = abilities;
+                employee.abilities = abilities;
             }
 
             return employees;
@@ -102,9 +102,9 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 reader.Close();
             }
             List<Skillset> abilities = SkillsetDataAccessObject.getEmployeeAbilities(
-                employee.ID
+                employee.id
             );
-            employee.Abilities = abilities;
+            employee.abilities = abilities;
 
             return employee;
         }
@@ -124,7 +124,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 {
                     return null;
                 }
-                employee.ID = command.LastInsertedId;
+                employee.id = command.LastInsertedId;
             }
             return employee;
         }

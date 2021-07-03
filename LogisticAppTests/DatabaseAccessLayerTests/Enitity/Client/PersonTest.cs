@@ -22,7 +22,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
 
                     Address addr = new Address(addrReader);
                     Person person = new Person(personReader);
-                    person.Addr = addr;
+                    person.address = addr;
                     Assert.AreEqual(person.ToString(), correctString);
                 }
             }
@@ -36,13 +36,13 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
             {
 
                 Address addr = new Address(null, null, null, null, 0, 0);
-                addr.ID = 67;
+                addr.id = 67;
                 Person person = new Person(personReader);
-                person.Addr = addr;
+                person.address = addr;
 
                 string correctString = $"(id, name, surname, address_id) " +
                     $"VALUES (NULL, '{personReader["name"]}', '{personReader["surname"]}', " +
-                    $"{addr.ID});";
+                    $"{addr.id});";
 
                 Assert.AreEqual(person.ToInsert(), correctString);
             }
@@ -71,13 +71,13 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity.Client
             {
 
                 Address addr = new Address(null, null, null, null, 0, 0);
-                addr.ID = 67;
+                addr.id = 67;
                 Person person = new Person(personReader);
-                person.Addr = addr;
+                person.address = addr;
 
                 string correctString = $"name='{personReader["name"]}', " +
                     $"surname='{personReader["surname"]}', " + 
-                    $"address_id={addr.ID}";
+                    $"address_id={addr.id}";
 
                 Assert.AreEqual(person.ToUpdate(), correctString);
             }

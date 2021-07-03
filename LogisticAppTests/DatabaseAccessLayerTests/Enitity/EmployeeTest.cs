@@ -21,7 +21,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
 
                 List<Skillset> abilities = new List<Skillset>();
                 Employee employee = new Employee(reader);
-                employee.Abilities = abilities;
+                employee.abilities = abilities;
                 Assert.AreEqual(employee.ToString(), correctString);
             }
 
@@ -41,7 +41,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                     $"{reader["hourly_payment"]});";
                 List<Skillset> abilities = new List<Skillset>();
                 Employee employee = new Employee(reader);
-                employee.Abilities = abilities;
+                employee.abilities = abilities;
                 Assert.AreEqual(employee.ToInsert(), correctString);
             }
         }
@@ -76,7 +76,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                     $"hourly_payment={reader["hourly_payment"]};";
                 List<Skillset> abilities = new List<Skillset>();
                 Employee employee = new Employee(reader);
-                employee.Abilities = abilities;
+                employee.abilities = abilities;
                 Assert.AreEqual(employee.ToUpdate(), correctString);
             }
         }

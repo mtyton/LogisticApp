@@ -32,7 +32,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
 
                 string correctString = $"(title, person_id, description, " +
                     $"assigned_employee, predicted_time, predicted_cost) " +
-                    $"VALUES ({reader["title"]}, {job.ClientPerson.ID}," +
+                    $"VALUES ({reader["title"]}, {job.ClientPerson.id}," +
                     $" {reader["description"]}, {job.AssignedEmployee}," +
                     $" {reader["predicted_time"]}, {reader["predicted_cost"]});";
 
@@ -52,7 +52,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                 job.AssignedEmployee = EntityObjectMock.createEmployee();
                 string correctString = $"(title, company_id, description, " +
                     $"assigned_employee, predicted_time, predicted_cost) " +
-                    $"VALUES ({reader["title"]}, {job.ClientCompany.ID}," +
+                    $"VALUES ({reader["title"]}, {job.ClientCompany.id}," +
                     $" {reader["description"]}, {job.AssignedEmployee}," +
                     $" {reader["predicted_time"]}, {reader["predicted_cost"]});";
                 Assert.AreEqual(job.ToInsert(), correctString);
@@ -92,8 +92,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                 job.AssignedEmployee = EntityObjectMock.createEmployee();
                 string correctString = $"title={reader["title"]}, " +
                     $"description={reader["description"]}, " +
-                    $"person_id={job.ClientPerson.ID}, " +
-                    $"assigned_employee={job.AssignedEmployee.ID}, " +
+                    $"person_id={job.ClientPerson.id}, " +
+                    $"assigned_employee={job.AssignedEmployee.id}, " +
                     $"predicted_time={reader["predicted_time"]}, " +
                     $"predicted_cost={reader["predicted_cost"]};";
                 Assert.AreEqual(job.ToUpdate(), correctString);
@@ -112,8 +112,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                 job.AssignedEmployee = EntityObjectMock.createEmployee();
                 string correctString = $"title={reader["title"]}, " +
                     $"description={reader["description"]}, " +
-                    $"company_id={job.ClientCompany.ID}, " +
-                    $"assigned_employee={job.AssignedEmployee.ID}, " +
+                    $"company_id={job.ClientCompany.id}, " +
+                    $"assigned_employee={job.AssignedEmployee.id}, " +
                     $"predicted_time={reader["predicted_time"]}, " +
                     $"predicted_cost={reader["predicted_cost"]};";
                 Assert.AreEqual(job.ToUpdate(), correctString);

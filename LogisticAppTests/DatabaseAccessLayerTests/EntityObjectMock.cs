@@ -29,7 +29,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             using (IDataReader reader = EntityDataMock.mockPersonReader())
             {
                 person = new Person(reader);
-                person.Addr = addr;
+                person.address = addr;
             }
             return person;
         }
@@ -41,7 +41,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             using (IDataReader reader = EntityDataMock.mockCompanyReader())
             {
                 company = new Company(reader);
-                company.Addr = addr;
+                company.address = addr;
             }
             return company;
         }
@@ -53,7 +53,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             using (IDataReader reader = EntityDataMock.mockEmployeeReader())
             {
                 employee = new Employee(reader);
-                employee.Abilities = abilities;
+                employee.abilities = abilities;
             }
             return employee;
         }

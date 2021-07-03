@@ -34,7 +34,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 foreach(Person person in people)
                 {
                     Address address = AddressDataAccessObject.getAddressById(person.AddrId);
-                    person.Addr = address;
+                    person.address = address;
                 }
             }
             return people;
@@ -76,14 +76,14 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 reader.Close();
             }
             Address address = AddressDataAccessObject.getAddressById(person.AddrId);
-            person.Addr = address;
+            person.address = address;
 
             return person;
         }
 
         public static Person create(Person person)
         {
-            Address addr = person.Addr;
+            Address addr = person.address;
 
             using (var connection = DatabaseConnection.Instance.Connection)
             {
@@ -98,23 +98,23 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 {
                     return null;
                 }
-                person.ID = command.LastInsertedId;
+                person.id = command.LastInsertedId;
                 addr = AddressDataAccessObject.create(addr);
                 if (addr == null)
                 {
                     throw new Exception("Company adding address issue");
                 }
-                person.Addr = addr;
+                person.address = addr;
             }
             return person;
         }
 
         public static Person update(Person person)
         {
-            Address addr = person.Addr;
+            Address addr = person.address;
 
             // check if has id
-            if (person.ID == null)
+            if (person.id == null)
             {
                 return null;
             }
@@ -124,13 +124,13 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             {
                 throw new Exception("Company updating address issue");
             }
-            person.Addr = addr;
+            person.address = addr;
 
 
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"UPDATE person SET {person.ToUpdate()} WHERE id={addr.ID}",
+                    $"UPDATE person SET {person.ToUpdate()} WHERE id={addr.id}",
                     connection
                     );
                 try
@@ -141,7 +141,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                 {
                     return null;
                 }
-                person.ID = command.LastInsertedId;
+                person.id = command.LastInsertedId;
             }
             return person;
         }
@@ -151,11 +151,11 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"DELETE FROM person WHERE id={person.ID}",
+                    $"DELETE FROM person WHERE id={person.id}",
                     connection
                     );
 
-                if (!AddressDataAccessObject.delete(person.Addr))
+                if (!AddressDataAccessObject.delete(person.address))
                 {
                     return false;
                 }

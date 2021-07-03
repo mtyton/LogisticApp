@@ -64,7 +64,7 @@ namespace LogisticApp.ViewModel.Forms
         public override void loadData(BaseEntity entity)
         {
             Company company = (Company)entity;
-            this.AddrViewModel.loadData(company.Addr);
+            this.AddrViewModel.loadData(company.address);
             this.Creator.Record = company;
         }
 
