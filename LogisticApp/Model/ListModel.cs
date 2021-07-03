@@ -22,6 +22,14 @@ namespace LogisticApp.Model
             get => _queryset;
         }
 
+        private int _totalCount;
+
+        public int TotalCount
+        {
+            get => _totalCount;
+        }
+
+
         public ListModel()
         {
             // Basically there will be no data loaded
@@ -36,15 +44,19 @@ namespace LogisticApp.Model
             {
                 case "company":
                     this._queryset = CompanyDataAccessObject.getPaginated(start, number_of_records);
+                    this._totalCount = CompanyDataAccessObject.getTotalCount();
                     break;
                 case "person":
                     this._queryset = PersonDataAccessObject.getPaginated(start, number_of_records);
+                    this._totalCount = PersonDataAccessObject.getTotalCount();
                     break;
                 case "employee":
                     this._queryset = EmployeeDataAccessObject.getPaginated(start, number_of_records);
+                    this._totalCount = EmployeeDataAccessObject.getTotalCount();
                     break;
                 case "job":
                     this._queryset = JobDataAccessObject.getPaginated(start, number_of_records);
+                    this._totalCount = JobDataAccessObject.getTotalCount();
                     break;
                 case "default":
                     throw new TypeLoadException("Entity name not recognized");

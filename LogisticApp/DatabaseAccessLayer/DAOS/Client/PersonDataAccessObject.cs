@@ -40,6 +40,25 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             return people;
         }
 
+        public static int getTotalCount()
+        {
+            int count = 0;
+            using (var connection = DatabaseConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(
+                    $"SELECT Count(*) as number FROM person;",
+                    connection
+                    );
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    count = int.Parse(reader["number"].ToString());
+                }
+                reader.Close();
+            }
+            return count;
+        }
+
         public static Person getById(long id)
         {
             Person person = null;

@@ -7,22 +7,28 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace LogisticApp.ViewModel
 {
     class MainMenuViewModel: BaseViewModel
     {
+
+        private string _entityName;
+        private int _start = 0;
+        private int _offset = 10;
+
         ListModel _listData;
 
         private ObservableCollection<BaseEntity> _currentQueryset;
 
         public ObservableCollection<BaseEntity> CurrentQueryset
         {
-            get => _currentQueryset;
+            get => this._currentQueryset;
             set
             {
-                _currentQueryset = value;
+                this._currentQueryset = value;
                 onPropertyChanged(nameof(CurrentQueryset));
             }
         }
@@ -56,12 +62,51 @@ namespace LogisticApp.ViewModel
 
         private void load(object param)
         {
-            string entityName = param.ToString();
+            this._entityName = param.ToString();
             // TODO add pagination
-            object[] paginationParams = { 0, 25 };
-
-            this._listData.loadQueryset(entityName, paginationParams);
+            object[] paginationParams = { this._start, this._offset };
+            this._listData.loadQueryset(this._entityName, paginationParams);
             CurrentQueryset = this._listData.Queryset;
+        }
+
+        // move step is responsible for paginating in each direction
+        private ICommand _moveStep;
+
+        public ICommand MoveStep => _moveStep ?? (
+            _moveStep = new RelayCommand(move, canMove)
+        );
+
+        private bool canMove(object param)
+        {
+            // obviously we can't paginate empty queryset
+            if (this._listData.Queryset == null)
+            {
+                return false;
+            }
+            string direction = param.ToString();
+            if (direction == "-")
+            {
+                return this._start - this._offset >= 0;
+            }
+            else if (direction == "+")
+            {
+                return this._start + this._offset < this._listData.TotalCount;
+            }
+            return false;
+        }
+
+        private void move(object param)
+        {
+            string direction = param.ToString();
+            if (direction == "-")
+            {
+                this._start -= this._offset;
+            }
+            else if (direction == "+")
+            {
+                this._start += this._offset;
+            }
+            this.load(this._entityName);
         }
 
         #endregion

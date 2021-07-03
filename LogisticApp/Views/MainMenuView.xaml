@@ -15,15 +15,17 @@
             <Setter Property="BorderThickness" Value="3"/>
         </Style>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <viewModel:MainMenuViewModel x:Name="MainMenuViewModel"/>
-    </UserControl.DataContext>
+
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <Button Content="Employees" Command="{Binding LoadData}" CommandParameter="employee"/>
             <Button Content="Company Clients" Command="{Binding LoadData}" CommandParameter="company"/>
@@ -32,10 +34,21 @@
         </StackPanel>
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
             <ListBox Width="500px" Height="300px"
-                     ItemsSource="{Binding CurrentQueryset}"
+                     ItemsSource="{Binding CurrentQueryset, Mode=OneWay}"
                      />
         </StackPanel>
-
+        <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Previous" Width="100px" Grid.Column="0" Command="{Binding MoveStep}" CommandParameter="-"/>
+            <Button Content="Create" Width="100px" Grid.Column="1"/>
+            <Button Content="Delete" Width="100px" Grid.Column="2"/>
+            <Button  Content="Next"  Width="100px" Grid.Column="3" Command="{Binding MoveStep}" CommandParameter="+"/>
+        </Grid>
     </Grid>
 
 </UserControl>
