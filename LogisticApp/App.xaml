@@ -23,8 +23,5 @@
         <DataTemplate DataType="{x:Type viewModel_forms:EmployeeCreateFormViewModel}">
             <views_forms:EmployeeCreateForm/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel_forms:MultipleChoiceControlViewModel}">
-            <views_forms:MultipleChoiceControl/>
-        </DataTemplate>
     </Application.Resources>
 </Application>

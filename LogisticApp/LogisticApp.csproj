@@ -272,7 +272,6 @@
     <Compile Include="ViewModel\Forms\BaseFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\CompanyFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\EmployeeCreateFormViewModel.cs" />
-    <Compile Include="ViewModel\Forms\MultipleChoiceControlViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormManager.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
@@ -289,9 +288,6 @@
     </Compile>
     <Compile Include="Views\Forms\CompanyForm.xaml.cs">
       <DependentUpon>CompanyForm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Forms\MultipleChoiceControl.xaml.cs">
-      <DependentUpon>MultipleChoiceControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -319,10 +315,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Forms\CompanyForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Forms\MultipleChoiceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LogisticApp.DatabaseAccessLayer.Entity.Base;
 using System.Data;
-
+using System.Globalization;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity
 {
@@ -17,7 +17,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public DateTime birthDate { get; set; }
         public DateTime dateOfEmployment { get; set; }
         public int hourlyPayment { get; set; }
-        public List<Skillset> abilities { get; set; }
 
         public Employee(IDataReader reader)
         {
@@ -34,22 +33,24 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public Employee(
             string name, string surname, 
             DateTime birthDate, DateTime dateOfEmployment, 
-            int hourlyPayment, List<Skillset> abilities
+            int hourlyPayment
             )
         {
             this.name = name;
             this.surname = surname;
-            this.birthDate = birthDate;
-            this.dateOfEmployment = dateOfEmployment;
+            this.birthDate = DateTime.ParseExact(birthDate.ToString(), 
+                "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            this.dateOfEmployment = DateTime.ParseExact(
+                dateOfEmployment.ToString(),
+                "yyyy-MM-dd", CultureInfo.InvariantCulture);
             this.hourlyPayment = hourlyPayment;
-            this.abilities = abilities;
         }
 
         public override bool checkIfRecordComplete()
         {
             return (
                 this.name != null && this.surname != null &&
-                this.hourlyPayment != 0 && this.abilities!=null
+                this.hourlyPayment != 0
                 );
         }
 
@@ -65,7 +66,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
                 $"date_of_employment, hourly_payment)" +
                 $"VALUES({this.name}, {this.surname}, " +
                 $"{this.birthDate}, " +
-                $"{this.dateOfEmployment}, " +
+                $"{this.dateOfEmployment.ToString()}, " +
                 $"{this.hourlyPayment});";
         }
 
