@@ -14,7 +14,7 @@ namespace LogisticApp.ViewModel.Forms
     {
         #region {variables and properties}
 
-        AddressFormViewModel _addressViewModel;
+        AddressFormViewModel _addressViewModel = new AddressFormViewModel();
 
         public AddressFormViewModel AddrViewModel
         {
@@ -23,18 +23,6 @@ namespace LogisticApp.ViewModel.Forms
             {
                 _addressViewModel = value;
                 onPropertyChanged(nameof(AddrViewModel));
-            }
-        }
-
-        string _taxNumber;
-
-        public string TaxNumber
-        {
-            get => _taxNumber;
-            set
-            {
-                _taxNumber = value;
-                onPropertyChanged(TaxNumber);
             }
         }
 
@@ -64,6 +52,24 @@ namespace LogisticApp.ViewModel.Forms
 
         #endregion
 
+        public override object[] serializeData()
+        {
+            object[] data = { _name, _surname, _addressViewModel.Creator.Record };
+            return data;
+        }
 
+        public override void loadData(BaseEntity entity)
+        {
+            Person person = (Person)entity;
+            this.AddrViewModel.loadData(person.address);
+            this.Creator.Record = person;
+        }
+
+        //TODO add validation if there will be enough time
+        public override void save()
+        {
+            _addressViewModel.save();
+            Creator.createOrUpdate("person", this.serializeData());
+        }
     }
 }
