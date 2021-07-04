@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -91,6 +91,9 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>LogisticApp.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -272,6 +275,7 @@
     <Compile Include="ViewModel\Forms\BaseFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\CompanyFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormManager.cs" />
+    <Compile Include="ViewModel\Forms\PersonFormViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -284,6 +288,9 @@
     </Compile>
     <Compile Include="Views\Forms\CompanyForm.xaml.cs">
       <DependentUpon>CompanyForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\PersonForm.xaml.cs">
+      <DependentUpon>PersonForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -307,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Forms\CompanyForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Forms\PersonForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

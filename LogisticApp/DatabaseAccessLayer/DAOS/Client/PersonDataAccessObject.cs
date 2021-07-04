@@ -154,7 +154,6 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
                     $"DELETE FROM person WHERE id={person.id}",
                     connection
                     );
-
                 try
                 {
                     command.ExecuteNonQuery();

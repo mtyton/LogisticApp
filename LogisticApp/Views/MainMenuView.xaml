@@ -45,6 +45,7 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
+
             <Button Content="Previous" Width="100px" 
                     Grid.Column="0" Command="{Binding MoveStep}" CommandParameter="-"/>
             <Button Content="Create" Width="100px" 
