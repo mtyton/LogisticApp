@@ -35,7 +35,7 @@ namespace LogisticApp.ViewModel.Forms
             }
         }
 
-        private DateTime _birthDate;
+        private DateTime _birthDate = DateTime.Now;
         public DateTime BirthDate
         {
             get => _birthDate;
@@ -46,7 +46,7 @@ namespace LogisticApp.ViewModel.Forms
             }
         }
 
-        private DateTime _dateOfEmployment;
+        private DateTime _dateOfEmployment = DateTime.Now;
         public DateTime DateOfEmployment
         {
             get => _dateOfEmployment;

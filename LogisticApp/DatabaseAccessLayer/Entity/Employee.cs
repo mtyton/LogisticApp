@@ -38,11 +38,8 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         {
             this.name = name;
             this.surname = surname;
-            this.birthDate = DateTime.ParseExact(birthDate.ToString(), 
-                "yyyy-MM-dd", CultureInfo.InvariantCulture);
-            this.dateOfEmployment = DateTime.ParseExact(
-                dateOfEmployment.ToString(),
-                "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            this.birthDate = birthDate;
+            this.dateOfEmployment = dateOfEmployment;
             this.hourlyPayment = hourlyPayment;
         }
 
@@ -64,18 +61,18 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             base.ToInsert();
             return $"(name, surname, birth_date, " +
                 $"date_of_employment, hourly_payment)" +
-                $"VALUES({this.name}, {this.surname}, " +
-                $"{this.birthDate}, " +
-                $"{this.dateOfEmployment.ToString()}, " +
+                $"VALUES('{this.name}', '{this.surname}', " +
+                $"'{this.birthDate.ToString("yyyy/MM/dd")}', " +
+                $"'{this.dateOfEmployment.ToString("yyyy/MM/dd")}', " +
                 $"{this.hourlyPayment});";
         }
 
         public string ToUpdate()
         {
             base.ToUpdate();
-            return $"name={this.name}, surname={this.surname}, " +
-                $"birth_date={this.birthDate}, " +
-                $"date_of_employment={this.dateOfEmployment}," +
+            return $"name='{this.name}', surname='{this.surname}', " +
+                $"birth_date='{this.birthDate.ToString("yyyy/MM/dd")}', " +
+                $"date_of_employment='{this.dateOfEmployment.ToString("yyyy/MM/dd")}'," +
                 $"hourly_payment={this.hourlyPayment};";
         }
     }
