@@ -274,6 +274,7 @@
     <Compile Include="ViewModel\Forms\AddressFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\BaseFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\CompanyFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\EmployeeCreateFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormManager.cs" />
     <Compile Include="ViewModel\Forms\PersonFormViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -282,6 +283,9 @@
     <Compile Include="ViewModel\Utils\WindowMediator.cs" />
     <Compile Include="Views\Forms\AddressForm.xaml.cs">
       <DependentUpon>AddressForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\EmployeeCreateForm.xaml.cs">
+      <DependentUpon>EmployeeCreateForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Forms\MainFormWindow.xaml.cs">
       <DependentUpon>MainFormWindow.xaml</DependentUpon>
@@ -306,6 +310,10 @@
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Forms\AddressForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Forms\EmployeeCreateForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

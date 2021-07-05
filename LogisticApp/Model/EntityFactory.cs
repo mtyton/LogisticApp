@@ -1,4 +1,5 @@
-﻿using LogisticApp.DatabaseAccessLayer.Entity.Base;
+﻿using LogisticApp.DatabaseAccessLayer.Entity;
+using LogisticApp.DatabaseAccessLayer.Entity.Base;
 using LogisticApp.DatabaseAccessLayer.Entity.Client;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace LogisticApp.Model
                     return this.createAddressEntity(entityValues);
                 case "company":
                     return this.createCompanyEntity(entityValues);
+                case "employee":
+                    return this.createEmpoloyeeEntity(entityValues);
                 case "person":
                     return this.createPersonEntity(entityValues);
             }
@@ -49,6 +52,20 @@ namespace LogisticApp.Model
             return new Company(name, taxNumber, address);
         }
 
+        private Employee createEmpoloyeeEntity(object[] entityValues)
+        {
+            string firstname = entityValues[0].ToString();
+            string lastname = entityValues[1].ToString();
+            DateTime dateOfEmployment = DateTime.Parse(entityValues[2].ToString());
+            DateTime birthDate = DateTime.Parse(entityValues[3].ToString());
+            int payment = int.Parse(entityValues[4].ToString());
+            return new Employee(
+                firstname, lastname, birthDate, dateOfEmployment,
+                payment
+                );
+
+        }
+
         public Person createPersonEntity(object[] entityValues)
         {
             string name = entityValues[0].ToString();
@@ -57,6 +74,5 @@ namespace LogisticApp.Model
             return new Person(name, surname, address);
         }
         
-        // TODO create proper methods for person/job/e,ployee also
     }
 }

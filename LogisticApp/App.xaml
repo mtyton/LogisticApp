@@ -20,6 +20,9 @@
         <DataTemplate DataType="{x:Type viewModel_forms:AddressFormViewModel}">
             <views_forms:AddressForm/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel_forms:EmployeeCreateFormViewModel}">
+            <views_forms:EmployeeCreateForm/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel_forms:PersonFormViewModel}">
             <views_forms:PersonForm/>
         </DataTemplate>

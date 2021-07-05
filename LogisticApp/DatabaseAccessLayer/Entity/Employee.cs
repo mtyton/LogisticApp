@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LogisticApp.DatabaseAccessLayer.Entity.Base;
 using System.Data;
-
+using System.Globalization;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity
 {
@@ -17,7 +17,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public DateTime birthDate { get; set; }
         public DateTime dateOfEmployment { get; set; }
         public int hourlyPayment { get; set; }
-        public List<Skillset> abilities { get; set; }
 
         public Employee(IDataReader reader)
         {
@@ -34,7 +33,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public Employee(
             string name, string surname, 
             DateTime birthDate, DateTime dateOfEmployment, 
-            int hourlyPayment, List<Skillset> abilities
+            int hourlyPayment
             )
         {
             this.name = name;
@@ -42,14 +41,13 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             this.birthDate = birthDate;
             this.dateOfEmployment = dateOfEmployment;
             this.hourlyPayment = hourlyPayment;
-            this.abilities = abilities;
         }
 
         public override bool checkIfRecordComplete()
         {
             return (
                 this.name != null && this.surname != null &&
-                this.hourlyPayment != 0 && this.abilities!=null
+                this.hourlyPayment != 0
                 );
         }
 
@@ -63,18 +61,18 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             base.ToInsert();
             return $"(name, surname, birth_date, " +
                 $"date_of_employment, hourly_payment)" +
-                $"VALUES({this.name}, {this.surname}, " +
-                $"{this.birthDate}, " +
-                $"{this.dateOfEmployment}, " +
+                $"VALUES('{this.name}', '{this.surname}', " +
+                $"'{this.birthDate.ToString("yyyy/MM/dd")}', " +
+                $"'{this.dateOfEmployment.ToString("yyyy/MM/dd")}', " +
                 $"{this.hourlyPayment});";
         }
 
         public string ToUpdate()
         {
             base.ToUpdate();
-            return $"name={this.name}, surname={this.surname}, " +
-                $"birth_date={this.birthDate}, " +
-                $"date_of_employment={this.dateOfEmployment}," +
+            return $"name='{this.name}', surname='{this.surname}', " +
+                $"birth_date='{this.birthDate.ToString("yyyy/MM/dd")}', " +
+                $"date_of_employment='{this.dateOfEmployment.ToString("yyyy/MM/dd")}'," +
                 $"hourly_payment={this.hourlyPayment};";
         }
     }

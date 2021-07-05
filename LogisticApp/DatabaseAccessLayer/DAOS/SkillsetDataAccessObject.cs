@@ -19,7 +19,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"SELECT * FROM employee_skillset", connection
+                    $"SELECT * FROM skillset", connection
                     );
                 var reader = command.ExecuteReader();
                 while (reader.Read())
