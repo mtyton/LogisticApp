@@ -53,7 +53,6 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             using (IDataReader reader = EntityDataMock.mockEmployeeReader())
             {
                 employee = new Employee(reader);
-                employee.abilities = abilities;
             }
             return employee;
         }

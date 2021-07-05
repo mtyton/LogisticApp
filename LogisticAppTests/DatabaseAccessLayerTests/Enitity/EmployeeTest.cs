@@ -21,7 +21,6 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
 
                 List<Skillset> abilities = new List<Skillset>();
                 Employee employee = new Employee(reader);
-                employee.abilities = abilities;
                 Assert.AreEqual(employee.ToString(), correctString);
             }
 
@@ -34,14 +33,13 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
             {
                 string correctString = $"(name, surname, birth_date, " +
                     $"date_of_employment, hourly_payment)" +
-                    $"VALUES({reader["name"]}, " +
-                    $"{reader["surname"]}, " +
-                    $"{DateTime.Parse(reader["birth_date"].ToString())}, " +
-                    $"{DateTime.Parse(reader["date_of_employment"].ToString())}, " +
+                    $"VALUES('{reader["name"]}', " +
+                    $"'{reader["surname"]}', " +
+                    $"'{DateTime.Parse(reader["birth_date"].ToString()).ToString("yyyy/MM/dd")}', " +
+                    $"'{DateTime.Parse(reader["date_of_employment"].ToString()).ToString("yyyy/MM/dd")}', " +
                     $"{reader["hourly_payment"]});";
                 List<Skillset> abilities = new List<Skillset>();
                 Employee employee = new Employee(reader);
-                employee.abilities = abilities;
                 Assert.AreEqual(employee.ToInsert(), correctString);
             }
         }
@@ -51,7 +49,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         {
             Employee employee = new Employee(
                 null, null, DateTime.Parse("202-10-05"),
-                DateTime.Parse("202-10-05"), 0, null
+                DateTime.Parse("202-10-05"), 0
                 );
             try
             {
@@ -70,13 +68,12 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         {
             using (var reader = EntityDataMock.mockEmployeeReader())
             {
-                string correctString = $"name={reader["name"]}, surname={reader["surname"]}, " +
-                    $"birth_date={DateTime.Parse(reader["birth_date"].ToString())}, " +
-                    $"date_of_employment={DateTime.Parse(reader["date_of_employment"].ToString())}," +
+                string correctString = $"name='{reader["name"]}', surname='{reader["surname"]}', " +
+                    $"birth_date='{DateTime.Parse(reader["birth_date"].ToString()).ToString("yyyy/MM/dd")}', " +
+                    $"date_of_employment='{DateTime.Parse(reader["date_of_employment"].ToString()).ToString("yyyy/MM/dd")}'," +
                     $"hourly_payment={reader["hourly_payment"]};";
                 List<Skillset> abilities = new List<Skillset>();
                 Employee employee = new Employee(reader);
-                employee.abilities = abilities;
                 Assert.AreEqual(employee.ToUpdate(), correctString);
             }
         }
@@ -86,7 +83,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
         {
             Employee employee = new Employee(
                 null, null, DateTime.Parse("202-10-05"),
-                DateTime.Parse("202-10-05"), 0, null
+                DateTime.Parse("202-10-05"), 0
                 );
             try
             {

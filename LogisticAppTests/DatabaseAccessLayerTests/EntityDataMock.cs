@@ -67,8 +67,8 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
             moq.SetupGet<object>(x => x["id"]).Returns("22");
             moq.SetupGet<object>(x => x["name"]).Returns("testName");
             moq.SetupGet<object>(x => x["surname"]).Returns("testSurname");
-            moq.SetupGet<object>(x => x["birth_date"]).Returns("1998-10-01 07:30:00");
-            moq.SetupGet<object>(x => x["date_of_employment"]).Returns("2015-10-01 07:30:00");
+            moq.SetupGet<object>(x => x["birth_date"]).Returns("01/10/1999");
+            moq.SetupGet<object>(x => x["date_of_employment"]).Returns("01/10/2019");
             moq.SetupGet<object>(x => x["hourly_payment"]).Returns("15");
             return moq.Object;
         }
