@@ -99,8 +99,36 @@ namespace LogisticApp.ViewModel.Forms
 
         public override void save()
         {
-            Creator.createOrUpdate("address", this.serializeData());
+            if (canSave())
+                Creator.createOrUpdate("address", this.serializeData());
+            else
+                Console.WriteLine("Empty textbok or incorrect data.");
         }
 
+        public bool canSave()
+        {
+            object[] entityParams = serializeData();
+            for (int i = 0; i < entityParams.Length - 1; i++) // apartment nr allowed to be 0
+            {
+                if (entityParams[i] != null)
+                {
+                    Type varType = entityParams[i].GetType();
+                    switch (varType.Name)
+                    {
+                        case "String":
+                            if (((string)entityParams[i]).Length < 2)
+                                return false;
+                            break;
+                        case "Int32":
+                            if ((int)entityParams[i] == 0)
+                                return false;
+                            break;
+                    }
+                }
+                else
+                    return false;
+            }
+            return true;
+        }
     }
 }

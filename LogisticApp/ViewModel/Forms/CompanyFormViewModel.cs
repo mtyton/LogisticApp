@@ -71,8 +71,40 @@ namespace LogisticApp.ViewModel.Forms
         //TODO add validation if there will be enough time
         public override void save()
         {
-            AddrViewModel.save();
-            Creator.createOrUpdate("company", this.serializeData());
+            if (canSave())
+            {
+                AddrViewModel.save();
+                Creator.createOrUpdate("company", this.serializeData());
+            }
+            else
+                Console.WriteLine("Empty textbok or incorrect data.");
+        }
+
+        public bool canSave()
+        {
+            if (!_addressViewModel.canSave()) return false;
+            object[] entityParams = serializeData();
+            for (int i = 0; i < entityParams.Length - 1; i++) // no address entity needed
+            {
+                if (entityParams[i] != null)
+                {
+                    Type varType = entityParams[i].GetType();
+                    switch (varType.Name)
+                    {
+                        case "String":
+                            if (((string)entityParams[i]).Length < 2)
+                                return false;
+                            break;
+                        case "Int32":
+                            if ((int)entityParams[i] == 0)
+                                return false;
+                            break;
+                    }
+                }
+                else
+                    return false;
+            }
+            return true;
         }
     }
 }
