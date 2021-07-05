@@ -110,6 +110,5 @@ namespace LogisticApp.Model
             }
             throw new TypeLoadException("Entity name not recognized");
         }
-
     }
 }

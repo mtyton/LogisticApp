@@ -24,8 +24,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public long ClientPersonID { get; set; }
         public long ClientCompanyID { get; set; }
         public long AssignedEmployeeID { get; set; }
-        
-
         public Person ClientPerson
         {
             get=> clientPerson; 

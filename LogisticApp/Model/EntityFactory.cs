@@ -24,6 +24,8 @@ namespace LogisticApp.Model
                     return this.createCompanyEntity(entityValues);
                 case "employee":
                     return this.createEmpoloyeeEntity(entityValues);
+                case "person":
+                    return this.createPersonEntity(entityValues);
             }
 
             return null;
@@ -64,6 +66,13 @@ namespace LogisticApp.Model
 
         }
 
-        // TODO create proper methods for person/job/e,ployee also
+        public Person createPersonEntity(object[] entityValues)
+        {
+            string name = entityValues[0].ToString();
+            string surname = entityValues[1].ToString();
+            Address address = (Address)entityValues[2];
+            return new Person(name, surname, address);
+        }
+        
     }
 }

@@ -103,7 +103,6 @@ namespace LogisticApp.ViewModel
             }
             return false;
         }
-
         private void move(object param)
         {
             string direction = param.ToString();
@@ -146,6 +145,7 @@ namespace LogisticApp.ViewModel
 
         #endregion
         #region{windowManager}
+
         private ICommand _openCreateWindow;
 
         public ICommand OpenCreateWindow => _openCreateWindow ?? (
