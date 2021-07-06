@@ -7,7 +7,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
     {
 
         public string name { get; set; }
-        public long id { get; set; }
 
         public Skillset(IDataReader reader)
         {

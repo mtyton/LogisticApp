@@ -10,7 +10,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
     public class Person: BaseEntity
     {
-        public long id { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public Address address { get; set; }

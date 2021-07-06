@@ -11,7 +11,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
 {
     public class Job : BaseEntity
     {
-        public long id { get; set; }
         public string title { get; set; }
         public Person clientPerson { get; set; }
         public Company clientCompany { get; set; }

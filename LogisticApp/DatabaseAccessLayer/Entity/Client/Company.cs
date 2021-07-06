@@ -11,7 +11,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 {
     public class Company : BaseEntity
     {
-        public long id{get; set;}
         public string companyName { get; set; }
         public string taxNumber { get; set; }
         public Address address { get; set; }

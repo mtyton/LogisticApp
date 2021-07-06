@@ -81,6 +81,14 @@ namespace LogisticApp.ViewModel.Forms
         #endregion
 
 
+        public override void createRecord()
+        {
+            this.Creator.Record = new Address(
+                _city, _postalCode, _country, _street,
+                _buildingNumber, _apartmentNumber
+                );
+        }
+
         public override void updateRecord()
         {
             Address address = (Address)this.Creator.Record;
@@ -91,14 +99,6 @@ namespace LogisticApp.ViewModel.Forms
             address.buildingNumber = _buildingNumber;
             address.apartmentNumber = _apartmentNumber;
             this.Creator.Record = address;
-        }
-
-        public override void createRecord()
-        {
-            this.Creator.Record = new Address(
-                _city, _postalCode, _country, _street,
-                _buildingNumber, _apartmentNumber
-                );
         }
 
         public override void loadData(BaseEntity entity)
