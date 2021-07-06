@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LogisticApp.Views"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         xmlns:viewModel="clr-namespace:LogisticApp.ViewModel">
     <UserControl.Resources>
@@ -34,11 +35,12 @@
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
             <ListBox Width="500px" Height="300px"
                      ItemsSource="{Binding CurrentQueryset, Mode=OneWay}"
-                     x:Name="dataList"
-                     />
+                     x:Name="dataList">
+            </ListBox>
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
@@ -49,11 +51,14 @@
                     Grid.Column="0" Command="{Binding MoveStep}" CommandParameter="-"/>
             <Button Content="Create" Width="100px" 
                     Grid.Column="1" Command="{Binding OpenCreateWindow}"/>
+            <Button Content="Update" Width="100px" 
+                     Grid.Column="2" Command="{Binding OpenEditWindow}" 
+                     CommandParameter="{Binding ElementName=dataList, Path=SelectedItem}"/>
             <Button Content="Delete" Width="100px" 
-                    Grid.Column="2" Command="{Binding DeleteRecord}"
+                    Grid.Column="3" Command="{Binding DeleteRecord}"
                     CommandParameter="{Binding ElementName=dataList, Path=SelectedItem}"/>
             <Button  Content="Next"  Width="100px" 
-                     Grid.Column="3" Command="{Binding MoveStep}" CommandParameter="+"/>
+                     Grid.Column="4" Command="{Binding MoveStep}" CommandParameter="+"/>
         </Grid>
     </Grid>
 

@@ -81,25 +81,34 @@ namespace LogisticApp.ViewModel.Forms
         #endregion
 
 
-        public override object[] serializeData()
+        public override void updateRecord()
         {
-            object[] data = {
-                _city, _country, _street, 
-                _postalCode, _buildingNumber,
-                _apartmentNumber
-            };
-            return data;
+            Address address = (Address)this.Creator.Record;
+            address.city = _city;
+            address.country = _country;
+            address.street = _street;
+            address.postalCode = _postalCode;
+            address.buildingNumber = _buildingNumber;
+            address.apartmentNumber = _apartmentNumber;
+            this.Creator.Record = address;
         }
 
         public override void loadData(BaseEntity entity)
         {
             Address address = (Address)entity;
             this.Creator.Record = address;
+            City = address.city;
+            Country = address.country;
+            Street = address.street;
+            PostalCode = address.postalCode;
+            BuildingNumber = address.buildingNumber;
+            ApartmentNumber = address.apartmentNumber;
         }
 
         public override void save()
         {
-            Creator.createOrUpdate("address", this.serializeData());
+            this.updateRecord();
+            Creator.createOrUpdate("address");
         }
 
     }

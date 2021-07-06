@@ -52,10 +52,13 @@ namespace LogisticApp.ViewModel.Forms
 
         #endregion
 
-        public override object[] serializeData()
+        public override void updateRecord()
         {
-            object[] data = { _name, _surname, _addressViewModel.Creator.Record };
-            return data;
+            Person person = (Person)this.Creator.Record;
+            person.name = _name;
+            person.surname = _surname;
+            person.address = (Address)_addressViewModel.Creator.Record;
+            this.Creator.Record = person;
         }
 
         public override void loadData(BaseEntity entity)
@@ -63,13 +66,17 @@ namespace LogisticApp.ViewModel.Forms
             Person person = (Person)entity;
             this.AddrViewModel.loadData(person.address);
             this.Creator.Record = person;
+            Name = person.name;
+            Surname = person.surname;
+            
         }
 
         //TODO add validation if there will be enough time
         public override void save()
         {
             _addressViewModel.save();
-            Creator.createOrUpdate("person", this.serializeData());
+            this.updateRecord();
+            Creator.createOrUpdate("person");
         }
     }
 }
