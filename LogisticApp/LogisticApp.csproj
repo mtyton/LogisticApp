@@ -263,7 +263,7 @@
     <Compile Include="Model\ListModel.cs" />
     <Compile Include="Model\AuthModel.cs" />
     <Compile Include="Model\Session.cs" />
-    <Compile Include="Model\UpdateOrCreateModel.cs" />
+    <Compile Include="Model\Creator.cs" />
     <Compile Include="Resources\Languages\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

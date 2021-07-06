@@ -8,6 +8,8 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Base
 {
     public class BaseEntity : BaseEntityInterface
     {
+        public long id { get; set; }
+
         virtual public bool checkIfRecordComplete()
         {
             return true;

@@ -102,7 +102,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"UPDATE employee SET {employee.ToUpdate()} WHERE id={employee.id}",
+                    $"UPDATE employee SET {employee.ToUpdate()} WHERE id={employee.id};",
                     connection
                     );
                 try

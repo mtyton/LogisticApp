@@ -3,6 +3,7 @@ using LogisticApp.DatabaseAccessLayer.Entity.Base;
 using LogisticApp.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,25 +69,33 @@ namespace LogisticApp.ViewModel.Forms
         }
         #endregion
 
-        public override object[] serializeData()
+        public override void updateRecord()
         {
-            object[] data = { _firstname, _lastname, 
-                _dateOfEmployment, _birthDate, 
-                _hourlyPayment
-            };
-            return data;
+            Employee employee = (Employee)this.Creator.Record;
+            employee.name = _firstname;
+            employee.surname = _lastname;
+            employee.dateOfEmployment = _dateOfEmployment;
+            employee.birthDate = _birthDate;
+            employee.hourlyPayment = _hourlyPayment;
+            this.Creator.Record = employee;
         }
 
         public override void loadData(BaseEntity entity)
         {
             Employee employee = (Employee)entity;
             this.Creator.Record = employee;
+            FirstName = employee.name;
+            LastName = employee.surname;
+            HourlyPaymnet = employee.hourlyPayment;
+            DateOfEmployment = employee.dateOfEmployment;
+            BirthDate = employee.birthDate;
         }
 
         //TODO add validation if there will be enough time
         public override void save()
         {
-            Creator.createOrUpdate("employee", this.serializeData());
+            this.updateRecord();
+            Creator.createOrUpdate("employee");
         }
 
     }

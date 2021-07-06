@@ -14,7 +14,7 @@ namespace LogisticApp.ViewModel.Forms
     {
         #region {variables and properties}
 
-        AddressFormViewModel _addressViewModel;
+        AddressFormViewModel _addressViewModel = new AddressFormViewModel();
 
         public AddressFormViewModel AddrViewModel
         {
@@ -50,29 +50,31 @@ namespace LogisticApp.ViewModel.Forms
         }
         #endregion
 
-        public CompanyFormViewModel()
+        public override void updateRecord()
         {
-            AddrViewModel = new AddressFormViewModel();
+            Company company = (Company)this.Creator.Record;
+            company.companyName = _companyName;
+            company.taxNumber = _taxNumber;
+            company.address = (Address)_addressViewModel.Creator.Record;
+            this.Creator.Record = company;
         }
 
-        public override object[] serializeData()
-        {
-            object[] data = { _companyName, _taxNumber, _addressViewModel.Creator.Record };
-            return data;
-        }
 
         public override void loadData(BaseEntity entity)
         {
             Company company = (Company)entity;
             this.AddrViewModel.loadData(company.address);
             this.Creator.Record = company;
+            CompanyName = company.companyName;
+            TaxNumber = company.taxNumber;
         }
 
         //TODO add validation if there will be enough time
         public override void save()
         {
             AddrViewModel.save();
-            Creator.createOrUpdate("company", this.serializeData());
+            this.updateRecord();
+            Creator.createOrUpdate("company");
         }
     }
 }

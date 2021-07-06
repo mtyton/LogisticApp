@@ -11,9 +11,9 @@ namespace LogisticApp.ViewModel.Forms
 {
     class BaseFormViewModel : BaseViewModel
     {
-        UpdateOrCreateModel _creator = new UpdateOrCreateModel();
+        Creator _creator = new Creator();
 
-        public UpdateOrCreateModel Creator
+        public Creator Creator
         {
             get => _creator;
             set
@@ -26,7 +26,7 @@ namespace LogisticApp.ViewModel.Forms
 
         // serializeData, prepares data to be inserted into database
         // This method transfers ViewModel variables into an array which will be passed into factory
-        public virtual object[] serializeData()
+        public virtual void updateRecord()
         {
             throw new NotImplementedException("Implement serializeData method for each form!!");
         }
@@ -39,7 +39,7 @@ namespace LogisticApp.ViewModel.Forms
 
         public virtual void save()
         {
-
+            throw new NotImplementedException("Implement save method for each form!!");
         }
 
     }

@@ -11,7 +11,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
 {
     public class Employee: BaseEntity
     {
-        public long id { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public DateTime birthDate { get; set; }
@@ -64,7 +63,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
                 $"VALUES('{this.name}', '{this.surname}', " +
                 $"'{this.birthDate.ToString("yyyy/MM/dd")}', " +
                 $"'{this.dateOfEmployment.ToString("yyyy/MM/dd")}', " +
-                $"{this.hourlyPayment});";
+                $"{this.hourlyPayment})";
         }
 
         public string ToUpdate()
@@ -73,7 +72,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             return $"name='{this.name}', surname='{this.surname}', " +
                 $"birth_date='{this.birthDate.ToString("yyyy/MM/dd")}', " +
                 $"date_of_employment='{this.dateOfEmployment.ToString("yyyy/MM/dd")}'," +
-                $"hourly_payment={this.hourlyPayment};";
+                $"hourly_payment={this.hourlyPayment}";
         }
     }
 }

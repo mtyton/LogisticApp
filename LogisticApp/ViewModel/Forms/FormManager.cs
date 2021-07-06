@@ -31,18 +31,17 @@ namespace LogisticApp.ViewModel.Forms
                 //TODO add other ViewModels
                 case "company":
                     SelectedViewModel = new CompanyFormViewModel();
-                    break;
+                    return;
                 case "person":
                     SelectedViewModel = new PersonFormViewModel();
-                    break;
+                    return;
                 case "employee":
                     SelectedViewModel = new EmployeeCreateFormViewModel();
-                    break;
+                    return;
                 case "job":
-                    break;
-                case "default":
-                    throw new TypeLoadException("Entity name not recognized");
+                    return;
             }
+            throw new TypeLoadException("Entity name not recognized");
         }
 
         public void addMediator(WindowMediator mediator)

@@ -149,15 +149,25 @@ namespace LogisticApp.ViewModel
         private ICommand _openCreateWindow;
 
         public ICommand OpenCreateWindow => _openCreateWindow ?? (
-            _openCreateWindow = new RelayCommand(openWindow, canOpenWindow)
+            _openCreateWindow = new RelayCommand(openWindow, canOpenCreateWindow)
         );
 
-        private bool canOpenWindow(object param)
+        private ICommand _openEditWindow;
+
+        public ICommand OpenEditWindow => _openCreateWindow ?? (
+            _openCreateWindow = new RelayCommand(openWindow, canOpenEditWindow)
+        );
+
+        private bool canOpenCreateWindow(object param)
         {
             // we can have only one subwindow opened at the time
             return this._formWindow == null;
         }
 
+        private bool canOpenEditWindow(object param)
+        {
+            return this._formWindow == null && param!=null && this._listData.Queryset!=null;
+        }
 
         private void openWindow(object param)
         {
@@ -166,20 +176,21 @@ namespace LogisticApp.ViewModel
             // TODO add checking if param is not null for update
             if (param != null)
             {
-                //this._formWindow.MainFormViewModel.setData()
+                BaseEntity entity = (BaseEntity)param;
+                this._formWindow.MainFormViewModel.SelectedViewModel.loadData(entity);
             }
             this._formWindow.MainFormViewModel.addMediator(
                 WindowMediator.getMediator(this)
                 );
-            this._formWindow.Show();
+            this._formWindow.ShowDialog();
         }
 
-        private ICommand _closeCreateWindow;
+        private ICommand _closeSubWindow;
 
-        public ICommand CloseCreateWindow => _closeCreateWindow ?? (
-            _closeCreateWindow = new RelayCommand(closeWindow, canCloseCreateWindow)
+        public ICommand CloseSubWindow => _closeSubWindow ?? (
+            _closeSubWindow = new RelayCommand(closeWindow, canCloseSubWindow)
         );
-        private bool canCloseCreateWindow(object param=null)
+        private bool canCloseSubWindow(object param=null)
         {
             // we can close window only if it exists
             return this._formWindow != null;
@@ -187,6 +198,10 @@ namespace LogisticApp.ViewModel
 
         public void closeWindow(object param = null)
         {
+            if (this._formWindow.IsLoaded)
+            {
+                this._formWindow.Hide();
+            }
             this._formWindow = null;
             this.load(this._entityName);
         }

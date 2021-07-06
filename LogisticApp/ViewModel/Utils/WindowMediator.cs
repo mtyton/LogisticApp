@@ -23,9 +23,9 @@ namespace LogisticApp.ViewModel.Utils
 
         public void closeSubWindow()
         {
-            if (mainMenuViewModel.CloseCreateWindow.CanExecute(null))
+            if (mainMenuViewModel.CloseSubWindow.CanExecute(null))
             {
-                mainMenuViewModel.CloseCreateWindow.Execute(null);
+                mainMenuViewModel.CloseSubWindow.Execute(null);
             }
         }
 
