@@ -24,11 +24,14 @@ namespace LogisticApp.ViewModel.Forms
         }
 
 
-        // serializeData, prepares data to be inserted into database
-        // This method transfers ViewModel variables into an array which will be passed into factory
+        public virtual void createRecord()
+        {
+            throw new NotImplementedException("Implement createRecord method for each form!!");
+        }
+
         public virtual void updateRecord()
         {
-            throw new NotImplementedException("Implement serializeData method for each form!!");
+            throw new NotImplementedException("Implement updateRecord method for each form!!");
         }
 
         // load data, takes serialized data and write this to form

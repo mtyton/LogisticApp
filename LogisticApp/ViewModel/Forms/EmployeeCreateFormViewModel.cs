@@ -80,6 +80,13 @@ namespace LogisticApp.ViewModel.Forms
             this.Creator.Record = employee;
         }
 
+        public override void createRecord()
+        {
+            this.Creator.Record = new Employee(
+                _firstname, _lastname, _birthDate, _dateOfEmployment, _hourlyPayment
+                );
+        }
+
         public override void loadData(BaseEntity entity)
         {
             Employee employee = (Employee)entity;
@@ -94,7 +101,6 @@ namespace LogisticApp.ViewModel.Forms
         //TODO add validation if there will be enough time
         public override void save()
         {
-            this.updateRecord();
             Creator.createOrUpdate("employee");
         }
 

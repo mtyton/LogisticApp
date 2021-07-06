@@ -11,7 +11,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
     public class User : BaseEntity
     {
         public string username { get; set; }
-        public long id { get; set; }
 
         public User(IDataReader reader)
         {

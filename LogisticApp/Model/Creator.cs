@@ -20,7 +20,7 @@ namespace LogisticApp.Model
 
         public void createOrUpdate (string entityName)
         {
-            if(this._record != null)
+            if(this._record.id != 0)
             {
                 this._record = DataAccessFacade.update(entityName, this._record);
             }

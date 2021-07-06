@@ -52,8 +52,17 @@ namespace LogisticApp.ViewModel.Forms
 
         #endregion
 
+        public override void createRecord()
+        {
+            _addressViewModel.createRecord();
+            this.Creator.Record = new Company(
+                _name, _surname,
+                (Address)_addressViewModel.Creator.Record
+                );
+        }
         public override void updateRecord()
         {
+            _addressViewModel.updateRecord();
             Person person = (Person)this.Creator.Record;
             person.name = _name;
             person.surname = _surname;
@@ -71,11 +80,9 @@ namespace LogisticApp.ViewModel.Forms
             
         }
 
-        //TODO add validation if there will be enough time
         public override void save()
         {
             _addressViewModel.save();
-            this.updateRecord();
             Creator.createOrUpdate("person");
         }
     }

@@ -50,8 +50,18 @@ namespace LogisticApp.ViewModel.Forms
         }
         #endregion
 
+        public override void createRecord()
+        {
+            _addressViewModel.createRecord();
+            this.Creator.Record = new Company(
+                _companyName, _taxNumber,
+                (Address)_addressViewModel.Creator.Record
+                );
+        }
+
         public override void updateRecord()
         {
+            _addressViewModel.updateRecord();
             Company company = (Company)this.Creator.Record;
             company.companyName = _companyName;
             company.taxNumber = _taxNumber;
@@ -73,7 +83,6 @@ namespace LogisticApp.ViewModel.Forms
         public override void save()
         {
             AddrViewModel.save();
-            this.updateRecord();
             Creator.createOrUpdate("company");
         }
     }

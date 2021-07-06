@@ -49,7 +49,8 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
 
         // constructor to create object in app
         public Address(
-            string city, string postalCode, string country, string street,
+            string city, string postalCode, 
+            string country, string street,
             int buildingNumber, int apartmentNumber
             )
         {

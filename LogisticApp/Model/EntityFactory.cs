@@ -11,6 +11,7 @@ namespace LogisticApp.Model
 {
     class EntityFactory
     {
+        //TODO - to be deleted
         // this class implements factory method to get proper entity depends on name and params
         public BaseEntity createEntity(string entityName, object[] entityValues)
         {

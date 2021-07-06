@@ -93,6 +93,14 @@ namespace LogisticApp.ViewModel.Forms
             this.Creator.Record = address;
         }
 
+        public override void createRecord()
+        {
+            this.Creator.Record = new Address(
+                _city, _postalCode, _country, _street,
+                _buildingNumber, _apartmentNumber
+                );
+        }
+
         public override void loadData(BaseEntity entity)
         {
             Address address = (Address)entity;
@@ -107,7 +115,6 @@ namespace LogisticApp.ViewModel.Forms
 
         public override void save()
         {
-            this.updateRecord();
             Creator.createOrUpdate("address");
         }
 

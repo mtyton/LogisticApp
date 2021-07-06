@@ -62,6 +62,15 @@ namespace LogisticApp.ViewModel.Forms
 
         private void save(object param)
         {
+            if (_selectedViewModel.Creator.Record == null)
+            {
+                _selectedViewModel.createRecord();
+            }
+            else
+            {
+                _selectedViewModel.updateRecord();
+            }
+
             _selectedViewModel.save();
             if (this.WindowClosed.CanExecute(null))
             {
