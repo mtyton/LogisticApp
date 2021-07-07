@@ -85,13 +85,5 @@ namespace LogisticApp.ViewModel.Forms
             _addressViewModel.save();
             Creator.createOrUpdate("person");
         }
-
-        public override bool canSave()
-        {
-            if (!_addressViewModel.canSave() || _name == "" || _surname == "")
-                return false;
-            else
-                return true;
-        }
     }
 }
