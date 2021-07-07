@@ -43,7 +43,7 @@ namespace LogisticApp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("p4ss!")]
+        [global::System.Configuration.DefaultSettingValueAttribute("zaq1@WSX")]
         public string dbPassword {
             get {
                 return ((string)(this["dbPassword"]));
