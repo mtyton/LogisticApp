@@ -69,7 +69,6 @@ namespace LogisticApp.ViewModel.Forms
             this.Creator.Record = company;
         }
 
-
         public override void loadData(BaseEntity entity)
         {
             Company company = (Company)entity;
@@ -79,11 +78,18 @@ namespace LogisticApp.ViewModel.Forms
             TaxNumber = company.taxNumber;
         }
 
-        //TODO add validation if there will be enough time
         public override void save()
         {
             AddrViewModel.save();
             Creator.createOrUpdate("company");
+        }
+
+        public override bool canSave()
+        {
+            if (!_addressViewModel.canSave() || _taxNumber == "" || _companyName == "")
+                return false;
+            else
+                return true;
         }
     }
 }

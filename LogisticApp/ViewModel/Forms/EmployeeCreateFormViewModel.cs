@@ -35,8 +35,8 @@ namespace LogisticApp.ViewModel.Forms
                 onPropertyChanged(nameof(LastName));
             }
         }
-
-        private DateTime _birthDate = DateTime.Now;
+        // DateTime.FromOADate(36526) - 01.01.2020
+        private DateTime _birthDate;
         public DateTime BirthDate
         {
             get => _birthDate;
@@ -47,7 +47,7 @@ namespace LogisticApp.ViewModel.Forms
             }
         }
 
-        private DateTime _dateOfEmployment = DateTime.Now;
+        private DateTime _dateOfEmployment;
         public DateTime DateOfEmployment
         {
             get => _dateOfEmployment;
@@ -98,10 +98,23 @@ namespace LogisticApp.ViewModel.Forms
             BirthDate = employee.birthDate;
         }
 
-        //TODO add validation if there will be enough time
         public override void save()
         {
             Creator.createOrUpdate("employee");
+        }
+
+        public override bool canSave()
+        {
+            if (_firstname == "" ||
+                _lastname == "" ||
+                _hourlyPayment < 0 ||
+                DateTime.Now - _birthDate < TimeSpan.FromDays(5840) ||
+                DateTime.Now - _dateOfEmployment <= TimeSpan.Zero)
+            {
+                return false;
+            }
+            else
+                return true;
         }
 
     }
