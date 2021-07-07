@@ -45,5 +45,9 @@ namespace LogisticApp.ViewModel.Forms
             throw new NotImplementedException("Implement save method for each form!!");
         }
 
+        public virtual bool canSave()
+        {
+            throw new NotImplementedException("Make sure each form has canSave method!!");
+        }
     }
 }
