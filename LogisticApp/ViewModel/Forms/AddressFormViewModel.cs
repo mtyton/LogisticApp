@@ -120,16 +120,12 @@ namespace LogisticApp.ViewModel.Forms
 
         public override bool canSave()
         {
-            if (_city == "" ||
-                _country == "" ||
-                _street == "" ||
-                _postalCode == "" ||
-                _buildingNumber == 0)
-            {
-                return false;
-            }
-            else
-                return true;
+            return
+            _city != "" &&
+            _country != "" &&
+            _street != "" &&
+            _postalCode != "" &&
+            _buildingNumber > 0;
         }
     }
 }

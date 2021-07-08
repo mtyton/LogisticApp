@@ -36,7 +36,7 @@ namespace LogisticApp.ViewModel.Forms
             }
         }
 
-        private DateTime _birthDate = DateTime.FromOADate(36526);
+        private DateTime _birthDate = DateTime.Parse("1/2000"); // Initial date set to 01.01.2000
         public DateTime BirthDate
         {
             get => _birthDate;
@@ -105,16 +105,11 @@ namespace LogisticApp.ViewModel.Forms
 
         public override bool canSave()
         {
-            if (_firstname == "" ||
-                _lastname == "" ||
-                _hourlyPayment < 0 ||
-                DateTime.Now - _birthDate < TimeSpan.FromDays(5840) ||
-                DateTime.Now - _dateOfEmployment < TimeSpan.Zero)
-            {
-                return false;
-            }
-            else
-                return true;
+            return _firstname != "" &&
+                _lastname != "" &&
+                _hourlyPayment > 0 &&
+                _birthDate.AddYears(15) < DateOfEmployment && // employee has to be 15 years old to take up work
+                _birthDate < DateTime.Now; // cannot be born in the future
         }
     }
 }

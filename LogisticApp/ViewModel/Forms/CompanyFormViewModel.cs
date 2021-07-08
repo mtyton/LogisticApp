@@ -88,10 +88,7 @@ namespace LogisticApp.ViewModel.Forms
 
         public override bool canSave()
         {
-            if (!_addressViewModel.canSave() || _taxNumber == "" || _companyName == "")
-                return false;
-            else
-                return true;
+            return _addressViewModel.canSave() && _taxNumber != "" && _companyName != "";
         }
     }
 }
