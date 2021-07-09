@@ -85,5 +85,10 @@ namespace LogisticApp.ViewModel.Forms
             AddrViewModel.save();
             Creator.createOrUpdate("company");
         }
+
+        public override bool canSave()
+        {
+            return _addressViewModel.canSave() && _taxNumber != "" && _companyName != "";
+        }
     }
 }

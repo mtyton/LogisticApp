@@ -57,7 +57,10 @@ namespace LogisticApp.ViewModel.Forms
 
         private bool canSave(object param)
         {
-            return true;
+            if (_selectedViewModel != null)
+                return _selectedViewModel.canSave();
+            else
+                return true;
         }
 
         private void save(object param)

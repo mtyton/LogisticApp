@@ -118,5 +118,14 @@ namespace LogisticApp.ViewModel.Forms
             Creator.createOrUpdate("address");
         }
 
+        public override bool canSave()
+        {
+            return
+            _city != "" &&
+            _country != "" &&
+            _street != "" &&
+            _postalCode != "" &&
+            _buildingNumber > 0;
+        }
     }
 }

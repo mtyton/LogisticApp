@@ -36,7 +36,7 @@ namespace LogisticApp.ViewModel.Forms
             }
         }
 
-        private DateTime _birthDate = DateTime.Now;
+        private DateTime _birthDate = DateTime.Parse("1/2000"); // Initial date set to 01.01.2000
         public DateTime BirthDate
         {
             get => _birthDate;
@@ -98,11 +98,18 @@ namespace LogisticApp.ViewModel.Forms
             BirthDate = employee.birthDate;
         }
 
-        //TODO add validation if there will be enough time
         public override void save()
         {
             Creator.createOrUpdate("employee");
         }
 
+        public override bool canSave()
+        {
+            return _firstname != "" &&
+                _lastname != "" &&
+                _hourlyPayment > 0 &&
+                _birthDate.AddYears(15) < DateOfEmployment && // employee has to be 15 years old to take up work
+                _birthDate < DateTime.Now; // cannot be born in the future
+        }
     }
 }
