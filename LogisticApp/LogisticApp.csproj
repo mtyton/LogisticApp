@@ -262,6 +262,8 @@
     <Compile Include="Model\EntityFactory.cs" />
     <Compile Include="Model\ListModel.cs" />
     <Compile Include="Model\AuthModel.cs" />
+    <Compile Include="Model\Pagination\BasePagination.cs" />
+    <Compile Include="Model\Pagination\OffsetPagination.cs" />
     <Compile Include="Model\Session.cs" />
     <Compile Include="Model\Creator.cs" />
     <Compile Include="Resources\Languages\Lang.Designer.cs">
@@ -269,6 +271,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Base\BasePaginatedViewModel.cs" />
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
     <Compile Include="ViewModel\Forms\AddressFormViewModel.cs" />
@@ -276,7 +279,9 @@
     <Compile Include="ViewModel\Forms\CompanyFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\EmployeeCreateFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormManager.cs" />
+    <Compile Include="ViewModel\Forms\JobFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\PersonFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\ForeingKeyListBoxViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -287,6 +292,9 @@
     <Compile Include="Views\Forms\EmployeeCreateForm.xaml.cs">
       <DependentUpon>EmployeeCreateForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Forms\JobForm.xaml.cs">
+      <DependentUpon>JobForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Forms\MainFormWindow.xaml.cs">
       <DependentUpon>MainFormWindow.xaml</DependentUpon>
     </Compile>
@@ -295,6 +303,9 @@
     </Compile>
     <Compile Include="Views\Forms\PersonForm.xaml.cs">
       <DependentUpon>PersonForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\ForeignKeyListBox.xaml.cs">
+      <DependentUpon>ForeignKeyListBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -317,6 +328,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Forms\JobForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Forms\MainFormWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -326,6 +341,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Forms\PersonForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Forms\ForeignKeyListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

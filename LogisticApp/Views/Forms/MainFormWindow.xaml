@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LogisticApp.Views.Forms"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="BaseFormWindow" Height="450" Width="800"
+        Title="BaseFormWindow" Height="600" Width="1200"
         xmlns:viewModel="clr-namespace:LogisticApp.ViewModel.Forms">
     <Window.DataContext>
         <viewModel:FormManager  x:Name="MainFormViewModel"/>

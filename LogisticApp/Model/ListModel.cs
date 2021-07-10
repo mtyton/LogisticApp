@@ -35,7 +35,7 @@ namespace LogisticApp.Model
             // Basically there will be no data loaded
         }
 
-        public void loadQueryset(string entityName, object[] parameters)
+        public void loadQueryset(string entityName, int[] parameters)
         {
             if (parameters == null)
             {

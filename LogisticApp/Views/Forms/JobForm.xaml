@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="LogisticApp.Views.Forms.JobForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LogisticApp.Views.Forms"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="Grid.Column" Value="1"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+            <Style TargetType="RichTextBox">
+                <Setter Property="Grid.Column" Value="1"/>
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Height" Value="100"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="Grid.Column" Value="0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+        </Grid.Resources>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Job Title" Grid.Row="0"/>
+            <TextBox Grid.Row="0"/>
+
+            <Label Content="Predicted Time (in hours)" Grid.Row="1"/>
+            <TextBox Grid.Row="1"/>
+
+            <Label Content="Predicted Cost" Grid.Row="2"/>
+            <TextBox Grid.Row="2"/>
+
+            <Label Content="Description" Grid.Row="3"/>
+            <RichTextBox Grid.Row="3"/>
+
+            <Label Content="Assigned Employee" Grid.Row="4"/>
+            <ContentControl Content="{Binding Employees}" Grid.Row="4" Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Column="1">
+                
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="ComboBox">
+  
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="Width" Value="300px"/>
+                    <Setter Property="Height" Value="20px"/>
+                </Style>
+            </Grid.Resources>
+
+
+            <Label Content="Customer Type" Grid.Row="0"/>
+            <ComboBox  Grid.Row="1" x:Name="customerTypeComboBox">
+                <ComboBoxItem Content="company"/>
+                <ComboBoxItem Content="person"/>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction 
+                            Command="{Binding CustomerTypeChange}" 
+                            CommandParameter="{Binding ElementName=customerTypeComboBox, Path=SelectedItem.Content}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </ComboBox>
+
+            <Label Content="Customer:" Grid.Row="2"/>
+            <ContentControl Content="{Binding Customer}" Grid.Row="3"/>
+
+        </Grid>
+
+            
+
+    </Grid>
+</UserControl>

@@ -39,6 +39,7 @@ namespace LogisticApp.ViewModel.Forms
                     SelectedViewModel = new EmployeeCreateFormViewModel();
                     return;
                 case "job":
+                    SelectedViewModel = new JobFormViewModel();
                     return;
             }
             throw new TypeLoadException("Entity name not recognized");

@@ -31,6 +31,7 @@
             <Button Content="Employees" Command="{Binding LoadData}" CommandParameter="employee"/>
             <Button Content="Company Clients" Command="{Binding LoadData}" CommandParameter="company"/>
             <Button Content="Person Clients" Command="{Binding LoadData}" CommandParameter="person"/>
+            <Button Content="Jobs" Command="{Binding LoadData}" CommandParameter="job"/>
         </StackPanel>
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
             <ListBox Width="500px" Height="300px"

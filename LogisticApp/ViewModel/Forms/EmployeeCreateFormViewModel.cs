@@ -15,7 +15,7 @@ namespace LogisticApp.ViewModel.Forms
         #region{variables and properties}
 
         private string _firstname;
-        public string FirstName 
+        public string FirstName
         { 
             get => _firstname;
             set
@@ -67,6 +67,7 @@ namespace LogisticApp.ViewModel.Forms
                 onPropertyChanged(nameof(HourlyPaymnet));
             }
         }
+
         #endregion
 
         public override void updateRecord()
