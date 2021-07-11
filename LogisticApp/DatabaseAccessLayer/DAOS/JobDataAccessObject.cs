@@ -36,15 +36,15 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
                 {
                     if (job.ClientCompanyID != 0)
                     {
-                        job.ClientCompany = CompanyDataAccessObject.getById(job.ClientCompanyID);
+                        job.clientCompany = CompanyDataAccessObject.getById(job.ClientCompanyID);
                     }
                     else if (job.ClientPersonID != 0)
                     {
-                        job.ClientPerson = PersonDataAccessObject.getById(job.ClientPersonID);
+                        job.clientPerson = PersonDataAccessObject.getById(job.ClientPersonID);
                     }
                     if(job.AssignedEmployeeID != 0)
                     {
-                        job.AssignedEmployee = EmployeeDataAccessObject.getById(job.AssignedEmployeeID);
+                        job.assignedEmployee = EmployeeDataAccessObject.getById(job.AssignedEmployeeID);
                     }
                     
                 }
@@ -102,7 +102,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"UPDATE job SET {job.ToUpdate()} WHERE id={job.id}",
+                    $"UPDATE job SET {job.ToUpdate()} WHERE id={job.id};",
                     connection
                     );
                 try

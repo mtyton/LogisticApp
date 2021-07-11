@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogisticApp.DatabaseAccessLayer.Entity.Base
 {
-    public class BaseEntity : BaseEntityInterface
+    public class BaseEntity : IEquatable<BaseEntity>
     {
         public long id { get; set; }
 
@@ -37,6 +37,18 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Base
                 );
             }
             return $"";
+        }
+
+
+        public bool Equals(BaseEntity entity)
+        {
+            // If the passed object is null
+            if (entity == null)
+            {
+                return false;
+            }
+
+            return entity.id == id;
         }
     }
 }

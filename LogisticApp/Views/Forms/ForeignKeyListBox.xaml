@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="LogisticApp.Views.Forms.SearchableListBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LogisticApp.Views.Forms"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Width="300px">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Width="300px" Height="100px"
+                 IsSynchronizedWithCurrentItem="True"
+                 ItemsSource="{Binding CurrentQueryset}"
+                 SelectedItem="{Binding SelectedRecord, Mode=TwoWay}"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Previous" 
+                    Grid.Column="0" Command="{Binding MoveStep}" 
+                    CommandParameter="-"/>
+            <Button Content="Next" 
+                    Grid.Column="1" Command="{Binding MoveStep}" 
+                    CommandParameter="+"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

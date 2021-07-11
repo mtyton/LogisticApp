@@ -55,7 +55,7 @@ namespace LogisticApp.ViewModel.Forms
         public override void createRecord()
         {
             _addressViewModel.createRecord();
-            this.Creator.Record = new Company(
+            this.Creator.Record = new Person(
                 _name, _surname,
                 (Address)_addressViewModel.Creator.Record
                 );

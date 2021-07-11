@@ -26,5 +26,11 @@
         <DataTemplate DataType="{x:Type viewModel_forms:PersonFormViewModel}">
             <views_forms:PersonForm/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel_forms:JobFormViewModel}">
+            <views_forms:JobForm/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel_forms:ForeingKeyListBoxViewModel}">
+            <views_forms:SearchableListBox/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
