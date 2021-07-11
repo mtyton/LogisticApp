@@ -17,7 +17,18 @@ namespace LogisticApp.Model.Pagination
         }
      
         private int _currentStartIndex = 0;
+
+        public int CurrentStartIndex
+        {
+            get => _currentStartIndex;
+        }
+
         private int _offset;
+
+        public int Offset
+        {
+            get => _offset;
+        }
 
         int[] _pagination;
 

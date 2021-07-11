@@ -23,21 +23,6 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
         public long ClientPersonID { get; set; }
         public long ClientCompanyID { get; set; }
         public long AssignedEmployeeID { get; set; }
-        public Person ClientPerson
-        {
-            get=> clientPerson; 
-            set=> clientPerson = value;
-        }
-        public Company ClientCompany 
-        { 
-            get => clientCompany; 
-            set => clientCompany = value; 
-        }
-        public Employee AssignedEmployee 
-        { 
-            get=> assignedEmployee; 
-            set=> assignedEmployee = value;
-        }
 
         private void loadForeignKeys(IDataReader reader)
         {
@@ -99,15 +84,15 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             {
                 return $"(title, company_id, description, " +
                     $"assigned_employee, predicted_time, predicted_cost) " +
-                    $"VALUES ({this.title}, {this.clientCompany.id}," +
-                    $" {this.description}, {this.assignedEmployee}," +
+                    $"VALUES ('{this.title}', {this.clientCompany.id}," +
+                    $" '{this.description}', {this.assignedEmployee.id}," +
                     $" {this.predictedTime}, {this.predictedCost});";
             }
 
             return $"(title, person_id, description, " +
                     $"assigned_employee, predicted_time, predicted_cost) " +
-                    $"VALUES ({this.title}, {this.clientPerson.id}," +
-                    $" {this.description}, {this.assignedEmployee}," +
+                    $"VALUES ('{this.title}', {this.clientPerson.id}," +
+                    $" '{this.description}', {this.assignedEmployee.id}," +
                     $" {this.predictedTime}, {this.predictedCost});";
         }
 
@@ -116,18 +101,18 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             base.ToUpdate();
             if (this.clientCompany != null)
             {
-                return $"title={this.title}, description={this.description}, " +
+                return $"title='{this.title}', description='{this.description}', " +
                     $"company_id={this.clientCompany.id}, " +
                     $"assigned_employee={this.assignedEmployee.id}, " +
                     $"predicted_time={this.predictedTime}, " +
-                    $"predicted_cost={this.predictedCost};";
+                    $"predicted_cost={this.predictedCost}";
             }
 
-            return $"title={this.title}, description={this.description}, " +
+            return $"title='{this.title}', description='{this.description}', " +
                     $"person_id={this.clientPerson.id}, " +
                     $"assigned_employee={this.assignedEmployee.id}, " +
                     $"predicted_time={this.predictedTime}, " +
-                    $"predicted_cost={this.predictedCost};";
+                    $"predicted_cost={this.predictedCost}";
         }
     }
 }

@@ -11,7 +11,7 @@
             <RowDefinition Height="7*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <ListBox Width="300px" Height="100px"
+        <ComboBox Width="300px" Height="100px"
                  IsSynchronizedWithCurrentItem="True"
                  ItemsSource="{Binding CurrentQueryset}"
                  SelectedItem="{Binding SelectedRecord, Mode=TwoWay}"/>
