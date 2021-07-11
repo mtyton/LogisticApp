@@ -41,7 +41,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
                 );
         }
 
-        public string ToInsert()
+        public override string ToInsert()
         {
             base.ToInsert();
             return $"(id, name, surname, address_id) " +
@@ -50,7 +50,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
         }
 
 
-        public string ToUpdate()
+        public override string ToUpdate()
         {
             base.ToUpdate();
             return $"name='{this.name}', surname='{this.surname}', " +

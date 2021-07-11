@@ -72,7 +72,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
                 );
         }
 
-        public string ToInsert()
+        public override string ToInsert()
         {
             base.ToInsert();
             return $"" +
@@ -81,7 +81,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
                 $"{this.buildingNumber}, {this.apartmentNumber});";
         }
 
-        public string ToUpdate()
+        public override string ToUpdate()
         {
             base.ToUpdate();
             return $"city='{this.city}', postal_code='{this.postalCode}', " +

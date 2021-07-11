@@ -29,12 +29,6 @@ namespace LogisticApp.Model
             get => _totalCount;
         }
 
-
-        public ListModel()
-        {
-            // Basically there will be no data loaded
-        }
-
         public void loadQueryset(string entityName, int[] parameters)
         {
             if (parameters == null)

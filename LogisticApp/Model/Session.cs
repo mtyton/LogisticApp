@@ -13,6 +13,7 @@ namespace LogisticApp.Model
     {
         // keeps info about user
         // session is a singleton because only one session is allowed at the time
+        // in sesssion we can keep user specific data
         private User _user;
         private bool _isAutheticated;
 
@@ -30,7 +31,6 @@ namespace LogisticApp.Model
             {
                 throw new AuthenticationException("Username or password was incorrect");
             }
-
             this._isAutheticated = AuthModel.authenticate(username, password);
         }
 

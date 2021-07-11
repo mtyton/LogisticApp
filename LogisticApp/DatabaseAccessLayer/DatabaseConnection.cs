@@ -35,13 +35,13 @@ namespace LogisticApp.DatabaseAccessLayer
         {
             get
             {
+                // TODO add connection status check
                 connection.Close();
                 connection.Open();
                 return connection;
             }
         }
 
-        // TODO move this to some kind of settings file
         private string getConnectionString()
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();

@@ -256,13 +256,13 @@
     <Compile Include="DatabaseAccessLayer\Entity\Job.cs" />
     <Compile Include="DatabaseAccessLayer\Entity\User.cs" />
     <Compile Include="Model\DataAccessFacade.cs" />
-    <Compile Include="Model\EntityFactory.cs" />
     <Compile Include="Model\ListModel.cs" />
     <Compile Include="Model\AuthModel.cs" />
     <Compile Include="Model\Pagination\BasePagination.cs" />
     <Compile Include="Model\Pagination\OffsetPagination.cs" />
     <Compile Include="Model\Session.cs" />
     <Compile Include="Model\Creator.cs" />
+    <Compile Include="Model\Utils\WindowObserver.cs" />
     <Compile Include="Resources\Languages\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -271,18 +271,17 @@
     <Compile Include="ViewModel\Base\BasePaginatedViewModel.cs" />
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
-    <Compile Include="ViewModel\Forms\AddressFormViewModel.cs" />
+    <Compile Include="ViewModel\Forms\Includes\AddressFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\BaseFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\CompanyFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\EmployeeCreateFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormManager.cs" />
     <Compile Include="ViewModel\Forms\JobFormViewModel.cs" />
     <Compile Include="ViewModel\Forms\PersonFormViewModel.cs" />
-    <Compile Include="ViewModel\Forms\ForeingKeyListBoxViewModel.cs" />
+    <Compile Include="ViewModel\Forms\Includes\ForeingKeyListBoxViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\Utils\WindowMediator.cs" />
     <Compile Include="Views\Forms\AddressForm.xaml.cs">
       <DependentUpon>AddressForm.xaml</DependentUpon>
     </Compile>

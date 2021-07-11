@@ -9,7 +9,6 @@ namespace LogisticApp.Model
 {
     class Creator
     {
-        EntityFactory _factory = new EntityFactory();
         BaseEntity _record = null;
 
         public BaseEntity Record
@@ -33,7 +32,6 @@ namespace LogisticApp.Model
 
         ~Creator()
         {
-            _factory = null;
             _record = null;
         }
 

@@ -14,7 +14,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
     {
         public static ObservableCollection<Address> getPaginated(int start=0, int number_of_records = 25)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("There is no reason to get pagineted address");
         }
 
         public static Address getAddressById(long id)

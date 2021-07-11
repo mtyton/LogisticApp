@@ -1,5 +1,5 @@
-﻿using LogisticApp.ViewModel.BaseClass;
-using LogisticApp.ViewModel.Utils;
+﻿using LogisticApp.Model.Utils;
+using LogisticApp.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace LogisticApp.ViewModel.Forms
     class FormManager : BaseViewModel
     {
         BaseFormViewModel _selectedViewModel = null;
-        WindowMediator _mediator = null;
+        WindowObserver _observer = null;
 
         public BaseFormViewModel SelectedViewModel
         {
@@ -28,7 +28,6 @@ namespace LogisticApp.ViewModel.Forms
         {
             switch (name)
             {
-                //TODO add other ViewModels
                 case "company":
                     SelectedViewModel = new CompanyFormViewModel();
                     return;
@@ -45,9 +44,9 @@ namespace LogisticApp.ViewModel.Forms
             throw new TypeLoadException("Entity name not recognized");
         }
 
-        public void addMediator(WindowMediator mediator)
+        public void addMediator(WindowObserver observer)
         {
-            _mediator = mediator;
+            _observer = observer;
         }
 
         #region{command}
@@ -89,7 +88,7 @@ namespace LogisticApp.ViewModel.Forms
 
         private void close(object param)
         {
-            this._mediator.closeSubWindow();
+            this._observer.closeSubWindow();
         }
 
         #endregion

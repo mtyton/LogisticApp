@@ -1,9 +1,9 @@
 ﻿using LogisticApp.DatabaseAccessLayer.Entity.Base;
 using LogisticApp.Model;
 using LogisticApp.Model.Pagination;
+using LogisticApp.Model.Utils;
 using LogisticApp.ViewModel.Base;
 using LogisticApp.ViewModel.BaseClass;
-using LogisticApp.ViewModel.Utils;
 using LogisticApp.Views.Forms;
 using System;
 using System.Collections.Generic;
@@ -94,7 +94,7 @@ namespace LogisticApp.ViewModel
                 this._formWindow.MainFormViewModel.SelectedViewModel.loadData(entity);
             }
             this._formWindow.MainFormViewModel.addMediator(
-                WindowMediator.getMediator(this)
+                WindowObserver.getObserver(this)
                 );
             this._formWindow.Show();
         }

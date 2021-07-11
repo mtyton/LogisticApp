@@ -14,6 +14,7 @@ namespace LogisticApp.Model
 {
     static class DataAccessFacade
     {
+        // This class is a facade for dataaccessobjects
         public static ObservableCollection<BaseEntity> getPaginated(string entityName, int start, int number_of_records)
         {
             switch (entityName)

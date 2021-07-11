@@ -10,12 +10,12 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Base
     {
         public long id { get; set; }
 
-        virtual public bool checkIfRecordComplete()
+        public virtual bool checkIfRecordComplete()
         {
             return true;
         }
 
-        public string ToInsert()
+        public virtual string ToInsert()
         {
             if (!this.checkIfRecordComplete())
             {
@@ -27,7 +27,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Base
             return $"";
         }
 
-        public string ToUpdate()
+        public virtual string ToUpdate()
         {
             if (!this.checkIfRecordComplete())
             {

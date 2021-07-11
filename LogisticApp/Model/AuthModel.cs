@@ -11,9 +11,10 @@ namespace LogisticApp.Model
 {
     static class AuthModel
     {
-        // This class suppose to only authenticate user
+        // This class is created to authenticate user
         public static bool authenticate(string username, string password)
         {
+            // this method authenticate user
             string dbPassword = UserDataAccessObject.getUserPassword(username);
             HashAlgorithm algorithm = new SHA256Managed();
 

@@ -88,7 +88,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"INSERT INTO person {person.ToInsert()};", connection
+                    $"INSERT INTO person {person.ToInsert()}", connection
                     );
                 try
                 {
@@ -130,7 +130,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"UPDATE person SET {person.ToUpdate()} WHERE id={addr.id}",
+                    $"UPDATE person SET {person.ToUpdate()} WHERE id={addr.id};",
                     connection
                     );
                 try
@@ -151,7 +151,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"DELETE FROM person WHERE id={person.id}",
+                    $"DELETE FROM person WHERE id={person.id};",
                     connection
                     );
                 try

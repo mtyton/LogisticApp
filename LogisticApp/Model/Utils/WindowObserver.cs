@@ -1,22 +1,20 @@
-﻿using LogisticApp.ViewModel.BaseClass;
+﻿using LogisticApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogisticApp.ViewModel.Utils
+namespace LogisticApp.Model.Utils
 {
-    class WindowMediator
+    class WindowObserver
     {
-        // this class is a singleton we need only one mediator 
-        // to communicate between windows
 
         MainMenuViewModel mainMenuViewModel;
 
-        private static WindowMediator _instance;
+        private static WindowObserver _instance;
 
-        private WindowMediator(MainMenuViewModel vm)
+        private WindowObserver(MainMenuViewModel vm)
         {
             mainMenuViewModel = vm;
         }
@@ -29,11 +27,11 @@ namespace LogisticApp.ViewModel.Utils
             }
         }
 
-        public static WindowMediator getMediator(MainMenuViewModel vm)
+        public static WindowObserver getObserver(MainMenuViewModel vm)
         {
             if (_instance == null)
             {
-                _instance = new WindowMediator(vm);
+                _instance = new WindowObserver(vm);
             }
             return _instance;
         }

@@ -40,7 +40,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
                 this.address != null
                 );
         }
-        public string ToInsert()
+        public override string ToInsert()
         {
             base.ToInsert();
             return $"(id, name, tax_number, address_id) " +
@@ -48,7 +48,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity.Client
                 $"{this.address.id});";
         }
 
-        public string ToUpdate()
+        public override string ToUpdate()
         {
             base.ToUpdate();
             return $"name='{this.companyName}', tax_number='{this.taxNumber}'," +

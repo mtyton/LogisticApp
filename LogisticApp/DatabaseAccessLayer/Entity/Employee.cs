@@ -55,7 +55,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             return $"{this.name} {this.surname}";
         }
 
-        public string ToInsert()
+        public override string ToInsert()
         {
             base.ToInsert();
             return $"(name, surname, birth_date, " +
@@ -66,7 +66,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
                 $"{this.hourlyPayment});";
         }
 
-        public string ToUpdate()
+        public override string ToUpdate()
         {
             base.ToUpdate();
             return $"name='{this.name}', surname='{this.surname}', " +

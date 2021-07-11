@@ -122,7 +122,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"DELETE FROM job WHERE id={job.id}",
+                    $"DELETE FROM job WHERE id={job.id};",
                     connection
                     );
                 try

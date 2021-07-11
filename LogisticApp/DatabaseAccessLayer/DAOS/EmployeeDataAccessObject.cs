@@ -95,7 +95,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
         public static Employee update(Employee employee)
         {
             // check if has id
-            if (employee.id == null)
+            if (employee.id == 0)
             {
                 return null;
             }
@@ -122,7 +122,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"DELETE FROM employee WHERE id={employee.id}",
+                    $"DELETE FROM employee WHERE id={employee.id};",
                     connection
                     );
                 try

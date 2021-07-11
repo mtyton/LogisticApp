@@ -77,7 +77,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
             return $"{this.title}";
         }
 
-        public string ToInsert()
+        public override string ToInsert()
         {
             base.ToInsert();
             if (this.clientCompany != null)
@@ -96,7 +96,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
                     $" {this.predictedTime}, {this.predictedCost});";
         }
 
-        public string ToUpdate()
+        public override string ToUpdate()
         {
             base.ToUpdate();
             if (this.clientCompany != null)
