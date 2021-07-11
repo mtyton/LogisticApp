@@ -39,7 +39,8 @@ namespace LogisticApp.Model
         {
             if (parameters == null)
             {
-                this._queryset = DataAccessFacade.getAll(entityName);
+                throw new NotImplementedException("There should " +
+                    "be some parameters passed to loadQueryset in ListModel");
             }
             else
             {

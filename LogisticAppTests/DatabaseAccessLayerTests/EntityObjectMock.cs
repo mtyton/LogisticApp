@@ -49,7 +49,6 @@ namespace LogisticAppTests.DatabaseAccessLayerTests
         public static Employee createEmployee()
         {
             Employee employee = null;
-            List<Skillset> abilities = new List<Skillset>();
             using (IDataReader reader = EntityDataMock.mockEmployeeReader())
             {
                 employee = new Employee(reader);

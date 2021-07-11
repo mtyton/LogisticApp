@@ -77,7 +77,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
             using (var connection = DatabaseConnection.Instance.Connection)
             {
                 MySqlCommand command = new MySqlCommand(
-                    $"INSERT INTO employee {employee.ToInsert()};", connection
+                    $"INSERT INTO employee {employee.ToInsert()}", connection
                     );
                 try
                 {

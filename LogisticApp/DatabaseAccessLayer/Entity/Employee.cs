@@ -63,7 +63,7 @@ namespace LogisticApp.DatabaseAccessLayer.Entity
                 $"VALUES('{this.name}', '{this.surname}', " +
                 $"'{this.birthDate.ToString("yyyy/MM/dd")}', " +
                 $"'{this.dateOfEmployment.ToString("yyyy/MM/dd")}', " +
-                $"{this.hourlyPayment})";
+                $"{this.hourlyPayment});";
         }
 
         public string ToUpdate()

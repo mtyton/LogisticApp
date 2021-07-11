@@ -27,13 +27,13 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
             using (var reader = EntityDataMock.mockJobReader())
             {
                 Job job = new Job(reader);
-                job.ClientPerson = EntityObjectMock.createPerson();
-                job.AssignedEmployee = EntityObjectMock.createEmployee();
+                job.clientPerson = EntityObjectMock.createPerson();
+                job.assignedEmployee = EntityObjectMock.createEmployee();
 
                 string correctString = $"(title, person_id, description, " +
                     $"assigned_employee, predicted_time, predicted_cost) " +
-                    $"VALUES ({reader["title"]}, {job.ClientPerson.id}," +
-                    $" {reader["description"]}, {job.AssignedEmployee}," +
+                    $"VALUES ('{reader["title"]}', {job.clientPerson.id}," +
+                    $" '{reader["description"]}', {job.assignedEmployee.id}," +
                     $" {reader["predicted_time"]}, {reader["predicted_cost"]});";
 
                 Assert.AreEqual(job.ToInsert(), correctString);
@@ -48,12 +48,12 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
             {
 
                 Job job = new Job(reader);
-                job.ClientCompany = EntityObjectMock.createCompany();
-                job.AssignedEmployee = EntityObjectMock.createEmployee();
+                job.clientCompany = EntityObjectMock.createCompany();
+                job.assignedEmployee = EntityObjectMock.createEmployee();
                 string correctString = $"(title, company_id, description, " +
                     $"assigned_employee, predicted_time, predicted_cost) " +
-                    $"VALUES ({reader["title"]}, {job.ClientCompany.id}," +
-                    $" {reader["description"]}, {job.AssignedEmployee}," +
+                    $"VALUES ('{reader["title"]}', {job.clientCompany.id}," +
+                    $" '{reader["description"]}', {job.assignedEmployee.id}," +
                     $" {reader["predicted_time"]}, {reader["predicted_cost"]});";
                 Assert.AreEqual(job.ToInsert(), correctString);
 
@@ -88,14 +88,14 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
             {
 
                 Job job = new Job(reader);
-                job.ClientPerson = EntityObjectMock.createPerson();
-                job.AssignedEmployee = EntityObjectMock.createEmployee();
-                string correctString = $"title={reader["title"]}, " +
-                    $"description={reader["description"]}, " +
-                    $"person_id={job.ClientPerson.id}, " +
-                    $"assigned_employee={job.AssignedEmployee.id}, " +
+                job.clientPerson = EntityObjectMock.createPerson();
+                job.assignedEmployee = EntityObjectMock.createEmployee();
+                string correctString = $"title='{reader["title"]}', " +
+                    $"description='{reader["description"]}', " +
+                    $"person_id={job.clientPerson.id}, " +
+                    $"assigned_employee={job.assignedEmployee.id}, " +
                     $"predicted_time={reader["predicted_time"]}, " +
-                    $"predicted_cost={reader["predicted_cost"]};";
+                    $"predicted_cost={reader["predicted_cost"]}";
                 Assert.AreEqual(job.ToUpdate(), correctString);
 
             }
@@ -108,14 +108,14 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
             {
 
                 Job job = new Job(reader);
-                job.ClientCompany = EntityObjectMock.createCompany();
-                job.AssignedEmployee = EntityObjectMock.createEmployee();
-                string correctString = $"title={reader["title"]}, " +
-                    $"description={reader["description"]}, " +
-                    $"company_id={job.ClientCompany.id}, " +
-                    $"assigned_employee={job.AssignedEmployee.id}, " +
+                job.clientCompany = EntityObjectMock.createCompany();
+                job.assignedEmployee = EntityObjectMock.createEmployee();
+                string correctString = $"title='{reader["title"]}', " +
+                    $"description='{reader["description"]}', " +
+                    $"company_id={job.clientCompany.id}, " +
+                    $"assigned_employee={job.assignedEmployee.id}, " +
                     $"predicted_time={reader["predicted_time"]}, " +
-                    $"predicted_cost={reader["predicted_cost"]};";
+                    $"predicted_cost={reader["predicted_cost"]}";
                 Assert.AreEqual(job.ToUpdate(), correctString);
 
             }

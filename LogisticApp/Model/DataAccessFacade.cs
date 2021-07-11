@@ -30,15 +30,6 @@ namespace LogisticApp.Model
             throw new TypeLoadException("Entity name not recognized");
         }
 
-        public static ObservableCollection<BaseEntity> getAll(string entityName)
-        {
-            switch (entityName)
-            {
-                case "skillset":
-                    return SkillsetDataAccessObject.getAll();
-            }
-            throw new TypeLoadException("Entity name not recognized");
-        }
         public static int getTotalCount(string entityName)
         {
             switch (entityName)

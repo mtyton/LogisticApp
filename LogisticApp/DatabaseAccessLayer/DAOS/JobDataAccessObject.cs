@@ -95,7 +95,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS
         public static Job update(Job job)
         {
             // check if has id
-            if (job.id == null)
+            if (job.id == 0)
             {
                 return null;
             }

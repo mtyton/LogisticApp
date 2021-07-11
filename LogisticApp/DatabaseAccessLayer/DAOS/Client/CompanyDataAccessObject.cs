@@ -116,7 +116,7 @@ namespace LogisticApp.DatabaseAccessLayer.DAOS.Client
             Address addr = company.address;
 
             // check if has id
-            if (company.id == null)
+            if (company.id == 0)
             {
                 return null;
             }

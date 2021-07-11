@@ -19,7 +19,6 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                 string correctString = $"" +
                     $"{reader["name"]} {reader["surname"]}";
 
-                List<Skillset> abilities = new List<Skillset>();
                 Employee employee = new Employee(reader);
                 Assert.AreEqual(employee.ToString(), correctString);
             }
@@ -38,7 +37,6 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                     $"'{DateTime.Parse(reader["birth_date"].ToString()).ToString("yyyy/MM/dd")}', " +
                     $"'{DateTime.Parse(reader["date_of_employment"].ToString()).ToString("yyyy/MM/dd")}', " +
                     $"{reader["hourly_payment"]});";
-                List<Skillset> abilities = new List<Skillset>();
                 Employee employee = new Employee(reader);
                 Assert.AreEqual(employee.ToInsert(), correctString);
             }
@@ -71,8 +69,7 @@ namespace LogisticAppTests.DatabaseAccessLayerTests.Enitity
                 string correctString = $"name='{reader["name"]}', surname='{reader["surname"]}', " +
                     $"birth_date='{DateTime.Parse(reader["birth_date"].ToString()).ToString("yyyy/MM/dd")}', " +
                     $"date_of_employment='{DateTime.Parse(reader["date_of_employment"].ToString()).ToString("yyyy/MM/dd")}'," +
-                    $"hourly_payment={reader["hourly_payment"]};";
-                List<Skillset> abilities = new List<Skillset>();
+                    $"hourly_payment={reader["hourly_payment"]}";
                 Employee employee = new Employee(reader);
                 Assert.AreEqual(employee.ToUpdate(), correctString);
             }
