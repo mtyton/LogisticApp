@@ -21,12 +21,6 @@
                 <Setter Property="Width" Value="150"/>
                 <Setter Property="Height" Value="30"/>
             </Style>
-            <Style TargetType="RichTextBox">
-                <Setter Property="Grid.Column" Value="1"/>
-                <Setter Property="FontSize" Value="11"/>
-                <Setter Property="Width" Value="150"/>
-                <Setter Property="Height" Value="100"/>
-            </Style>
             <Style TargetType="Label">
                 <Setter Property="Grid.Column" Value="0"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -57,7 +51,7 @@
             <TextBox Grid.Row="2" Text="{Binding PredictedCost}"/>
 
             <Label Content="Description" Grid.Row="3"/>
-            <RichTextBox Grid.Row="3" DataContext="{Binding Description}"/>
+            <TextBox Grid.Row="3" Text="{Binding Description}"/>
 
             <Label Content="Assigned Employee" Grid.Row="4"/>
             <ContentControl Content="{Binding AssignedEmployee}" Grid.Row="4" Grid.Column="1"/>

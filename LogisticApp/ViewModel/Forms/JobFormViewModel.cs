@@ -202,7 +202,11 @@ namespace LogisticApp.ViewModel.Forms
 
         public override bool canSave()
         {
-            return true;
+            return (
+                _jobTitle!=null && _description!=null && _predictedCost!=0 &&
+                _predictedTime!=0 && _customer.SelectedRecord!=null && 
+                _assignedEmployee.SelectedRecord!=null
+                );
         }
         #endregion
     }

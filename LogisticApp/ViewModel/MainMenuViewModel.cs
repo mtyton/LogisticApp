@@ -75,7 +75,7 @@ namespace LogisticApp.ViewModel
         private bool canOpenCreateWindow(object param)
         {
             // we can have only one subwindow opened at the time
-            return this._formWindow == null;
+            return this._formWindow == null && this.ListData.Queryset!=null;
         }
 
         private bool canOpenEditWindow(object param)
